@@ -1,0 +1,34 @@
+:root {
+    --White: #FFFFFF;
+    --Gray: #c1c5d1;
+    --DarkGray: #8a8d95;
+    --Black: #000000;
+    --GhostWhite: #F5F7FA;
+    --Red: #E3424D;
+    /*--Red: #B80C09;*/
+    --Blue: #004597;
+    --Green: #29CE64;
+    --Orange: #D4810C;
+
+    --Primary: #F7F7F7;
+    --Secondary: #FFFFFF;
+    --Tertiary: #F2F2F2;
+    --Text: #595959;
+
+    --Background: var(--Tertiary);
+    --BackgroundInside: var(--GhostWhite);
+
+    --GiantFontSize: clamp(1.375rem, 1.0893rem + 0.5714vw, 1.625rem); /* 22 - 26 */
+    --VeryBigFontSize: clamp(1.25rem, 0.9643rem + 0.5714vw, 1.5rem); /* 20 - 24 */
+    --BigFontSize: clamp(1.125rem, 0.8393rem + 0.5714vw, 1.375rem); /* 18 - 22 */
+    --MediumFontSize: clamp(1rem, 0.7857rem + 0.4286vw, 1.1875rem); /* 16 - 19 */
+    --SmallFontSize: clamp(0.875rem, 0.7321rem + 0.2857vw, 1rem); /* 14 - 16 */
+    --MiniFontSize: clamp(0.75rem, 0.6071rem + 0.2857vw, 0.875rem); /* 12 - 14 */
+    --SuperMiniFontSize: clamp(0.5rem, 0.4071rem + 0.1657vw, 0.575rem);
+
+    --Padding: 30px;
+    --BorderRadius: 6px;
+    --InputBorderRadius: 80px;
+
+    --rs-state-focus-shadow: 0 0 0 3px rgba(0, 78, 159, 0.25) !important;
+}

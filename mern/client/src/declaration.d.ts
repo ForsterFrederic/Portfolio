@@ -1,0 +1,10 @@
+declare module "*.jpeg";
+declare module "*.jpg";
+declare module "*.png";
+declare module "*.ico";
+declare module "*.gif";
+declare module "*.webp";
+declare module 'loading-animations-react';
+declare module 'react-alert-template-basic';
+declare module "react-number-format";
+declare module "react-color-palette";

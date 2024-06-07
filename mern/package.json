@@ -1,0 +1,21 @@
+{
+  "name": "mern",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start-all": "cp .env client/.env && concurrently --kill-others \"node server/server.js\" \"cd client && npm start\"",
+    "back": "node server/server.js",
+    "front": "cd client && npm start",
+    "build": "cd client && npm install && npm run build"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.1",
+    "dotenv": "^16.4.5"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "dotenv-webpack": "^8.1.0"
+  }
+}
