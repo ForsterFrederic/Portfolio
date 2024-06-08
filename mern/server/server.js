@@ -6,7 +6,8 @@ require('dotenv').config();
 const mongoose = require('./db/db'); // Import the mongoose connection
 
 const app = express();
-const PORT = process.env.BACKEND_PORT || 3001;
+// const PORT = process.env.BACKEND_PORT || 3001;
+const PORT = 5000;
 
 app.use(bodyParser.json());
 app.use(cors());
