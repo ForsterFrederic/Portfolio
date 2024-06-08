@@ -38,12 +38,12 @@ const styles = {
         alignItems: 'center',
         height: '100vh',
         textAlign: 'center',
-        backgroundColor: '#f0f0f0',
+        backgroundColor: 'black',
         padding: '20px',
     },
     text: {
         marginTop: '20px',
         fontSize: '18px',
-        color: '#333',
+        color: '#ff0000',
     },
 };
