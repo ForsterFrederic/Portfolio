@@ -20,9 +20,30 @@ export default function Developpment() {
     }, []);
 
     return (
-        <div>
+        <div style={styles.container}>
             <h1>Server test:</h1>
             <p>{response}</p>
+            <p style={styles.text}>
+                Le développement du portfolio de Frédéric Forster est en cours, revenez me voir plus tard.
+            </p>
         </div>
     );
+};
+
+const styles = {
+    container: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        textAlign: 'center',
+        backgroundColor: '#f0f0f0',
+        padding: '20px',
+    },
+    text: {
+        marginTop: '20px',
+        fontSize: '18px',
+        color: '#333',
+    },
 };
