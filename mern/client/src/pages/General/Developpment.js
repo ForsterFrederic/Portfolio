@@ -63,18 +63,4 @@ const styles = {
         fontSize: '50px',
         fontWeight: 'bold',
     },
-    projectsButton: {
-        padding: '10px 20px',
-        fontSize: '16px',
-        fontWeight: 'bold',
-        backgroundColor: '#007bff',
-        color: '#fff',
-        border: 'none',
-        borderRadius: '5px',
-        cursor: 'pointer',
-        transition: 'background-color 0.3s ease',
-    },
-    'projectsButton:hover': {
-        backgroundColor: '#0056b3',
-    },
 };
