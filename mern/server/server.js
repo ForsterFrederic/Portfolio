@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, '/../client/build')));
 app.use('/api', router);
 
 app.get('/test', (req, res) => {
-    res.send('Hi from the server! (test)');
+    res.send('Hi from the server! (OK)');
 });
 
 app.get('*', (req, res) => {

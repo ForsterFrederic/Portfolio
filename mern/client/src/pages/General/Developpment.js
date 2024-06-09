@@ -2,7 +2,7 @@ import "../../css/constants.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function Developpment() {
+export default function Development() {
     const [response, setResponse] = useState("Server not tested yet.");
 
     useEffect(() => {
@@ -21,13 +21,10 @@ export default function Developpment() {
 
     return (
         <div style={styles.container}>
-            <h1>Server test:</h1>
+            <h1 style={styles.title}>Server Test</h1>
             <p>{response}</p>
-            <p style={styles.text}>
-                Le développement du portfolio de Frédéric Forster est en cours, revenez me voir plus tard.
-            </p>
-            <p style={styles.text}>
-                Development of Frédéric Forster's portfolio is in progress, please come back later.
+            <p style={styles.message}>
+                Development of Frédéric Forster's portfolio is in progress. Please come back later.
             </p>
         </div>
     );
@@ -39,14 +36,19 @@ const styles = {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        height: '100vh',
-        textAlign: 'center',
-        backgroundColor: 'white',
+        minHeight: '100vh',
+        backgroundColor: '#f5f5f5',
         padding: '20px',
     },
-    text: {
-        marginTop: '20px',
+    title: {
+        fontSize: '32px',
+        fontWeight: 'bold',
+        marginBottom: '20px',
+        color: '#333',
+    },
+    message: {
         fontSize: '18px',
-        color: 'Black',
+        color: '#666',
+        textAlign: 'center',
     },
 };
