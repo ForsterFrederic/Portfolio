@@ -15,7 +15,7 @@ app.use(cors());
 app.use('/api', router);
 
 app.get('/', (req, res) => {
-    res.send('Hi from the server!');
+    res.send('Hi from the server! (test)');
 });
 
 mongoose.connection.once('open', () => {
