@@ -1,10 +1,11 @@
 import "../../css/constants.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import {useNavigate} from "react-router-dom";
 
 export default function Development() {
     const [response, setResponse] = useState("Server not tested yet.");
+    const navigate = useNavigate();
 
     useEffect(() => {
         const testServer = async () => {
