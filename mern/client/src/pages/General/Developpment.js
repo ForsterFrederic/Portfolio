@@ -43,24 +43,22 @@ const styles = {
         minHeight: '100vh',
         backgroundColor: '#f5f5f5',
         padding: '20px',
-        fontWeight: 'bold',
-        color: "black",
-        fontSize: '50px',
     },
     responseContainer: {
-        marginBottom: '40px',
+        marginBottom: '80px',
         textAlign: 'center',
     },
     messageContainer: {
         textAlign: 'center',
     },
     title: {
-        fontSize: '32px',
+        fontSize: '20px',
         marginBottom: '20px',
         color: '#333',
     },
     message: {
-        fontSize: '24px',
-        color: '#666',
+        color: "black",
+        fontSize: '50px',
+        fontWeight: 'bold',
     },
 };
