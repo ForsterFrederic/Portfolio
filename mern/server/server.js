@@ -18,17 +18,13 @@ app.use(express.static(path.join(__dirname, '/../client/build')));
 
 app.use('/api', router);
 
-app.get('/', (req, res) => {
+app.get('/test', (req, res) => {
     res.send('Hi from the server! (test)');
 });
 
-app.get('/lol', (req, res) => {
-    res.send('Hi from the server! (test)');
+app.get('*', (req, res) => {
+    res.sendFile(path.join(`${__dirname}/../client/build/index.html`));
 });
-
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(`${__dirname}/../client/build/index.html`));
-// });
 
 mongoose.connection.once('open', () => {
     app.listen(PORT, () => {
