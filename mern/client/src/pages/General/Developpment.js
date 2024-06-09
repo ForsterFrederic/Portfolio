@@ -21,11 +21,15 @@ export default function Development() {
 
     return (
         <div style={styles.container}>
-            <h1 style={styles.title}>Server Test</h1>
-            <p>{response}</p>
-            <p style={styles.message}>
-                Development of Frédéric Forster's portfolio is in progress. Please come back later.
-            </p>
+            <div style={styles.responseContainer}>
+                <h1 style={styles.title}>Server Test</h1>
+                <p>{response}</p>
+            </div>
+            <div style={styles.messageContainer}>
+                <p style={styles.message}>
+                    Development of Frédéric Forster's portfolio is in progress. Please come back later.
+                </p>
+            </div>
         </div>
     );
 };
@@ -40,6 +44,13 @@ const styles = {
         backgroundColor: '#f5f5f5',
         padding: '20px',
     },
+    responseContainer: {
+        marginBottom: '40px',
+        textAlign: 'center',
+    },
+    messageContainer: {
+        textAlign: 'center',
+    },
     title: {
         fontSize: '32px',
         fontWeight: 'bold',
@@ -47,8 +58,7 @@ const styles = {
         color: '#333',
     },
     message: {
-        fontSize: '18px',
+        fontSize: '24px',
         color: '#666',
-        textAlign: 'center',
     },
 };
