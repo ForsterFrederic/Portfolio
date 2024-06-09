@@ -8,7 +8,7 @@ export default function Developpment() {
     useEffect(() => {
         const testServer = async () => {
             try {
-                const response = await axios.get('https://frederic-forster.com:5000/');
+                const response = await axios.get('https://frederic-forster.com/');
                 setResponse(response.data);
             } catch (error) {
                 setResponse("Failed to test the server.");
