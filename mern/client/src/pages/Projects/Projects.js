@@ -79,6 +79,7 @@ const styles = {
         borderRadius: '5px',
         cursor: 'pointer',
         transition: 'background-color 0.3s ease',
+        marginBottom: '30px',
     },
     'addButton:hover': {
         backgroundColor: '#0056b3',
