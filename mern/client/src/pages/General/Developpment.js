@@ -2,7 +2,6 @@ import "../../css/constants.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-
 export default function Development() {
     const [response, setResponse] = useState("Server not tested yet.");
 
@@ -25,7 +24,6 @@ export default function Development() {
             <div style={styles.responseContainer}>
                 <h1 style={styles.title}>Server Test</h1>
                 <p>{response}</p>
-                <button style={styles.projectsButton} onClick={() => navigate("/projects")}>View sample projects</button>
             </div>
             <div style={styles.messageContainer}>
                 <p style={styles.message}>
