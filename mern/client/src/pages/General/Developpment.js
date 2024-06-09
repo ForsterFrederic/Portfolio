@@ -32,9 +32,6 @@ export default function Development() {
                 <p style={styles.message}>
                     Development of Frédéric Forster's portfolio is in progress.
                 </p>
-                <p style={styles.message}>
-                    Please come back later.
-                </p>
             </div>
         </div>
     );
@@ -51,7 +48,7 @@ const styles = {
         padding: '20px',
     },
     responseContainer: {
-        marginBottom: '80px',
+        marginBottom: '100px',
         textAlign: 'center',
     },
     messageContainer: {
@@ -64,7 +61,7 @@ const styles = {
     },
     message: {
         color: "black",
-        fontSize: '50px',
+        fontSize: '40px',
         fontWeight: 'bold',
     },
     projectsButton: {

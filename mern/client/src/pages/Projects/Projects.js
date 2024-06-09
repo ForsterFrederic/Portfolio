@@ -30,7 +30,7 @@ export default function Projects() {
     return (
         <div style={styles.container}>
             <h1 style={styles.title}>Projects</h1>
-            <p style={styles.projectCount}>Projects number: {projects.length}</p>
+            <p style={styles.projectCount}>Sample projects number: {projects.length}</p>
             <ul style={styles.projectList}>
                 {projects.map(project => (
                     <li key={project.id} style={styles.projectItem}>{project.name}</li>
