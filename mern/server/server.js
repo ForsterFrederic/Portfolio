@@ -4,7 +4,7 @@ const cors = require('cors');
 const router = require('./routes/router');
 require('dotenv').config();
 const mongoose = require('./db/db');
-import path from 'path';
+const path = require('path');
 
 const app = express();
 // const PORT = process.env.BACKEND_PORT || 3001;
