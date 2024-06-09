@@ -26,6 +26,9 @@ export default function Developpment() {
             <p style={styles.text}>
                 Le développement du portfolio de Frédéric Forster est en cours, revenez me voir plus tard.
             </p>
+            <p style={styles.text}>
+                Development of Frédéric Forster's portfolio is in progress, please come back later.
+            </p>
         </div>
     );
 };
