@@ -22,9 +22,9 @@ app.get('/', (req, res) => {
     res.send('Hi from the server! (test)');
 });
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(`${__dirname}/../client/build/index.html`));
-});
+// app.get('*', (req, res) => {
+//     res.sendFile(path.join(`${__dirname}/../client/build/index.html`));
+// });
 
 mongoose.connection.once('open', () => {
     app.listen(PORT, () => {
