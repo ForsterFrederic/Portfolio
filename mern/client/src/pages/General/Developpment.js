@@ -43,6 +43,9 @@ const styles = {
         minHeight: '100vh',
         backgroundColor: '#f5f5f5',
         padding: '20px',
+        fontWeight: 'bold',
+        color: "black",
+        fontSize: '50px',
     },
     responseContainer: {
         marginBottom: '40px',
@@ -53,7 +56,6 @@ const styles = {
     },
     title: {
         fontSize: '32px',
-        fontWeight: 'bold',
         marginBottom: '20px',
         color: '#333',
     },
