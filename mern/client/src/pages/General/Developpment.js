@@ -2,6 +2,7 @@ import "../../css/constants.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+
 export default function Development() {
     const [response, setResponse] = useState("Server not tested yet.");
 
@@ -24,10 +25,11 @@ export default function Development() {
             <div style={styles.responseContainer}>
                 <h1 style={styles.title}>Server Test</h1>
                 <p>{response}</p>
+                <button style={styles.projectsButton} onClick={() => navigate("/projects")}>View sample projects</button>
             </div>
             <div style={styles.messageContainer}>
                 <p style={styles.message}>
-                    Development of Frédéric Forster's portfolio is in progress. Please come back later.
+                    Development of Frédéric Forster's portfolio is in progress.\nPlease come back later.
                 </p>
             </div>
         </div>
@@ -60,5 +62,19 @@ const styles = {
         color: "black",
         fontSize: '50px',
         fontWeight: 'bold',
+    },
+    projectsButton: {
+        padding: '10px 20px',
+        fontSize: '16px',
+        fontWeight: 'bold',
+        backgroundColor: '#007bff',
+        color: '#fff',
+        border: 'none',
+        borderRadius: '5px',
+        cursor: 'pointer',
+        transition: 'background-color 0.3s ease',
+    },
+    'projectsButton:hover': {
+        backgroundColor: '#0056b3',
     },
 };
