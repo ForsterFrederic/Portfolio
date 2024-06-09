@@ -3,7 +3,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const router = require('./routes/router');
 require('dotenv').config();
-const mongoose = require('./db/db'); // Import the mongoose connection
+const mongoose = require('./db/db');
+import path from 'path';
 
 const app = express();
 // const PORT = process.env.BACKEND_PORT || 3001;
@@ -11,6 +12,12 @@ const PORT = 5000;
 
 app.use(bodyParser.json());
 app.use(cors());
+
+app.use('/uploads', express.static(path.join(__dirname, '/../uploads')));
+app.use(express.static(path.join(__dirname, '/../client/build')));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(`${__dirname}/../client/build/index.html`));
+});
 
 app.use('/api', router);
 
