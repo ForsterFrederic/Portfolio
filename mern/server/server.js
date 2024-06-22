@@ -1,14 +1,17 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const router = require('./routes/router');
-require('dotenv').config();
 const mongoose = require('./db/db');
 const path = require('path');
 
 const app = express();
-// const PORT = process.env.BACKEND_PORT || 3001;
-const PORT = 5000;
+
+const IS_PROD = process.env.IS_PROD;
+const BACKEND_PORT = process.env.BACKEND_PORT;
+const PROD_BACKEND_PORT = process.env.PROD_BACKEND_PORT;
+const PORT = (IS_PROD === "TRUE" ? PROD_BACKEND_PORT : BACKEND_PORT) || 3001;
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -18,13 +21,13 @@ app.use(express.static(path.join(__dirname, '/../client/build')));
 
 app.use('/api', router);
 
-app.get('/test', (req, res) => {
+app.get('/api/test', (req, res) => {
     res.send('Hi from the server! (OK)');
 });
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(`${__dirname}/../client/build/index.html`));
-});
+// app.get('*', (req, res) => {
+//     res.sendFile(path.join(`${__dirname}/../client/build/index.js`));
+// });
 
 mongoose.connection.once('open', () => {
     app.listen(PORT, () => {

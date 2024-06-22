@@ -1,12 +1,16 @@
 import {Route, Routes} from "react-router-dom";
 import Developpment from "./pages/General/Developpment";
 import Projects from "./pages/Projects/Projects";
+import Colors from "./pages/General/Colors";
+import DevelopmentCard from "./pages/General/DeveloppmentCard";
 
 export function MyRoutes() {
     return (
         <Routes>
-            <Route path="/" element={<Developpment/>}/>
+            <Route path="/private" element={<Developpment/>}/>
             <Route path="/projects" element={<Projects/>}/>
+            <Route path="/colors" element={<Colors/>}/>
+            <Route path="/" element={<DevelopmentCard/>}/>
             {/*<Route path="/login" element={<Login/>}/>*/}
             {/*<Route path="/register" element={<InDevelopment/>}/>*/}
             {/*<Route path="/reset-password" element={<InDevelopment/>}/>*/}
