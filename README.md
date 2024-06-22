@@ -1,13 +1,21 @@
-# mern-stack-example
-Mern Stack code for the [Mern Tutorial](https://www.mongodb.com/languages/mern-stack-tutorial)
+# Frédéric FORSTER's Portfolio
 
-[![CI](https://github.com/mongodb-developer/mern-stack-example/actions/workflows/main.yaml/badge.svg)](https://github.com/mongodb-developer/mern-stack-example/actions/workflows/main.yaml)
+## Important
+
+```
+MONGODB ATLAS URI = mongodb+srv://<username>:<password>@sandbox.jadwj.mongodb.net/
+PORT LOCAL        = 3001
+PORT PRODUCTION   = 5000
+.env in /server and generated in /client
+```
 
 ## How To Run
-Create the file `mern/server/config.env` with your Atlas URI and the server port:
+
+Start server and client:
 ```
-ATLAS_URI=mongodb+srv://<username>:<password>@sandbox.jadwj.mongodb.net/
-PORT=5050
+cd mern/
+npm install
+npm start
 ```
 
 Start server:
@@ -21,11 +29,5 @@ Start Web server
 ```
 cd mern/client
 npm install
-npm run dev
+npm start
 ```
-
-## Disclaimer
-
-Use at your own risk; not a supported MongoDB product
-
-testjsp
