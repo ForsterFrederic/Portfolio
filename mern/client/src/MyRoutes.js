@@ -3,6 +3,7 @@ import Developpment from "./pages/General/Developpment";
 import Projects from "./pages/Projects/Projects";
 import Colors from "./pages/General/Colors";
 import DevelopmentCard from "./pages/General/DeveloppmentCard";
+import Home from "./pages/General/Home";
 
 export function MyRoutes() {
     return (
@@ -11,6 +12,7 @@ export function MyRoutes() {
             <Route path="/projects" element={<Projects/>}/>
             <Route path="/colors" element={<Colors/>}/>
             <Route path="/" element={<DevelopmentCard/>}/>
+            <Route path="/home" element={<Home/>}/>
             {/*<Route path="/login" element={<Login/>}/>*/}
             {/*<Route path="/register" element={<InDevelopment/>}/>*/}
             {/*<Route path="/reset-password" element={<InDevelopment/>}/>*/}

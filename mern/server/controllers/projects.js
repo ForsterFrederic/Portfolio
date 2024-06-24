@@ -12,14 +12,12 @@ exports.getProjects = async (req, res) => {
 
 exports.createProject = async (req, res) => {
     const { name } = req.body;
-    console.log('Request body:', req.body); // Debugging line
     try {
         const project = new Project({ name });
         await project.save();
-        console.log('Project created:', project); // Debugging line
         res.status(201).json(project);
     } catch (err) {
-        console.error('Error during project creation:', err); // Debugging line
+        console.error('Error during project creation:', err);
         res.status(500).json({ error: err.message });
     }
 };
