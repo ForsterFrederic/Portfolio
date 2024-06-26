@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
-export default function Development() {
+export default function Private() {
     const [response, setResponse] = useState("Server not tested yet.");
     const navigate = useNavigate();
     const BACKEND_API_URL = process.env.REACT_APP_BACKEND_API_URL || "http://localhost:3001/api";

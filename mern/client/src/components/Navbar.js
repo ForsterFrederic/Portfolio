@@ -12,13 +12,10 @@ import {
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import {useNavigate} from "react-router-dom";
 
-const navigate = useNavigate();
-
 const navigation = [
-    { name: 'Dashboard', href: '#', current: true },
-    { name: 'Team', href: '#', current: false },
+    { name: 'Accueil', href: process.env.REACT_APP_IS_DEVELOPMENT ? '/home' : "/", current: true },
     { name: 'Projets', href: "/projects", current: false },
-    { name: 'Calendar', href: '#', current: false },
+    { name: 'Contact', href: '/contact', current: false },
 ]
 
 function classNames(...classes) {
@@ -26,6 +23,8 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+    const navigate = useNavigate();
+
     return (
         <Disclosure as="nav" className="var(--RealWhite)">
             {({ open }) => (
@@ -34,7 +33,7 @@ export default function Navbar() {
                         <div className="relative flex h-16 items-center justify-between">
                             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                                 {/* Mobile menu button*/}
-                                <DisclosureButton className="relative inline-flex items-center justify-center rounded-md p-2 text-primary-light hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                                <DisclosureButton className="relative inline-flex items-center justify-center rounded-md p-2 btblue hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                                     <span className="absolute -inset-0.5" />
                                     <span className="sr-only">Open main menu</span>
                                     {open ? (
@@ -45,10 +44,10 @@ export default function Navbar() {
                                 </DisclosureButton>
                             </div>
                             <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                                <div className="flex flex-shrink-0 items-center">
+                                <div className="flex flex-shrink-0 items-center cursor-pointer mr-6" onClick={() => navigate(process.env.REACT_APP_IS_DEVELOPMENT ? "/home" : "/")}>
                                     <img
                                         className="h-8 w-auto"
-                                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                                        src="/logo512.png"
                                         alt="Your Company"
                                     />
                                 </div>
@@ -59,8 +58,8 @@ export default function Navbar() {
                                                 key={item.name}
                                                 onClick={() => navigate(item.href)}
                                                 className={classNames(
-                                                    item.current ? 'bg-primary text-secondary' : 'text-primary-light text-900 hover:bg-secondary-700 hover:text-fourthiary',
-                                                    'rounded-md px-3 py-2 text-sm font-medium',
+                                                    item.current ? 'bg-blue-600 text-white' : 'text-black hover:text-blue-600',
+                                                    'rounded-md px-3 py-2 text-sm font-medium cursor-pointer',
                                                 )}
                                                 aria-current={item.current ? 'page' : undefined}
                                             >

@@ -3,7 +3,9 @@ const fs = require('fs');
 const path = require('path');
 
 const clientEnv = {
-    REACT_APP_BACKEND_API_URL: process.env.IS_PROD === "TRUE" ? process.env.PROD_BACKEND_API_URL : process.env.BACKEND_API_URL
+    REACT_APP_BACKEND_API_URL: process.env.IS_PROD === "TRUE" ? process.env.PROD_BACKEND_API_URL : process.env.BACKEND_API_URL,
+    REACT_APP_IS_PROD: process.env.IS_PROD,
+    REACT_APP_IS_DEVELOPMENT: process.env.IS_DEVELOPMENT,
 };
 
 fs.writeFileSync(
