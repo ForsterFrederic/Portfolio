@@ -12,7 +12,8 @@ export function MyRoutes() {
                 <Route path="/private" element={<Private/>}/>
                 <Route path="/projects" element={<Projects/>}/>
                 <Route path="/colors" element={<Colors/>}/>
-                <Route path="/" element={<Development/>}/>
+                {/*<Route path="/" element={<Development/>}/>*/}
+                <Route path="/" element={<Private/>}/>
                 <Route path="/home" element={<Home/>}/>
             </Routes>
             :
@@ -20,9 +21,8 @@ export function MyRoutes() {
                 <Route path="/private" element={<Private/>}/>
                 <Route path="/projects" element={<Projects/>}/>
                 <Route path="/colors" element={<Colors/>}/>
-                {/*<Route path="/development" element={<Development/>}/>*/}
-                {/*<Route path="/" element={<Home/>}/>*/}
-                <Route path="/" element={<Development/>}/>
+                <Route path="/development" element={<Development/>}/>
+                <Route path="/" element={<Home/>}/>
             </Routes>
     )
 }
