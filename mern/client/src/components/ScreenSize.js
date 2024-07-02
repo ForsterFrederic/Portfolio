@@ -1,6 +1,6 @@
 export default function ScreenSize() {
     return (
-        <div className={"py-10 tbblue"}>
+        <div className={"py-10 tbprimary"}>
             <div className="block sm:hidden md:hidden lg:hidden xl:hidden 2xl:hidden">
                 <p className="text-center text-xs">I am on an XS screen</p>
             </div>

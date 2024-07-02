@@ -31,11 +31,30 @@
         --my-warning-hover: #f97316; /* orange-500 */
         --my-danger: #f87171; /* red-400 */
         --my-danger-hover: #ef4444; /* red-500 */
+
+        --primary:var(--my-blue);
+        --primary-hover:var(--my-blue-hover);
+
+        /*--primary:var(--my-orange);*/
+        /*--primary-hover:var(--my-orange-hover);*/
+
+        /*--primary:var(--my-purple);*/
+        /*--primary-hover:var(--my-purple-hover);*/
+
+        /*--primary:var(--my-pink);*/
+        /*--primary-hover:var(--my-pink-hover);*/
     }
 }
 
 /* ------ TEXT COLORS ------ */
 @layer components {
+    .tprimary {
+        color: var(--primary);
+    }
+    .tprimary:hover {
+        color: var(--primary-hover);
+    }
+
     .tblue {
         color: var(--my-blue);
     }
@@ -136,6 +155,13 @@
 
 /* ------ BACKGROUND COLORS ------ */
 @layer components {
+    .bprimary {
+        background-color: var(--primary);
+    }
+    .bprimary:hover {
+        background-color: var(--primary-hover);
+    }
+
     .bblue {
         background-color: var(--my-blue);
     }
@@ -236,6 +262,14 @@
 
 /* ------ BACKGROUND AND TEXT COMBOS COLORS ------ */
 @layer components {
+    .tbprimary {
+        background-color: var(--primary);
+        color: var(--my-white1);
+    }
+    .tbprimary:hover {
+        background-color: var(--primary-hover);
+    }
+
     .tbblue {
         background-color: var(--my-blue);
         color: var(--my-white1);
@@ -363,22 +397,60 @@
         @apply flex flex-col justify-center;
     }
 
+    .ring {
+        --tw-ring-color: var(--primary);
+    }
+
     .btn {
-        @apply transition py-3 px-5 rounded uppercase font-bold text-xs shadow-gray-400 shadow hover:ring focus:ring focus:ring-offset-2;
-        background-color: var(--my-blue);
+        @apply transition py-3 px-5 rounded uppercase font-bold text-xs shadow-gray-400 shadow  focus:ring focus:ring-offset-2;
+        background-color: var(--primary);
         color: var(--my-white1);
     }
 
     .btn:hover {
-        background-color: var(--my-blue-hover);
+        background-color: var(--primary-hover);
     }
 
     .btn:focus {
-        background-color: var(--my-blue-hover);
+        background-color: var(--primary-hover);
     }
 
-    .gradient-bg {
-        background: linear-gradient(to bottom right, var(--my-white1), var(--my-grayl2));
+    .btn-xl {
+        @apply transition py-3 px-7 rounded uppercase font-bold text-base shadow-gray-400 shadow hover:ring focus:ring focus:ring-offset-2;
+        background-color: var(--primary);
+        color: var(--my-white1);
+    }
+
+    .btn-xl:hover {
+        background-color: var(--primary-hover);
+    }
+
+    .btn-xl:focus {
+        background-color: var(--primary-hover);
+    }
+
+    .border-bottom-big {
+        border-bottom: 6px solid var(--primary);
+    }
+
+    .border-bottom {
+        border-bottom: 2px solid var(--primary);
+    }
+
+    .border {
+        border: 2px solid var(--primary);
+    }
+
+    .gradient-bg-left-darker {
+        background: linear-gradient(to bottom left, var(--my-white2), var(--my-grayl2));
+    }
+
+    .gradient-bg-left {
+        background: linear-gradient(to bottom left, var(--my-white2), var(--my-grayl1));
+    }
+
+    .gradient-bg-right {
+        background: linear-gradient(to bottom right, var(--my-white2), var(--my-grayl1));
     }
 }
 

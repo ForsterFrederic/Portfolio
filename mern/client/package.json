@@ -34,9 +34,7 @@
       "last 1 safari version"
     ]
   },
-  "resolutions": {
-
-  },
+  "resolutions": {},
   "devDependencies": {
     "globals": "^15.6.0",
     "postcss": "^8.4.38",

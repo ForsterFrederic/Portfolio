@@ -33,7 +33,7 @@ export default function Navbar() {
                         <div className="relative flex h-16 items-center justify-between">
                             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                                 {/* Mobile menu button*/}
-                                <DisclosureButton className="relative inline-flex items-center justify-center rounded-md p-2 btblue hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                                <DisclosureButton className="relative inline-flex items-center justify-center rounded-md p-2 btprimary hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                                     <span className="absolute -inset-0.5" />
                                     <span className="sr-only">Open main menu</span>
                                     {open ? (
@@ -58,7 +58,7 @@ export default function Navbar() {
                                                 key={item.name}
                                                 onClick={() => navigate(item.href)}
                                                 className={classNames(
-                                                    item.current ? 'bg-blue-600 text-white' : 'text-black hover:text-blue-600',
+                                                    item.current ? 'bprimary text-white' : 'text-black hover:tprimary',
                                                     'rounded-md px-3 py-2 text-sm font-medium cursor-pointer',
                                                 )}
                                                 aria-current={item.current ? 'page' : undefined}

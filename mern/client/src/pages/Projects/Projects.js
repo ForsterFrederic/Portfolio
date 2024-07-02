@@ -30,7 +30,7 @@ export default function Projects() {
         <div style={styles.container}>
             <h1 style={styles.title}>Projects</h1>
             <p style={styles.projectCount}>Sample projects number: {projects.length}</p>
-            <button style={styles.addButton} onClick={() => addProject()}>Add a Sample Project</button>
+            <button className={"btn mb-6"} onClick={() => addProject()}>Add a Sample Project</button>
             <ul style={styles.projectList}>
                 {projects.map(project => (
                     <li key={project.id} style={styles.projectItem}>{project.name}</li>
@@ -67,20 +67,5 @@ const styles = {
         fontSize: '16px',
         marginBottom: '10px',
         color: '#444',
-    },
-    addButton: {
-        padding: '10px 20px',
-        fontSize: '16px',
-        fontWeight: 'bold',
-        backgroundColor: '#007bff',
-        color: '#fff',
-        border: 'none',
-        borderRadius: '5px',
-        cursor: 'pointer',
-        transition: 'background-color 0.3s ease',
-        marginBottom: '30px',
-    },
-    'addButton:hover': {
-        backgroundColor: '#0056b3',
     },
 };
