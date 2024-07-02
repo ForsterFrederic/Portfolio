@@ -11,7 +11,8 @@ const app = express();
 const IS_PROD = process.env.IS_PROD;
 const BACKEND_PORT = process.env.BACKEND_PORT;
 const PROD_BACKEND_PORT = process.env.PROD_BACKEND_PORT;
-const PORT = (IS_PROD === "TRUE" ? PROD_BACKEND_PORT : BACKEND_PORT) || 3001;
+// const PORT = (IS_PROD === "TRUE" ? PROD_BACKEND_PORT : BACKEND_PORT) || 3001;
+const PORT =  5000;
 
 app.use(bodyParser.json());
 app.use(cors());
