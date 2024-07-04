@@ -15,6 +15,10 @@ import {useNavigate} from "react-router-dom";
 const navigation = [
     { name: 'Accueil', href: process.env.REACT_APP_IS_DEVELOPMENT ? '/home' : "/", current: true },
     { name: 'Projets', href: "/projects", current: false },
+    { name: 'Projets', href: "/projects", current: false },
+]
+
+const navigationRight = [
     { name: 'Contact', href: '/contact', current: false },
 ]
 
@@ -33,7 +37,7 @@ export default function Navbar() {
                         <div className="relative flex h-16 items-center justify-between">
                             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                                 {/* Mobile menu button*/}
-                                <DisclosureButton className="relative inline-flex items-center justify-center rounded-md p-2 btprimary hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                                <DisclosureButton className="relative inline-flex items-center justify-center rounded-md p-2 btprimary hover:bprimary hover:twhite1 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                                     <span className="absolute -inset-0.5" />
                                     <span className="sr-only">Open main menu</span>
                                     {open ? (
@@ -51,21 +55,37 @@ export default function Navbar() {
                                         alt="Your Company"
                                     />
                                 </div>
-                                <div className="hidden sm:ml-6 sm:block">
-                                    <div className="flex space-x-4">
-                                        {navigation.map((item) => (
-                                            <a
-                                                key={item.name}
-                                                onClick={() => navigate(item.href)}
-                                                className={classNames(
-                                                    item.current ? 'bprimary text-white' : 'text-black hover:tprimary',
-                                                    'rounded-md px-3 py-2 text-sm font-medium cursor-pointer',
-                                                )}
-                                                aria-current={item.current ? 'page' : undefined}
-                                            >
-                                                {item.name}
-                                            </a>
-                                        ))}
+                                <div className="hidden sm:ml-6 sm:block w-full">
+                                    <div className={"flex"}>
+                                        <div className="flex">
+                                            {navigation.map((item) => (
+                                                <a
+                                                    key={item.name}
+                                                    onClick={() => navigate(item.href)}
+                                                    className={classNames(
+                                                        item.current ? 'bprimary text-white' : 'text-black hover:tprimary',
+                                                        'rounded px-3 py-2 text-sm font-medium cursor-pointer mx-2 transition',
+                                                    )}
+                                                    aria-current={item.current ? 'page' : undefined}
+                                                >
+                                                    {item.name}
+                                                </a>
+                                            ))}
+                                        </div>
+                                        <div className="flex w-full justify-end">
+                                            {navigationRight.map((item) => (
+                                                <a
+                                                    key={item.name}
+                                                    onClick={() => navigate(item.href)}
+                                                    className={classNames(
+                                                        'border tprimary rounded px-6 py-2 text-sm font-medium cursor-pointer mx-2 hover:bprimary hover:twhite1 transition',
+                                                    )}
+                                                    aria-current={item.current ? 'page' : undefined}
+                                                >
+                                                    {item.name}
+                                                </a>
+                                            ))}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -73,14 +93,14 @@ export default function Navbar() {
                     </div>
 
                     <DisclosurePanel className="sm:hidden">
-                        <div className="space-y-1 px-2 pb-3 pt-2">
-                            {navigation.map((item) => (
+                        <div className="space-y-1 px-2 py-3 bgrayl1 border-top shadow-xl border-bottom">
+                            {navigation.concat(navigationRight).map((item) => (
                                 <DisclosureButton
                                     key={item.name}
                                     as="a"
                                     href={item.href}
                                     className={classNames(
-                                        item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                        item.current ? 'bprimary text-white' : 'text-black hover:tprimary',
                                         'block rounded-md px-3 py-2 text-base font-medium',
                                     )}
                                     aria-current={item.current ? 'page' : undefined}
