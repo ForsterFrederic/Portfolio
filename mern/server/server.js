@@ -17,7 +17,13 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use('/uploads', express.static(path.join(__dirname, '/../uploads')));
-app.use(express.static(path.join(__dirname, '/../client/build')));
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Ensure correct MIME type for CSS files
+app.get('*.css', (req, res, next) => {
+    res.setHeader('Content-Type', 'text/css');
+    next();
+});
 
 app.use('/api', router);
 
