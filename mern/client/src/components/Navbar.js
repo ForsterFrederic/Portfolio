@@ -36,7 +36,6 @@ export default function Navbar() {
                     <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                         <div className="relative flex h-16 items-center justify-between">
                             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                                {/* Mobile menu button*/}
                                 <DisclosureButton className="relative inline-flex items-center justify-center rounded-md p-2 btprimary hover:bprimary hover:twhite1 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                                     <span className="absolute -inset-0.5" />
                                     <span className="sr-only">Open main menu</span>
@@ -47,24 +46,24 @@ export default function Navbar() {
                                     )}
                                 </DisclosureButton>
                             </div>
-                            <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                            <div className="flex flex-1 items-center justify-center sm:justify-start">
                                 <div className="flex flex-shrink-0 items-center cursor-pointer mr-6" onClick={() => navigate(process.env.REACT_APP_IS_DEVELOPMENT ? "/home" : "/")}>
                                     <img
-                                        className="h-8 w-auto"
-                                        src="/logo512.png"
+                                        className="h-12 w-auto"
+                                        src="/logo.png"
                                         alt="Your Company"
                                     />
                                 </div>
                                 <div className="hidden sm:ml-6 sm:block w-full">
                                     <div className={"flex"}>
-                                        <div className="flex">
+                                        <div className="flex-center">
                                             {navigation.map((item) => (
                                                 <a
                                                     key={item.name}
                                                     onClick={() => navigate(item.href)}
                                                     className={classNames(
                                                         item.current ? 'bprimary text-white' : 'text-black hover:tprimary',
-                                                        'rounded px-3 py-2 text-sm font-medium cursor-pointer mx-2 transition',
+                                                        'rounded px-3 py-2.5 text-sm leading-none font-medium cursor-pointer mx-2 transition',
                                                     )}
                                                     aria-current={item.current ? 'page' : undefined}
                                                 >
@@ -78,7 +77,7 @@ export default function Navbar() {
                                                     key={item.name}
                                                     onClick={() => navigate(item.href)}
                                                     className={classNames(
-                                                        'border tprimary rounded px-6 py-2 text-sm font-medium cursor-pointer mx-2 hover:bprimary hover:twhite1 transition',
+                                                        'border tprimary rounded leading-none px-6 py-2 text-sm font-medium cursor-pointer mx-2 hover:bprimary hover:twhite1 transition',
                                                     )}
                                                     aria-current={item.current ? 'page' : undefined}
                                                 >

@@ -1,3 +1,5 @@
+import TestImage from "./../assets/pictures/test.jpg"
+
 export default function Projects() {
     return (
         <div className={"py-10"}>
@@ -7,44 +9,54 @@ export default function Projects() {
             </div>
             <div className={""}>
                 <div className={"grid md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mx-14 md:mx-32"}>
-                    <div>
-                        <div className={"aspect-[16/9] bgrayl2 rounded shadow max-w-xl cursor-pointer mx-auto"}>
-
+                    <div className={"cursor-pointer hover:scale-105 rounded shadow hover:shadow-xl max-w-xl transition bwhite3"}>
+                        <div className={"aspect-[16/9] mx-auto border-bottom-medium"}>
+                            <img className={"aspect-[16/9] rounded-t bg-cover grayscale hover:"} src={TestImage}/>
+                        </div>
+                        <div className={"flex-col-center w-full p-3 shadow-xl"}>
+                            <p className={"font-semibold text-lg mb-2 mx-auto"}>Wollenschneider website</p>
+                            <p className={"tgrayd3"}>TEXT here</p>
+                            <p className={"tgrayd3"}>TEXT here</p>
                         </div>
                     </div>
-                    <div>
-                        <div className={"aspect-[16/9] bgrayl2 rounded shadow max-w-xl cursor-pointer mx-auto"}>
-
+                    <div className={"cursor-pointer hover:scale-105 rounded shadow hover:shadow-xl max-w-xl transition bwhite3"}>
+                        <div className={"aspect-[16/9] mx-auto border-bottom-medium"}>
+                            <img className={"aspect-[16/9] rounded-t bg-cover grayscale hover:"} src={TestImage}/>
+                        </div>
+                        <div className={"flex-col-center w-full p-3 shadow-xl"}>
+                            <p className={"font-semibold text-lg mb-2 mx-auto"}>Wollenschneider website</p>
+                            <p className={"tgrayd3"}>TEXT here</p>
+                            <p className={"tgrayd3"}>TEXT here</p>
                         </div>
                     </div>
-                    <div>
-                        <div className={"aspect-[16/9] bgrayl2 rounded shadow max-w-xl cursor-pointer mx-auto"}>
-
+                    <div className={"cursor-pointer hover:scale-105 rounded shadow hover:shadow-xl max-w-xl transition bwhite3"}>
+                        <div className={"aspect-[16/9] mx-auto border-bottom-medium"}>
+                            <img className={"aspect-[16/9] rounded-t bg-cover grayscale hover:"} src={TestImage}/>
+                        </div>
+                        <div className={"flex-col-center w-full p-3 shadow-xl"}>
+                            <p className={"font-semibold text-lg mb-2 mx-auto"}>Wollenschneider website</p>
+                            <p className={"tgrayd3"}>TEXT here</p>
+                            <p className={"tgrayd3"}>TEXT here</p>
                         </div>
                     </div>
-                    <div>
-                        <div className={"aspect-[16/9] bgrayl2 rounded shadow max-w-xl cursor-pointer mx-auto"}>
-
+                    <div className={"cursor-pointer hover:scale-105 rounded shadow hover:shadow-xl max-w-xl transition bwhite3"}>
+                        <div className={"aspect-[16/9] mx-auto border-bottom-medium"}>
+                            <img className={"aspect-[16/9] rounded-t bg-cover grayscale hover:"} src={TestImage}/>
+                        </div>
+                        <div className={"flex-col-center w-full p-3 shadow-xl"}>
+                            <p className={"font-semibold text-lg mb-2 mx-auto"}>Wollenschneider website</p>
+                            <p className={"tgrayd3"}>TEXT here</p>
+                            <p className={"tgrayd3"}>TEXT here</p>
                         </div>
                     </div>
-                    <div>
-                        <div className={"aspect-[16/9] bgrayl2 rounded shadow max-w-xl cursor-pointer mx-auto"}>
-
+                    <div className={"cursor-pointer hover:scale-105 rounded shadow hover:shadow-xl max-w-xl transition bwhite3"}>
+                        <div className={"aspect-[16/9] mx-auto border-bottom-medium"}>
+                            <img className={"aspect-[16/9] rounded-t bg-cover grayscale hover:"} src={TestImage}/>
                         </div>
-                    </div>
-                    <div>
-                        <div className={"aspect-[16/9] bgrayl2 rounded shadow max-w-xl cursor-pointer mx-auto"}>
-
-                        </div>
-                    </div>
-                    <div>
-                        <div className={"aspect-[16/9] bgrayl2 rounded shadow max-w-xl cursor-pointer mx-auto"}>
-
-                        </div>
-                    </div>
-                    <div>
-                        <div className={"aspect-[16/9] bgrayl2 rounded shadow max-w-xl cursor-pointer mx-auto"}>
-
+                        <div className={"flex-col-center w-full p-3 shadow-xl"}>
+                            <p className={"font-semibold text-lg mb-2 mx-auto"}>Wollenschneider website</p>
+                            <p className={"tgrayd3"}>TEXT here</p>
+                            <p className={"tgrayd3"}>TEXT here</p>
                         </div>
                     </div>
                 </div>

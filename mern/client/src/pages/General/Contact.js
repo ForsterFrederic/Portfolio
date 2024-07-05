@@ -1,5 +1,11 @@
 import "../../css/constants.css"
 import {useEffect, useRef, useState} from "react";
+import LinkedinOutline from "./../../assets/pictures/social/linkedin/linkedin-outline.png"
+import LinkedinFull from "./../../assets/pictures/social/linkedin/linkedin-full.png"
+import GithubOutline from "./../../assets/pictures/social/github/github-outline.png"
+import GithubFull from "./../../assets/pictures/social/github/github-full.png"
+import MailOutline from "./../../assets/pictures/social/mail/mail-outline.png"
+import MailFull from "./../../assets/pictures/social/mail/mail-outline.png"
 
 export default function Contact() {
     const textareaRef = useRef(null);
@@ -31,21 +37,21 @@ export default function Contact() {
                         <div className={"bprimary w-4/12 h-1.5 rounded mb-3"}/>
                         <p className={"text-2xl md:text-3xl lg:text-4xl xl:text-5xl tblack3"}>Let's work together</p>
                     </div>
-                    {/*<div className={"grid gap-4 grid-cols-3"}>*/}
-                    {/*    <div className={"w-20 h-20 bg-gray-800"}>*/}
-
-                    {/*    </div>*/}
-                    {/*    <div className={"w-20 h-20 bg-gray-800"}>*/}
-
-                    {/*    </div>*/}
-                    {/*    <div className={"w-20 h-20 bg-gray-800"}>*/}
-
-                    {/*    </div>*/}
-                    {/*</div>*/}
                 </div>
-                <div className={"flex-col-center md:flex-row w-full md:mt-4"}>
+                <div className={"flex-col-center md:flex-row w-full"}>
                     <div className={"mx-auto md:mx-0 w-4/6 md:w-2/6"}>
-                        <p className={"md:w-full mt-10 text-lg md:text-xl lg:text-2xl xl:text-3xl tblack3"}>Get in touch with me</p>
+                        <p className={"md:w-full text-lg md:text-xl lg:text-2xl xl:text-3xl tblack3 mt-32"}>Get in touch with me</p>
+                        <div className={"grid gap-4 grid-flow-col w-2/12 mt-10"}>
+                            <div className={"w-10 h-10"}>
+                                <img src={LinkedinOutline}/>
+                            </div>
+                            <div className={"w-10 h-10"}>
+                                <img src={GithubOutline}/>
+                            </div>
+                            <div className={"w-10 h-10"}>
+                                <img src={MailOutline}/>
+                            </div>
+                        </div>
                         <p className={"md:w-full mt-4 md:text-sm lg:text-md xl:text-lg tgrayd3"}>Lorem ipsum dolor sit amet consectetur adipisci elit donec faucibus adipiscing mauris.</p>
                     </div>
                     <div className={"w-5/6 mt-10 md:mt-0 mx-auto md:mx-0 md:ml-14 lg:ml-auto lg:mr-auto flex-col-center items-center md:w-7/12 lg:w-5/12 bwhite3 justify-between rounded-xl shadow-black drop-shadow-lg"}>

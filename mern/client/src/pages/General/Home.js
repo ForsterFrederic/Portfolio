@@ -97,7 +97,7 @@ export default function Home() {
         <div>
             <Navbar/>
             {windowWidth > 768 ? <CardDesktop/> : <CardMobile/>}
-            {/*<Competencies/>*/}
+            <Competencies/>
             <Projects/>
             <Contact/>
         </div>

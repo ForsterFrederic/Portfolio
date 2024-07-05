@@ -1,472 +1,484 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* ------ COLOR PALETTE ------ */
-@layer base {
-    :root {
-        --my-blue: #2563eb; /* blue-600 */
-        --my-blue-hover: #1d4ed8; /* blue-700 */
-        --my-orange: #f59e0b; /* yellow-500 */
-        --my-orange-hover: #d97706; /* yellow-600 */
-        --my-pink: #ec407a; /* pink-500 */
-        --my-pink-hover: #d81b60; /* pink-600 */
-        --my-purple: #7c3aed; /* purple-600 */
-        --my-purple-hover: #6d28d9; /* purple-700 */
-        --my-white1: #ffffff; /* white */
-        --my-white2: #fafafa; /* neutral-50 */
-        --my-white3: #f3f4f6; /* zinc-100 */
-        --my-grayl1: #e5e7eb; /* zinc-200 */
-        --my-grayl2: #d1d5db; /* zinc-300 */
-        --my-grayl3: #b8bdc4; /* zinc-400 */
-        --my-grayd1: #d4d4d8; /* neutral-300 */
-        --my-grayd2: #9ca3af; /* stone-300 */
-        --my-grayd3: #787c84; /* stone-400 */
-        --my-black1: #262626; /* neutral-800 */
-        --my-black2: #171717; /* neutral-900 */
-        --my-black3: #000000; /* black */
-        --my-success: #10b981; /* emerald-500 */
-        --my-success-hover: #059669; /* emerald-600 */
-        --my-warning: #fb923c; /* orange-400 */
-        --my-warning-hover: #f97316; /* orange-500 */
-        --my-danger: #f87171; /* red-400 */
-        --my-danger-hover: #ef4444; /* red-500 */
-
-        --primary:var(--my-blue);
-        --primary-hover:var(--my-blue-hover);
-
-        /*--primary:var(--my-orange);*/
-        /*--primary-hover:var(--my-orange-hover);*/
-
-        /*--primary:var(--my-purple);*/
-        /*--primary-hover:var(--my-purple-hover);*/
-
-        /*--primary:var(--my-pink);*/
-        /*--primary-hover:var(--my-pink-hover);*/
-    }
-}
-
-/* ------ TEXT COLORS ------ */
-@layer components {
-    .tprimary {
-        color: var(--primary);
-    }
-    .tprimary:hover {
-        color: var(--primary-hover);
-    }
-
-    .tblue {
-        color: var(--my-blue);
-    }
-    .tblue:hover {
-        color: var(--my-blue-hover);
-    }
-
-    .torange {
-        color: var(--my-orange);
-    }
-    .torange:hover {
-        color: var(--my-orange-hover);
-    }
-
-    .tpink {
-        color: var(--my-pink);
-    }
-    .tpink:hover {
-        color: var(--my-pink-hover);
-    }
-
-    .tpurple {
-        color: var(--my-purple);
-    }
-    .tpurple:hover {
-        color: var(--my-purple-hover);
-    }
-
-    .twhite1 {
-        color: var(--my-white1);
-    }
-
-    .twhite2 {
-        color: var(--my-white2);
-    }
-
-    .twhite3 {
-        color: var(--my-white3);
-    }
-
-    .tgrayl1 {
-        color: var(--my-grayl1);
-    }
-
-    .tgrayl2 {
-        color: var(--my-grayl2);
-    }
-
-    .tgrayl3 {
-        color: var(--my-grayl3);
-    }
-
-    .tgrayd1 {
-        color: var(--my-grayd1);
-    }
-
-    .tgrayd2 {
-        color: var(--my-grayd2);
-    }
-
-    .tgrayd3 {
-        color: var(--my-grayd3);
-    }
-
-    .tblack1 {
-        color: var(--my-black1);
-    }
-
-    .tblack2 {
-        color: var(--my-black2);
-    }
-
-    .tblack3 {
-        color: var(--my-black3);
-    }
-
-    .tsuccess {
-        color: var(--my-success);
-    }
-    .tsuccess:hover {
-        color: var(--my-success-hover);
-    }
-
-    .twarning {
-        color: var(--my-warning);
-    }
-    .twarning:hover {
-        color: var(--my-warning-hover);
-    }
-
-    .tdanger {
-        color: var(--my-danger);
-    }
-    .tdanger:hover {
-        color: var(--my-danger-hover);
-    }
-}
-
-/* ------ BACKGROUND COLORS ------ */
-@layer components {
-    .bprimary {
-        background-color: var(--primary);
-    }
-    .bprimary:hover {
-        background-color: var(--primary-hover);
-    }
-
-    .bblue {
-        background-color: var(--my-blue);
-    }
-    .bblue:hover {
-        background-color: var(--my-blue-hover);
-    }
-
-    .borange {
-        background-color: var(--my-orange);
-    }
-    .borange:hover {
-        background-color: var(--my-orange-hover);
-    }
-
-    .bpink{
-        background-color: var(--my-pink);
-    }
-    .bpink:hover {
-        background-color: var(--my-pink-hover);
-    }
-
-    .bpurple {
-        background-color: var(--my-purple);
-    }
-    .bpurple:hover {
-        background-color: var(--my-purple-hover);
-    }
-
-    .bwhite1 {
-        background-color: var(--my-white1);
-    }
-
-    .bwhite2 {
-        background-color: var(--my-white2);
-    }
-
-    .bwhite3 {
-        background-color: var(--my-white3);
-    }
-
-    .bgrayl1 {
-        background-color: var(--my-grayl1);
-    }
-
-    .bgrayl2 {
-        background-color: var(--my-grayl2);
-    }
-
-    .bgrayl3 {
-        background-color: var(--my-grayl3);
-    }
-
-    .bgrayd1 {
-        background-color: var(--my-grayd1);
-    }
-
-    .bgrayd2 {
-        background-color: var(--my-grayd2);
-    }
-
-    .bgrayd3 {
-        background-color: var(--my-grayd3);
-    }
-
-    .bblack1 {
-        background-color: var(--my-black1);
-    }
-
-    .bblack2 {
-        background-color: var(--my-black2);
-    }
-
-    .bblack3 {
-        background-color: var(--my-black3);
-    }
-
-    .bsuccess {
-        background-color: var(--my-success);
-    }
-    .bsuccess:hover {
-        background-color: var(--my-success-hover);
-    }
-
-    .bwarning {
-        background-color: var(--my-warning);
-    }
-    .bwarning:hover {
-        background-color: var(--my-warning-hover);
-    }
-
-    .bdanger {
-        background-color: var(--my-danger);
-    }
-    .bdanger:hover {
-        background-color: var(--my-danger-hover);
-    }
-}
-
-/* ------ BACKGROUND AND TEXT COMBOS COLORS ------ */
-@layer components {
-    .tbprimary {
-        background-color: var(--primary);
-        color: var(--my-white1);
-    }
-    .tbprimary:hover {
-        background-color: var(--primary-hover);
-    }
-
-    .tbblue {
-        background-color: var(--my-blue);
-        color: var(--my-white1);
-    }
-    .tbblue:hover {
-        background-color: var(--my-blue-hover);
-    }
-
-    .tborange {
-        background-color: var(--my-orange);
-        color: var(--my-white1);
-    }
-    .tborange:hover {
-        background-color: var(--my-orange-hover);
-    }
-
-    .tbpink {
-        background-color: var(--my-pink);
-        color: var(--my-white1);
-    }
-    .tbpink:hover {
-        background-color: var(--my-pink-hover);
-    }
-
-    .tbpurple {
-        background-color: var(--my-purple);
-        color: var(--my-white1);
-    }
-    .tbpurple:hover {
-        background-color: var(--my-purple-hover);
-    }
-
-    .tbwhite1 {
-        background-color: var(--my-white1);
-        color: var(--my-black3);
-    }
-
-    .tbwhite2 {
-        background-color: var(--my-white2);
-        color: var(--my-black3);
-    }
-
-    .tbwhite3 {
-        background-color: var(--my-white3);
-        color: var(--my-black3);
-    }
-
-    .tbgrayl1 {
-        background-color: var(--my-grayl1);
-        color: var(--my-black3);
-    }
-
-    .tbgrayl2 {
-        background-color: var(--my-grayl2);
-        color: var(--my-black3);
-    }
-
-    .tbgrayl3 {
-        background-color: var(--my-grayl3);
-        color: var(--my-black3);
-    }
-
-    .tbgrayd1 {
-        background-color: var(--my-grayd1);
-        color: var(--my-black3);
-    }
-
-    .tbgrayd2 {
-        background-color: var(--my-grayd2);
-        color: var(--my-black3);
-    }
-
-    .tbgrayd3 {
-        background-color: var(--my-grayd3);
-        color: var(--my-white1);
-    }
-
-    .tbblack1 {
-        background-color: var(--my-black1);
-        color: var(--my-white1);
-    }
-
-    .tbblack2 {
-        background-color: var(--my-black2);
-        color: var(--my-white1);
-    }
-
-    .tbblack3 {
-        background-color: var(--my-black3);
-        color: var(--my-white1);
-    }
-
-    .tbsuccess {
-        background-color: var(--my-success);
-        color: var(--my-black3);
-    }
-    .tbsuccess:hover {
-        background-color: var(--my-success-hover);
-    }
-
-    .tbwarning {
-        background-color: var(--my-warning);
-        color: var(--my-black3);
-    }
-    .tbwarning:hover {
-        background-color: var(--my-warning-hover);
-    }
-
-    .tbdanger {
-        background-color: var(--my-danger);
-        color: var(--my-black3);
-    }
-    .tbdanger:hover {
-        background-color: var(--my-danger-hover);
-    }
-}
-
-/* ------ OTHER CLASSES ------ */
-@layer utilities {
-    .flex-center {
-        @apply flex justify-center items-center;
-    }
-
-    .flex-col-center {
-        @apply flex flex-col justify-center;
-    }
-
-    .ring {
-        --tw-ring-color: var(--primary);
-    }
-
-    .btn {
-        @apply transition py-3 px-5 rounded uppercase font-bold text-xs shadow-gray-400 shadow  focus:ring focus:ring-offset-2;
-        background-color: var(--primary);
-        color: var(--my-white1);
-    }
-
-    .btn:hover {
-        background-color: var(--primary-hover);
-    }
-
-    .btn:focus {
-        background-color: var(--primary-hover);
-    }
-
-    .btn-xl {
-        @apply transition py-3 px-7 rounded uppercase font-bold text-base shadow-gray-400 shadow hover:ring focus:ring focus:ring-offset-2;
-        background-color: var(--primary);
-        color: var(--my-white1);
-    }
-
-    .btn-xl:hover {
-        background-color: var(--primary-hover);
-    }
-
-    .btn-xl:focus {
-        background-color: var(--primary-hover);
-    }
-
-    .border-bottom-big {
-        border-bottom: 6px solid var(--primary);
-    }
-
-    .border-bottom {
-        border-bottom: 2px solid var(--primary);
-    }
-
-    .border-top {
-        border-top: 2px solid var(--primary);
-    }
-
-    .border {
-        border: 2px solid var(--primary);
-    }
-
-    .gradient-bg-left-darker {
-        background: linear-gradient(to bottom left, var(--my-white2), var(--my-grayl2));
-    }
-
-    .gradient-bg-left {
-        background: linear-gradient(to bottom left, var(--my-white2), var(--my-grayl1));
-    }
-
-    .gradient-bg-right {
-        background: linear-gradient(to bottom right, var(--my-white2), var(--my-grayl1));
-    }
-}
-
-body {
-    @apply m-0 p-0 font-sans antialiased;
-    background: linear-gradient(to bottom right, var(--my-white1), var(--my-grayl2));
-    font-family: "Nunito Sans", 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    min-height: 100vh;
-}
-
-code {
-    font-family: 'Courier New', monospace;
-}
+/*@tailwind base;*/
+/*@tailwind components;*/
+/*@tailwind utilities;*/
+
+/*!* ------ COLOR PALETTE ------ *!*/
+/*@layer base {*/
+/*    :root {*/
+/*        --my-blue: #2563eb; !* blue-600 *!*/
+/*        --my-blue-hover: #1d4ed8; !* blue-700 *!*/
+/*        --my-orange: #f59e0b; !* yellow-500 *!*/
+/*        --my-orange-hover: #d97706; !* yellow-600 *!*/
+/*        --my-pink: #ec407a; !* pink-500 *!*/
+/*        --my-pink-hover: #d81b60; !* pink-600 *!*/
+/*        --my-purple: #7c3aed; !* purple-600 *!*/
+/*        --my-purple-hover: #6d28d9; !* purple-700 *!*/
+/*        --my-white1: #ffffff; !* white *!*/
+/*        --my-white2: #fafafa; !* neutral-50 *!*/
+/*        --my-white3: #f3f4f6; !* zinc-100 *!*/
+/*        --my-grayl1: #e5e7eb; !* zinc-200 *!*/
+/*        --my-grayl2: #d1d5db; !* zinc-300 *!*/
+/*        --my-grayl3: #b8bdc4; !* zinc-400 *!*/
+/*        --my-grayd1: #d4d4d8; !* neutral-300 *!*/
+/*        --my-grayd2: #9ca3af; !* stone-300 *!*/
+/*        --my-grayd3: #787c84; !* stone-400 *!*/
+/*        --my-black1: #262626; !* neutral-800 *!*/
+/*        --my-black2: #171717; !* neutral-900 *!*/
+/*        --my-black3: #000000; !* black *!*/
+/*        --my-success: #10b981; !* emerald-500 *!*/
+/*        --my-success-hover: #059669; !* emerald-600 *!*/
+/*        --my-warning: #fb923c; !* orange-400 *!*/
+/*        --my-warning-hover: #f97316; !* orange-500 *!*/
+/*        --my-danger: #f87171; !* red-400 *!*/
+/*        --my-danger-hover: #ef4444; !* red-500 *!*/
+
+/*        --primary:var(--my-blue);*/
+/*        --primary-hover:var(--my-blue-hover);*/
+
+/*        !*--primary:var(--my-orange);*!*/
+/*        !*--primary-hover:var(--my-orange-hover);*!*/
+
+/*        !*--primary:var(--my-purple);*!*/
+/*        !*--primary-hover:var(--my-purple-hover);*!*/
+
+/*        !*--primary:var(--my-pink);*!*/
+/*        !*--primary-hover:var(--my-pink-hover);*!*/
+/*    }*/
+/*}*/
+
+/*!* ------ TEXT COLORS ------ *!*/
+/*@layer components {*/
+/*    .tprimary {*/
+/*        color: var(--primary);*/
+/*    }*/
+/*    .tprimary:hover {*/
+/*        color: var(--primary-hover);*/
+/*    }*/
+
+/*    .tblue {*/
+/*        color: var(--my-blue);*/
+/*    }*/
+/*    .tblue:hover {*/
+/*        color: var(--my-blue-hover);*/
+/*    }*/
+
+/*    .torange {*/
+/*        color: var(--my-orange);*/
+/*    }*/
+/*    .torange:hover {*/
+/*        color: var(--my-orange-hover);*/
+/*    }*/
+
+/*    .tpink {*/
+/*        color: var(--my-pink);*/
+/*    }*/
+/*    .tpink:hover {*/
+/*        color: var(--my-pink-hover);*/
+/*    }*/
+
+/*    .tpurple {*/
+/*        color: var(--my-purple);*/
+/*    }*/
+/*    .tpurple:hover {*/
+/*        color: var(--my-purple-hover);*/
+/*    }*/
+
+/*    .twhite1 {*/
+/*        color: var(--my-white1);*/
+/*    }*/
+
+/*    .twhite2 {*/
+/*        color: var(--my-white2);*/
+/*    }*/
+
+/*    .twhite3 {*/
+/*        color: var(--my-white3);*/
+/*    }*/
+
+/*    .tgrayl1 {*/
+/*        color: var(--my-grayl1);*/
+/*    }*/
+
+/*    .tgrayl2 {*/
+/*        color: var(--my-grayl2);*/
+/*    }*/
+
+/*    .tgrayl3 {*/
+/*        color: var(--my-grayl3);*/
+/*    }*/
+
+/*    .tgrayd1 {*/
+/*        color: var(--my-grayd1);*/
+/*    }*/
+
+/*    .tgrayd2 {*/
+/*        color: var(--my-grayd2);*/
+/*    }*/
+
+/*    .tgrayd3 {*/
+/*        color: var(--my-grayd3);*/
+/*    }*/
+
+/*    .tblack1 {*/
+/*        color: var(--my-black1);*/
+/*    }*/
+
+/*    .tblack2 {*/
+/*        color: var(--my-black2);*/
+/*    }*/
+
+/*    .tblack3 {*/
+/*        color: var(--my-black3);*/
+/*    }*/
+
+/*    .tsuccess {*/
+/*        color: var(--my-success);*/
+/*    }*/
+/*    .tsuccess:hover {*/
+/*        color: var(--my-success-hover);*/
+/*    }*/
+
+/*    .twarning {*/
+/*        color: var(--my-warning);*/
+/*    }*/
+/*    .twarning:hover {*/
+/*        color: var(--my-warning-hover);*/
+/*    }*/
+
+/*    .tdanger {*/
+/*        color: var(--my-danger);*/
+/*    }*/
+/*    .tdanger:hover {*/
+/*        color: var(--my-danger-hover);*/
+/*    }*/
+/*}*/
+
+/*!* ------ BACKGROUND COLORS ------ *!*/
+/*@layer components {*/
+/*    .bprimary {*/
+/*        background-color: var(--primary);*/
+/*    }*/
+/*    .bprimary:hover {*/
+/*        background-color: var(--primary-hover);*/
+/*    }*/
+
+/*    .bblue {*/
+/*        background-color: var(--my-blue);*/
+/*    }*/
+/*    .bblue:hover {*/
+/*        background-color: var(--my-blue-hover);*/
+/*    }*/
+
+/*    .borange {*/
+/*        background-color: var(--my-orange);*/
+/*    }*/
+/*    .borange:hover {*/
+/*        background-color: var(--my-orange-hover);*/
+/*    }*/
+
+/*    .bpink{*/
+/*        background-color: var(--my-pink);*/
+/*    }*/
+/*    .bpink:hover {*/
+/*        background-color: var(--my-pink-hover);*/
+/*    }*/
+
+/*    .bpurple {*/
+/*        background-color: var(--my-purple);*/
+/*    }*/
+/*    .bpurple:hover {*/
+/*        background-color: var(--my-purple-hover);*/
+/*    }*/
+
+/*    .bwhite1 {*/
+/*        background-color: var(--my-white1);*/
+/*    }*/
+
+/*    .bwhite2 {*/
+/*        background-color: var(--my-white2);*/
+/*    }*/
+
+/*    .bwhite3 {*/
+/*        background-color: var(--my-white3);*/
+/*    }*/
+
+/*    .bgrayl1 {*/
+/*        background-color: var(--my-grayl1);*/
+/*    }*/
+
+/*    .bgrayl2 {*/
+/*        background-color: var(--my-grayl2);*/
+/*    }*/
+
+/*    .bgrayl3 {*/
+/*        background-color: var(--my-grayl3);*/
+/*    }*/
+
+/*    .bgrayd1 {*/
+/*        background-color: var(--my-grayd1);*/
+/*    }*/
+
+/*    .bgrayd2 {*/
+/*        background-color: var(--my-grayd2);*/
+/*    }*/
+
+/*    .bgrayd3 {*/
+/*        background-color: var(--my-grayd3);*/
+/*    }*/
+
+/*    .bblack1 {*/
+/*        background-color: var(--my-black1);*/
+/*    }*/
+
+/*    .bblack2 {*/
+/*        background-color: var(--my-black2);*/
+/*    }*/
+
+/*    .bblack3 {*/
+/*        background-color: var(--my-black3);*/
+/*    }*/
+
+/*    .bsuccess {*/
+/*        background-color: var(--my-success);*/
+/*    }*/
+/*    .bsuccess:hover {*/
+/*        background-color: var(--my-success-hover);*/
+/*    }*/
+
+/*    .bwarning {*/
+/*        background-color: var(--my-warning);*/
+/*    }*/
+/*    .bwarning:hover {*/
+/*        background-color: var(--my-warning-hover);*/
+/*    }*/
+
+/*    .bdanger {*/
+/*        background-color: var(--my-danger);*/
+/*    }*/
+/*    .bdanger:hover {*/
+/*        background-color: var(--my-danger-hover);*/
+/*    }*/
+/*}*/
+
+/*!* ------ BACKGROUND AND TEXT COMBOS COLORS ------ *!*/
+/*@layer components {*/
+/*    .tbprimary {*/
+/*        background-color: var(--primary);*/
+/*        color: var(--my-white1);*/
+/*    }*/
+/*    .tbprimary:hover {*/
+/*        background-color: var(--primary-hover);*/
+/*    }*/
+
+/*    .tbblue {*/
+/*        background-color: var(--my-blue);*/
+/*        color: var(--my-white1);*/
+/*    }*/
+/*    .tbblue:hover {*/
+/*        background-color: var(--my-blue-hover);*/
+/*    }*/
+
+/*    .tborange {*/
+/*        background-color: var(--my-orange);*/
+/*        color: var(--my-white1);*/
+/*    }*/
+/*    .tborange:hover {*/
+/*        background-color: var(--my-orange-hover);*/
+/*    }*/
+
+/*    .tbpink {*/
+/*        background-color: var(--my-pink);*/
+/*        color: var(--my-white1);*/
+/*    }*/
+/*    .tbpink:hover {*/
+/*        background-color: var(--my-pink-hover);*/
+/*    }*/
+
+/*    .tbpurple {*/
+/*        background-color: var(--my-purple);*/
+/*        color: var(--my-white1);*/
+/*    }*/
+/*    .tbpurple:hover {*/
+/*        background-color: var(--my-purple-hover);*/
+/*    }*/
+
+/*    .tbwhite1 {*/
+/*        background-color: var(--my-white1);*/
+/*        color: var(--my-black3);*/
+/*    }*/
+
+/*    .tbwhite2 {*/
+/*        background-color: var(--my-white2);*/
+/*        color: var(--my-black3);*/
+/*    }*/
+
+/*    .tbwhite3 {*/
+/*        background-color: var(--my-white3);*/
+/*        color: var(--my-black3);*/
+/*    }*/
+
+/*    .tbgrayl1 {*/
+/*        background-color: var(--my-grayl1);*/
+/*        color: var(--my-black3);*/
+/*    }*/
+
+/*    .tbgrayl2 {*/
+/*        background-color: var(--my-grayl2);*/
+/*        color: var(--my-black3);*/
+/*    }*/
+
+/*    .tbgrayl3 {*/
+/*        background-color: var(--my-grayl3);*/
+/*        color: var(--my-black3);*/
+/*    }*/
+
+/*    .tbgrayd1 {*/
+/*        background-color: var(--my-grayd1);*/
+/*        color: var(--my-black3);*/
+/*    }*/
+
+/*    .tbgrayd2 {*/
+/*        background-color: var(--my-grayd2);*/
+/*        color: var(--my-black3);*/
+/*    }*/
+
+/*    .tbgrayd3 {*/
+/*        background-color: var(--my-grayd3);*/
+/*        color: var(--my-white1);*/
+/*    }*/
+
+/*    .tbblack1 {*/
+/*        background-color: var(--my-black1);*/
+/*        color: var(--my-white1);*/
+/*    }*/
+
+/*    .tbblack2 {*/
+/*        background-color: var(--my-black2);*/
+/*        color: var(--my-white1);*/
+/*    }*/
+
+/*    .tbblack3 {*/
+/*        background-color: var(--my-black3);*/
+/*        color: var(--my-white1);*/
+/*    }*/
+
+/*    .tbsuccess {*/
+/*        background-color: var(--my-success);*/
+/*        color: var(--my-black3);*/
+/*    }*/
+/*    .tbsuccess:hover {*/
+/*        background-color: var(--my-success-hover);*/
+/*    }*/
+
+/*    .tbwarning {*/
+/*        background-color: var(--my-warning);*/
+/*        color: var(--my-black3);*/
+/*    }*/
+/*    .tbwarning:hover {*/
+/*        background-color: var(--my-warning-hover);*/
+/*    }*/
+
+/*    .tbdanger {*/
+/*        background-color: var(--my-danger);*/
+/*        color: var(--my-black3);*/
+/*    }*/
+/*    .tbdanger:hover {*/
+/*        background-color: var(--my-danger-hover);*/
+/*    }*/
+/*}*/
+
+/*!* ------ OTHER CLASSES ------ *!*/
+/*@layer utilities {*/
+/*    .flex-center {*/
+/*        @apply flex justify-center items-center;*/
+/*    }*/
+
+/*    .flex-col-center {*/
+/*        @apply flex flex-col justify-center;*/
+/*    }*/
+
+/*    .ring {*/
+/*        --tw-ring-color: var(--primary);*/
+/*    }*/
+
+/*    .btn {*/
+/*        @apply transition py-3 px-5 rounded uppercase font-bold text-xs shadow-gray-400 shadow  focus:ring focus:ring-offset-2;*/
+/*        background-color: var(--primary);*/
+/*        color: var(--my-white1);*/
+/*    }*/
+
+/*    .btn:hover {*/
+/*        background-color: var(--primary-hover);*/
+/*    }*/
+
+/*    .btn:focus {*/
+/*        background-color: var(--primary-hover);*/
+/*    }*/
+
+/*    .btn-xl {*/
+/*        @apply transition py-3 px-7 rounded uppercase font-bold text-base shadow-gray-400 shadow hover:ring focus:ring focus:ring-offset-2;*/
+/*        background-color: var(--primary);*/
+/*        color: var(--my-white1);*/
+/*    }*/
+
+/*    .btn-xl:hover {*/
+/*        background-color: var(--primary-hover);*/
+/*    }*/
+
+/*    .btn-xl:focus {*/
+/*        background-color: var(--primary-hover);*/
+/*    }*/
+
+/*    .border-bottom-big {*/
+/*        border-bottom: 6px solid var(--primary);*/
+/*    }*/
+
+/*    .border-bottom-medium {*/
+/*        border-bottom: 3px solid var(--primary);*/
+/*    }*/
+
+/*    .border-bottom {*/
+/*        border-bottom: 2px solid var(--primary);*/
+/*    }*/
+
+/*    .border-top {*/
+/*        border-top: 2px solid var(--primary);*/
+/*    }*/
+
+/*    .border {*/
+/*        border: 2px solid var(--primary);*/
+/*    }*/
+
+/*    .gradient-bg-left-darker {*/
+/*        background: linear-gradient(to bottom left, var(--my-white2), var(--my-grayl2));*/
+/*    }*/
+
+/*    .gradient-bg-left {*/
+/*        background: linear-gradient(to bottom left, var(--my-white2), var(--my-grayl1));*/
+/*    }*/
+
+/*    .gradient-bg-right {*/
+/*        background: linear-gradient(to bottom right, var(--my-white2), var(--my-grayl1));*/
+/*    }*/
+
+/*    .grayscale {*/
+/*        filter: grayscale(25%);*/
+/*    }*/
+
+/*    .grayscale:hover {*/
+/*        filter: grayscale(10%);*/
+/*    }*/
+/*}*/
+
+/*body {*/
+/*    @apply m-0 p-0 font-sans antialiased;*/
+/*    background: linear-gradient(to bottom right, var(--my-white1), var(--my-grayl2));*/
+/*    font-family: "Nunito Sans", 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;*/
+/*    -webkit-font-smoothing: antialiased;*/
+/*    -moz-osx-font-smoothing: grayscale;*/
+/*    min-height: 100vh;*/
+/*}*/
+
+/*code {*/
+/*    font-family: 'Courier New', monospace;*/
+/*}*/
