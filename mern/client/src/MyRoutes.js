@@ -13,7 +13,8 @@ export function MyRoutes() {
                 <Route path="/projects" element={<Projects/>}/>
                 <Route path="/colors" element={<Colors/>}/>
                 {/*<Route path="/" element={<Development/>}/>*/}
-                <Route path="/" element={<Private/>}/>
+                {/*<Route path="/" element={<Private/>}/>*/}
+                <Route path="/" element={<Home/>}/>
                 <Route path="/home" element={<Home/>}/>
             </Routes>
             :
