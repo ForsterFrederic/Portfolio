@@ -12,10 +12,8 @@ export function MyRoutes() {
                 <Route path="/private" element={<Private/>}/>
                 <Route path="/projects" element={<Projects/>}/>
                 <Route path="/colors" element={<Colors/>}/>
-                {/*<Route path="/" element={<Development/>}/>*/}
-                {/*<Route path="/" element={<Private/>}/>*/}
-                <Route path="/" element={<Home/>}/>
                 <Route path="/home" element={<Home/>}/>
+                <Route path="/" element={<Development/>}/>
             </Routes>
             :
             <Routes>

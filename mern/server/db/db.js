@@ -6,8 +6,6 @@ const MONGODB_URI = process.env.MONGODB_URI;
 const PROD_MONGODB_URI = process.env.PROD_MONGODB_URI;
 const URI = (IS_PROD === "TRUE" ? PROD_MONGODB_URI : MONGODB_URI) || 'mongodb://localhost:27017/PortfolioDB';
 
-console.log(URI)
-
 mongoose.connect(URI, {
 })
     .then(() => {
