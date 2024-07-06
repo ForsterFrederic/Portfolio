@@ -10,7 +10,7 @@ export default function Private() {
     });
     const [response, setResponse] = useState("Server not tested yet.");
     const navigate = useNavigate();
-    const BACKEND_API_URL = process.env.REACT_APP_BACKEND_API_URL || "http://localhost:3001/api";
+    const BACKEND_API_URL = process.env.REACT_APP_BACKEND_API_URL || "https://frederic-forster.com/api";
 
     useEffect(() => {
         const testServer = async () => {

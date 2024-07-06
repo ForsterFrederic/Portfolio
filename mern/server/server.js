@@ -14,12 +14,12 @@ const PROD_BACKEND_PORT = process.env.PROD_BACKEND_PORT;
 const PORT = (IS_PROD === "TRUE" ? PROD_BACKEND_PORT : BACKEND_PORT) || 3001;
 
 const corsOptions = {
-    origin: 'https://frederic-forster.com', // your frontend domain
+    origin: 'https://frederic-forster.com',
     optionsSuccessStatus: 200,
 };
 
-app.use(bodyParser.json());
 app.use(cors(corsOptions));
+app.use(bodyParser.json());
 
 app.use('/uploads', express.static(path.join(__dirname, '/../uploads')));
 app.use(express.static(path.join(__dirname, '/../client/build')));
