@@ -6,6 +6,7 @@
     "start": "concurrently --kill-others \"cd server && npm start\" \"cd client && npm start\"",
     "back": "node server/server.js",
     "front": "cd client && npm start",
+    "generateClientEnv": "cd server && node generateClientEnv.js",
     "build": "cd client && npm install && npm run build"
   },
   "dependencies": {
