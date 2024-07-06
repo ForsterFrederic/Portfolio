@@ -1,5 +1,4 @@
 #!/bin/bash
-set -x
 
 # Check if a commit message was provided
 if [ -z "$1" ]; then
