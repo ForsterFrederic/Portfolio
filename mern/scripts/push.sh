@@ -19,7 +19,7 @@ set_is_prod() {
     local value=$1
     if [ -f "$ENV_FILE" ]; then
         if grep -q '^IS_PROD=' "$ENV_FILE"; then
-            sed -i "s/^IS_PROD=.*/IS_PROD=$value/" "$ENV_FILE"
+            sed -i "s|^IS_PROD=.*|IS_PROD=$value|" "$ENV_FILE"
         else
             echo "IS_PROD=$value" >> "$ENV_FILE"
         fi
