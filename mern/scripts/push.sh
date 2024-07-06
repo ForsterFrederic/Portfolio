@@ -12,15 +12,20 @@ REMOTE="hostinger-vps"
 BRANCH=$(git branch --show-current)
 
 # Path to the .env file
-ENV_FILE="./../server/.env"
+ENV_FILE="server/.env"
 
 # Function to set IS_PROD value
 set_is_prod() {
     local value=$1
-    if grep -q '^IS_PROD=' "$ENV_FILE"; then
-        sed -i "s/^IS_PROD=.*/IS_PROD=$value/" "$ENV_FILE"
+    if [ -f "$ENV_FILE" ]; then
+        if grep -q '^IS_PROD=' "$ENV_FILE"; then
+            sed -i "s/^IS_PROD=.*/IS_PROD=$value/" "$ENV_FILE"
+        else
+            echo "IS_PROD=$value" >> "$ENV_FILE"
+        fi
     else
-        echo "IS_PROD=$value" >> "$ENV_FILE"
+        echo "Error: $ENV_FILE does not exist or is not accessible."
+        exit 1
     fi
 }
 
