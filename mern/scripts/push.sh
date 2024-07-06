@@ -12,7 +12,7 @@ REMOTE="hostinger-vps"
 BRANCH=$(git branch --show-current)
 
 # Path to the .env file
-ENV_FILE="/server/.env"
+ENV_FILE="server/.env"
 
 # Function to set IS_PROD value
 set_is_prod() {
