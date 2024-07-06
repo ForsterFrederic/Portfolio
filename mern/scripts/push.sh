@@ -8,7 +8,7 @@ if [ -z "$1" ]; then
 fi
 
 # Define the remote and branch
-REMOTE="hostinger-"
+REMOTE="hostinger-vps"
 BRANCH=$(git branch --show-current)
 
 # Add all changes, commit, and push
