@@ -7,7 +7,7 @@ export default function Projects() {
     useEffect(() => {
         fetchProjects();
     }, []);
-
+console.log(api)
     const fetchProjects = async () => {
         try {
             const response = await api.get('/projects');
