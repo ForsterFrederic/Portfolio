@@ -56,7 +56,7 @@ export default function Presentation() {
 
     const CardMobile = () => {
         return (
-            <div className={"flex-col-center rounded-b-xl pt-[150px] pb-4"}>
+            <div className={"flex-col-center rounded-b-xl pt-[150px] pb-4 gradient-bg-right"}>
                 <div className={"flex-center items-end w-full"}>
                     <div className={"flex-col-center items-center"}>
                         <div>
