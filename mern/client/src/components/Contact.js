@@ -77,7 +77,7 @@ export default function Contact() {
                         </div>
                         <p className={"w-full mt-8 lg:text-md xl:text-lg tgrayd3"}>Lorem ipsum dolor sit amet consectetur adipisci elit donec faucibus adipiscing mauris. Lorem ipsum dolor sit amet consectetur adipisci elit donec faucibus adipiscing mauris.</p>
                     </div>
-                    <form className={"mt-12 mx-auto lg:mt-0 ml-auto flex-col-center items-center w-11/12 sm:w-10/12 md:w-8/12 lg:w-7/12 xl:w-6/12 2xl:w-5/12 2xl:mr-32 bwhite3 rounded-xl shadow-black drop-shadow-lg"} ref={form} onSubmit={sendEmail}>
+                    <form className={"mt-12 mx-auto lg:mt-0 lg:ml-auto flex-col-center items-center w-full sm:w-11/12 md:w-9/12 lg:w-7/12 xl:w-6/12 2xl:w-5/12 2xl:mr-32 bwhite3 rounded-xl shadow-black drop-shadow-lg"} ref={form} onSubmit={sendEmail}>
                         <div className={"w-9/12 mt-14"}>
                             <label form={"name"} className={"font-medium"}>Enter your name</label>
                             <input id={"name"} name="from_name" type={"text"} className={"tgrayd3 text-sm mt-1 border-bottom bwhite3 w-full p-1 outline-none"} onChange={(e) => setName(e.target.value)}/>
