@@ -3,18 +3,15 @@ import {
     Disclosure,
     DisclosureButton,
     DisclosurePanel,
-    Menu,
-    MenuButton,
-    MenuItem,
-    MenuItems,
-    Transition,
 } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import {useNavigate} from "react-router-dom";
 
 const navigation = [
-    { name: 'Accueil', href: process.env.REACT_APP_IS_DEVELOPMENT ? '/home' : "/", current: true },
-    { name: 'Projets', href: "/projects", current: false },
+    { name: 'Home', href: process.env.REACT_APP_IS_DEVELOPMENT ? '/home' : "/", current: true },
+    { name: 'About', href: "/projects", current: false },
+    { name: 'Competencies', href: "/projects", current: false },
+    { name: 'Experience', href: "/projects", current: false },
     { name: 'Projets', href: "/projects", current: false },
 ]
 
@@ -30,10 +27,10 @@ export default function Navbar() {
     const navigate = useNavigate();
 
     return (
-        <Disclosure as="nav" className="var(--RealWhite)">
+        <Disclosure as="nav" className="header bwhite3 w-full border-top shadow-xl">
             {({ open }) => (
                 <>
-                    <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+                    <div className="mx-8 md:mx-14 lg:mx-20 xl:mx-28 2xl:mx-32">
                         <div className="relative flex h-16 items-center justify-between">
                             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                                 <DisclosureButton className="relative inline-flex items-center justify-center rounded-md p-2 btprimary hover:bprimary hover:twhite1 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">

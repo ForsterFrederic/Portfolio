@@ -19,9 +19,9 @@
         --my-grayl1: #e5e7eb; /* zinc-200 */
         --my-grayl2: #d1d5db; /* zinc-300 */
         --my-grayl3: #b8bdc4; /* zinc-400 */
-        --my-grayd1: #d4d4d8; /* neutral-300 */
-        --my-grayd2: #9ca3af; /* stone-300 */
-        --my-grayd3: #787c84; /* stone-400 */
+        --my-grayd1: #ced4da; /* neutral-300 d4d4d8 */
+        --my-grayd2: #adb5bd; /* stone-300 9ca3af*/
+        --my-grayd3: #6c757d; /* stone-400 787c84*/
         --my-black1: #262626; /* neutral-800 */
         --my-black2: #171717; /* neutral-900 */
         --my-black3: #000000; /* black */
@@ -402,7 +402,7 @@
     }
 
     .btn {
-        @apply transition py-3 px-5 rounded uppercase font-bold text-xs shadow-gray-400 shadow  focus:ring focus:ring-offset-2;
+        @apply transition py-3 px-5 rounded uppercase font-bold text-xs shadow-gray-400 shadow focus:ring focus:ring-offset-2;
         background-color: var(--primary);
         color: var(--my-white1);
     }
@@ -442,7 +442,7 @@
     }
 
     .border-top {
-        border-top: 2px solid var(--primary);
+        border-top: 4px solid var(--primary);
     }
 
     .border {
@@ -454,11 +454,11 @@
     }
 
     .gradient-bg-left {
-        background: linear-gradient(to bottom left, var(--my-white2), var(--my-grayl1));
+        background: linear-gradient(to bottom right, var(--my-white1), var(--my-grayl2));
     }
 
     .gradient-bg-right {
-        background: linear-gradient(to bottom right, var(--my-white2), var(--my-grayl1));
+        background: linear-gradient(to bottom left, var(--my-grayl2), var(--my-white1));
     }
 
     .grayscale {
@@ -485,11 +485,14 @@
 
 body {
     @apply m-0 p-0 font-sans antialiased;
-    background: linear-gradient(to bottom right, var(--my-white1), var(--my-grayl2));
+    background: linear-gradient(to bottom left, var(--my-grayl2), var(--my-white3));
+    /*background: #0C0E0E;*/
     font-family: "Nunito Sans", 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     min-height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
 code {
