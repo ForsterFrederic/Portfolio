@@ -37,7 +37,7 @@ export default function Competencies() {
                 <div className={"bprimary mx-auto w-28 h-1.5 rounded mb-3"}/>
                 <p className={"text-2xl md:text-3xl lg:text-4xl xl:text-5xl tblack3"}>My Competencies</p>
             </div>
-            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-2 mx-14 sm:mx-14 md:mx-16 lg:mx-24 xl:mx-32 2xl:mx-40">
+            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-2 mx-8 sm:mx-14 md:mx-16 lg:mx-24 xl:mx-32 2xl:mx-40">
                 {items.slice(0, itemsToShow).map((item, index) => (
                     <div
                         key={index}

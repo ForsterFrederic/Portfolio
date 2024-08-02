@@ -70,14 +70,14 @@ export default function Contact() {
                                 <img src={GithubOutline} alt="GitHub" className="outline"/>
                                 <img src={GithubFull} alt="GitHub Full" className="full"/>
                             </div>
-                            <div className="icon w-10 h-10 cursor-pointer" onClick={() => window.location.href = "mailto:forster.frederic@gmail.com"}>
-                                <img src={MailOutline} alt="Mail" className="outline"/>
-                                <img src={MailFull} alt="Mail Full" className="full"/>
+                            <div className="icon w-10 h-10 cursor-pointer">
+                                <img src={MailOutline} alt="Mail" className="outline" onClick={() => window.location.href = "mailto:forster.frederic@gmail.com"}/>
+                                <img src={MailFull} alt="Mail Full" className="full" onClick={() => window.location.href = "mailto:forster.frederic@gmail.com"}/>
                             </div>
                         </div>
                         <p className={"w-full mt-8 lg:text-md xl:text-lg tgrayd3"}>Lorem ipsum dolor sit amet consectetur adipisci elit donec faucibus adipiscing mauris. Lorem ipsum dolor sit amet consectetur adipisci elit donec faucibus adipiscing mauris.</p>
                     </div>
-                    <form className={"mt-12 mx-auto lg:mt-0 ml-auto flex-col-center items-center w-10/12 sm:w-9/12 md:w-8/12 lg:w-7/12 xl:w-6/12 2xl:w-5/12 2xl:mr-32 bwhite3 rounded-xl shadow-black drop-shadow-lg"} ref={form} onSubmit={sendEmail}>
+                    <form className={"mt-12 mx-auto lg:mt-0 ml-auto flex-col-center items-center w-11/12 sm:w-10/12 md:w-8/12 lg:w-7/12 xl:w-6/12 2xl:w-5/12 2xl:mr-32 bwhite3 rounded-xl shadow-black drop-shadow-lg"} ref={form} onSubmit={sendEmail}>
                         <div className={"w-9/12 mt-14"}>
                             <label form={"name"} className={"font-medium"}>Enter your name</label>
                             <input id={"name"} name="from_name" type={"text"} className={"tgrayd3 text-sm mt-1 border-bottom bwhite3 w-full p-1 outline-none"} onChange={(e) => setName(e.target.value)}/>
