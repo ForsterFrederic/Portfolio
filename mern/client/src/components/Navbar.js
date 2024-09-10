@@ -4,19 +4,20 @@ import {
     DisclosureButton,
     DisclosurePanel,
 } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import {useNavigate} from "react-router-dom";
+import { Link, animateScroll } from 'react-scroll';
 
 const navigation = [
-    { name: 'Home', href: process.env.REACT_APP_IS_DEVELOPMENT ? '/home' : "/", current: true },
-    { name: 'About', href: "/projects", current: false },
-    { name: 'Competencies', href: "/projects", current: false },
-    { name: 'Experience', href: "/projects", current: false },
-    { name: 'Projets', href: "/projects", current: false },
+    { name: 'Home', to: "presentation", current: false, offset: -68 },
+    { name: 'About', to: "about", current: false, offset: -68 },
+    { name: 'Competencies', to: "competencies", current: false, offset: -210 },
+    // { name: 'Experience', to: "experience", current: false, offset: -144},
+    { name: 'Projets', to: "projects", current: false, offset: -2 },
 ]
 
 const navigationRight = [
-    { name: 'Contact', href: '/contact', current: false },
+    { name: 'Contact', to: 'contact', current: false, offset: -68 },
 ]
 
 function classNames(...classes) {
@@ -49,37 +50,28 @@ export default function Navbar() {
                                         className="h-12 w-auto"
                                         src="/logo.png"
                                         alt="Your Company"
+                                        onClick={() => animateScroll.scrollToTop()}
                                     />
                                 </div>
                                 <div className="hidden sm:ml-6 sm:block w-full">
                                     <div className={"flex"}>
                                         <div className="flex-center">
                                             {navigation.map((item) => (
-                                                <a
-                                                    key={item.name}
-                                                    onClick={() => navigate(item.href)}
-                                                    className={classNames(
-                                                        item.current ? 'bprimary text-white' : 'text-black hover:tprimary',
-                                                        'rounded px-3 py-2.5 text-sm leading-none font-medium cursor-pointer mx-2 transition',
-                                                    )}
-                                                    aria-current={item.current ? 'page' : undefined}
-                                                >
+                                                <Link key={item.name} className={classNames(item.current ? 'bprimary text-white' : 'text-black hover:tprimary', 'rounded px-3 py-2.5 text-sm leading-none font-medium cursor-pointer mx-2 transition')} aria-current={item.current ? 'page' : undefined} to={item.to} smooth={true} duration={500} offset={item.offset}>
                                                     {item.name}
-                                                </a>
+                                                </Link>
                                             ))}
                                         </div>
                                         <div className="flex w-full justify-end">
+                                            {/*<div className={"flex gap-2 my-auto mr-5 ml-14"}>*/}
+                                            {/*    <p className={"cursor-pointer"}>FR</p>*/}
+                                            {/*    <p>|</p>*/}
+                                            {/*    <p className={"tprimary cursor-pointer"}>EN</p>*/}
+                                            {/*</div>*/}
                                             {navigationRight.map((item) => (
-                                                <a
-                                                    key={item.name}
-                                                    onClick={() => navigate(item.href)}
-                                                    className={classNames(
-                                                        'border tprimary rounded leading-none px-6 py-2 text-sm font-medium cursor-pointer mx-2 hover:bprimary hover:twhite1 transition',
-                                                    )}
-                                                    aria-current={item.current ? 'page' : undefined}
-                                                >
+                                                <Link key={item.name} className={classNames('border tprimary rounded leading-none px-6 py-2 text-sm font-medium cursor-pointer mx-2 hover:bprimary hover:twhite1 transition')} aria-current={item.current ? 'page' : undefined} to={item.to} smooth={true} duration={500} offset={item.offset}>
                                                     {item.name}
-                                                </a>
+                                                </Link>
                                             ))}
                                         </div>
                                     </div>
@@ -89,19 +81,22 @@ export default function Navbar() {
                     </div>
 
                     <DisclosurePanel className="sm:hidden">
-                        <div className="space-y-1 px-2 py-3 bgrayl1 border-top shadow-xl border-bottom">
+                        <div className="pl-10 space-y-1 px-2 py-3 bgrayl1 border-top shadow-xl border-bottom">
                             {navigation.concat(navigationRight).map((item) => (
-                                <DisclosureButton
-                                    key={item.name}
-                                    as="a"
-                                    href={item.href}
-                                    className={classNames(
-                                        item.current ? 'bprimary text-white' : 'text-black hover:tprimary',
-                                        'block rounded-md px-3 py-2 text-base font-medium',
-                                    )}
-                                    aria-current={item.current ? 'page' : undefined}
-                                >
-                                    {item.name}
+                                <DisclosureButton key={item.name} as="div" className="w-full">
+                                    <Link
+                                        className={classNames(item.current ? 'bprimary text-white' : 'text-black hover:tprimary', 'justify-start rounded text-lg font-medium py-2 cursor-pointer transition w-full h-full flex items-center')}
+                                        aria-current={item.current ? 'page' : undefined}
+                                        to={item.to}
+                                        smooth={true}
+                                        duration={500}
+                                        offset={item.offset}
+                                        onClick={() => {
+                                            document.querySelector('button[aria-expanded="true"]')?.click();
+                                        }}
+                                    >
+                                        {item.name}
+                                    </Link>
                                 </DisclosureButton>
                             ))}
                         </div>

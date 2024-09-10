@@ -6,7 +6,31 @@
   <component name="ChangeListManager">
     <list default="true" id="cc1a50cb-9061-46fe-a637-844192143d4c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/assets/pictures/picture-me-old.png" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/assets/pictures/picture-me-old.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/assets/pictures/picture-me.png" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/assets/pictures/picture-me.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/assets/pictures/social/github/github-full.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/assets/pictures/social/github/github-outline-old.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/assets/pictures/social/github/github-outline.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/assets/pictures/social/linkedin/linkedin-full.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/assets/pictures/social/linkedin/linkedin-outline.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/assets/pictures/social/mail/mail-full.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/assets/pictures/social/mail/mail-outline.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/assets/pictures/wollenschneider.png" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/assets/pictures/wollenschneider.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/assets/svg/bash.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/assets/svg/icons.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/components/About.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/components/About.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/components/Competencies.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/components/Competencies.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/components/Contact.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/components/Contact.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/components/Experience.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/components/Experience.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/components/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/components/Footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/components/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/components/Navbar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mern/client/src/components/Presentation.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/components/Presentation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/components/Projects.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/components/Projects.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/css/constants.css" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/css/constants.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/pages/General/Development.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/pages/General/Development.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/pages/General/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/pages/General/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/server/.env" beforeDir="false" afterPath="$PROJECT_DIR$/mern/server/.env" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +178,14 @@
       <workItem from="1721231013524" duration="1973000" />
       <workItem from="1721233005981" duration="19106000" />
       <workItem from="1722530209760" duration="15667000" />
-      <workItem from="1722641683252" duration="215000" />
+      <workItem from="1722641683252" duration="1064000" />
+      <workItem from="1722763035217" duration="17724000" />
+      <workItem from="1723219843014" duration="184000" />
+      <workItem from="1723220038195" duration="861000" />
+      <workItem from="1724946883670" duration="3291000" />
+      <workItem from="1724962717394" duration="5770000" />
+      <workItem from="1725549996338" duration="1894000" />
+      <workItem from="1725553864314" duration="46166000" />
     </task>
     <servers />
   </component>

@@ -8,19 +8,31 @@ import ScreenSize from "../../components/ScreenSize";
 import About from "../../components/About";
 import Footer from "../../components/Footer";
 import Experience from "../../components/Experience";
+import {useEffect} from "react";
 
 export default function Home() {
+
+    useEffect(() => {
+        const updateMinHeight = () => {
+            const height = window.innerHeight - 68;
+            document.documentElement.style.setProperty('--min-height', `${height}px`);
+        };
+        updateMinHeight();
+        window.addEventListener('resize', updateMinHeight);
+        return () => window.removeEventListener('resize', updateMinHeight);
+    }, []);
+
     return (
         <div>
             <Navbar/>
             <Presentation/>
             <About/>
             <Competencies/>
-            <Experience/>
+            {/*<Experience/>*/}
             <Projects/>
             <Contact/>
             <Footer/>
-            <ScreenSize/>
+            {/*<ScreenSize/>*/}
         </div>
     );
 };

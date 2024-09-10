@@ -1,11 +1,8 @@
 import "../css/constants.css"
 import React, {useEffect, useRef, useState} from "react";
-import LinkedinOutline from "../assets/pictures/social/linkedin/linkedin-outline.png"
-import LinkedinFull from "../assets/pictures/social/linkedin/linkedin-full.png"
-import GithubOutline from "../assets/pictures/social/github/github-outline.png"
-import GithubFull from "../assets/pictures/social/github/github-full.png"
-import MailOutline from "../assets/pictures/social/mail/mail-outline.png"
-import MailFull from "../assets/pictures/social/mail/mail-full.png"
+import Linkedin from "../assets/pictures/linkedin.png";
+import Mail from "../assets/pictures/email.png";
+import Upwork from "../assets/pictures/upwork.png";
 import * as emailjs from "@emailjs/browser";
 
 export default function Contact() {
@@ -19,16 +16,30 @@ export default function Contact() {
     const sendEmail = (e) => {
         e.preventDefault();
 
+        if (!name || !email || !subject || !message) {
+            alert("Fill up every fields please.")
+            return
+        }
+
+        if (!email.includes("@") || !email.includes(".")) {
+            alert("Please enter a valid email address.")
+            return
+        }
+
         emailjs
             .sendForm('service_7niq44i', 'template_portfolio', form.current, {
                 publicKey: 's1RUlrjy3XIg8ryO4',
             })
             .then(
                 () => {
-                    console.log('SUCCESS!');
+                    setName("");
+                    setEmail("");
+                    setSubject("");
+                    setMessage("");
+                    alert('Your message has been delivered and I will get back to you as soon as possible.');
                 },
                 (error) => {
-                    console.log('FAILED...', error.text);
+                    alert('Unfortunately, your message could not be delivered. Please try again later.');
                 },
             );
     };
@@ -49,52 +60,49 @@ export default function Contact() {
 
 
     return (
-        <div className={"py-12 lg:py-14 xl:py-16 2xl:py-20 gradient-bg-left"}>
-            <div className={"mx-12 md:mx-14 lg:mx-20 xl:mx-28 2xl:mx-32"}>
-                <div className={"mx-auto w-max mb-10 lg:mb-12 xl:mb-14 2xl:mb-16"}>
+        <div name={"contact"} className={"gradient-bg-right min-height-screen flex-col pb-28"}>
+            <div className={"pt-36 mx-12 md:mx-14 lg:mx-20 xl:mx-28 2xl:mx-32"}>
+                <div className={"mx-auto w-max mb-24 lg:mb-12 xl:mb-14 2xl:mb-16"}>
                     <div className={"bprimary mx-auto w-28 h-1.5 rounded mb-3"}/>
                     <p className={"text-2xl md:text-3xl lg:text-4xl xl:text-5xl tblack3"}>Contact me</p>
                 </div>
-                <div className={"flex-col-center lg:flex-row w-full mt-12"}>
-                    <div className={"text-center mx-auto lg:mx-0 lg:text-left w-4/6 md:w-3/6 lg:w-2/6 xl:w-2/6"}>
+                <div className={"flex-col-center lg:flex-row w-full lg:mt-24"}>
+                    <div className={"text-center mx-auto lg:mx-0 lg:text-left lg:pr-32 md:w-1/2"}>
                         <div className={"lg:w-max"}>
                             <p className={"text-2xl md:text-3xl lg:text-4xl xl:text-5xl tblack3"}>Let's work together</p>
                         </div>
                         <p className={"md:w-full text-lg md:text-xl lg:text-2xl xl:text-3xl tblack3 lg:mt-32"}>Get in touch with me</p>
                         <div className={"grid gap-4 grid-flow-col w-max lg:w-2/12 mx-auto lg:mx-0 mt-10"}>
-                            <div className="icon w-10 h-10 cursor-pointer">
-                                <img src={LinkedinOutline} alt="LinkedIn" className="outline"/>
-                                <img src={LinkedinFull} alt="LinkedIn Full" className="full"/>
+                            <div className="w-10 h-10 cursor-pointer hover:scale-105 transition">
+                                <img src={Linkedin} alt="LinkedIn" onClick={() => window.open("https://linkedin.com/in/frédéric-forster")}/>
                             </div>
-                            <div className="icon w-10 h-10 cursor-pointer">
-                                <img src={GithubOutline} alt="GitHub" className="outline"/>
-                                <img src={GithubFull} alt="GitHub Full" className="full"/>
+                            <div className="w-10 h-10 cursor-pointer hover:scale-105 transition">
+                                <img src={Mail} alt="Mail" onClick={() => window.location.href = "mailto:forster.frederic@gmail.com"}/>
                             </div>
-                            <div className="icon w-10 h-10 cursor-pointer">
-                                <img src={MailOutline} alt="Mail" className="outline" onClick={() => window.location.href = "mailto:forster.frederic@gmail.com"}/>
-                                <img src={MailFull} alt="Mail Full" className="full" onClick={() => window.location.href = "mailto:forster.frederic@gmail.com"}/>
+                            <div className="w-10 h-10 cursor-pointer hover:scale-105 transition">
+                                <img src={Upwork} alt="Upwork" onClick={() => window.open("https://www.upwork.com/freelancers/~012846dea0085750d1?mp_source=sharehttps://www.upwork.com/freelancers/~012846dea0085750d1?mp_source=share")}/>
                             </div>
                         </div>
-                        <p className={"w-full mt-8 lg:text-md xl:text-lg tgrayd3"}>Lorem ipsum dolor sit amet consectetur adipisci elit donec faucibus adipiscing mauris. Lorem ipsum dolor sit amet consectetur adipisci elit donec faucibus adipiscing mauris.</p>
+                        <p className={"w-2/3 md:w-full mx-auto lg:mx-0 mt-8 lg:text-md xl:text-lg tgrayd3 lg:text-justify text-center"}>I'm always open to new opportunities and collaborations. Feel free to get in touch with me through the contact form on the right or via LinkedIn, GitHub, or email.</p>
                     </div>
-                    <form className={"mt-12 mx-auto lg:mt-0 lg:ml-auto flex-col-center items-center w-full sm:w-11/12 md:w-9/12 lg:w-7/12 xl:w-6/12 2xl:w-5/12 2xl:mr-32 bwhite3 rounded-xl shadow-black drop-shadow-lg"} ref={form} onSubmit={sendEmail}>
+                    <form className={"mt-12 mx-auto lg:mt-0 lg:ml-auto flex-col-center items-center 2xl:ml-24 w-full md:w-8/12 lg:w-1/2 2xl:mr-32 bwhite3 rounded-xl shadow-black drop-shadow-lg"} ref={form} onSubmit={sendEmail}>
                         <div className={"w-9/12 mt-14"}>
                             <label form={"name"} className={"font-medium"}>Enter your name</label>
-                            <input id={"name"} name="from_name" type={"text"} className={"tgrayd3 text-sm mt-1 border-bottom bwhite3 w-full p-1 outline-none"} onChange={(e) => setName(e.target.value)}/>
+                            <input id={"name"} name="from_name" type={"text"} className={"tgrayd3 text-sm mt-1 border-bottom bwhite3 w-full p-1 outline-none"} value={name} onChange={(e) => setName(e.target.value)}/>
                         </div>
                         <div className={"w-9/12 mt-7"}>
                             <label form={"email"} className={"font-medium"}>Your email address</label>
-                            <input id={"email"} name="from_mail" type={"text"} className={"tgrayd3 text-sm mt-1 border-bottom bwhite3 w-full p-1 outline-none"} onChange={(e) => setEmail(e.target.value)}/>
+                            <input id={"email"} name="from_mail" type={"text"} className={"tgrayd3 text-sm mt-1 border-bottom bwhite3 w-full p-1 outline-none"} value={email} onChange={(e) => setEmail(e.target.value)}/>
                         </div>
                         <div className={"w-9/12 mt-7"}>
                             <label form={"subject"} className={"font-medium"}>Subject</label>
-                            <input id={"subjet"} name="subject" type={"text"} className={"tgrayd3 text-sm mt-1 border-bottom bwhite3 w-full p-1 outline-none"} onChange={(e) => setSubject(e.target.value)}/>
+                            <input id={"subjet"} name="subject" type={"text"} className={"tgrayd3 text-sm mt-1 border-bottom bwhite3 w-full p-1 outline-none"} value={subject} onChange={(e) => setSubject(e.target.value)}/>
                         </div>
                         <div className={"w-9/12 mt-10"}>
                             <label form={"auto-resizing-textarea"} className={"font-medium"}>Write a message</label>
-                            <textarea id={"auto-resizing-textarea"} name="message" rows="1" ref={textareaRef} className={"tgrayd3 text-sm mt-1 border-bottom bwhite3 w-full p-1 resize-none overflow-hidden outline-none"} onChange={(e) => setMessage(e.target.value)}/>
+                            <textarea id={"auto-resizing-textarea"} name="message" rows="1" ref={textareaRef} className={"tgrayd3 text-sm mt-1 border-bottom bwhite3 w-full p-1 resize-none overflow-hidden outline-none"} value={message} onChange={(e) => setMessage(e.target.value)}/>
                         </div>
-                        <button className={"btn mt-10 mb-14"} onClick={() => alert("Name: "+name+"\nEmail: "+email+"\nSubject: "+subject+"\nMessage: "+message)}>Send message</button>
+                        <button className={"btn mt-10 mb-14"}>Send message</button>
                     </form>
                 </div>
             </div>

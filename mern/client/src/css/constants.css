@@ -24,24 +24,3 @@
     bottom: 0;
     right: 0;
 }
-
-.icon {
-    position: relative;
-    color: transparent;
-}
-
-.icon img.full {
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    transition: opacity 0.2s ease-in;
-}
-
-.icon:hover img.outline {
-    opacity: 0;
-}
-
-.icon:hover img.full {
-    opacity: 1;
-}
