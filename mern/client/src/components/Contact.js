@@ -88,19 +88,19 @@ export default function Contact() {
                     <form className={"mt-12 mx-auto lg:mt-0 lg:ml-auto flex-col-center items-center 2xl:ml-24 w-full md:w-8/12 lg:w-1/2 2xl:mr-32 bwhite3 rounded-xl shadow-black drop-shadow-lg"} ref={form} onSubmit={sendEmail}>
                         <div className={"w-9/12 mt-14"}>
                             <label htmlFor={"name"} className={"font-medium"}>Enter your name</label>
-                            <input id={"name"} name="from_name" type={"text"} className={"tgrayd3 text-sm mt-1 border-bottom bwhite3 w-full p-1 outline-none"} value={name} onChange={(e) => setName(e.target.value)}/>
+                            <input id={"name"} name="from_name" type={"text"} className={"tgrayd3 mt-1 border-bottom bwhite3 w-full p-1 outline-none"} value={name} onChange={(e) => setName(e.target.value)}/>
                         </div>
                         <div className={"w-9/12 mt-7"}>
                             <label htmlFor={"email"} className={"font-medium"}>Your email address</label>
-                            <input id={"email"} name="from_mail" type={"text"} className={"tgrayd3 text-sm mt-1 border-bottom bwhite3 w-full p-1 outline-none"} value={email} onChange={(e) => setEmail(e.target.value)}/>
+                            <input id={"email"} name="from_mail" type={"text"} className={"tgrayd3 mt-1 border-bottom bwhite3 w-full p-1 outline-none"} value={email} onChange={(e) => setEmail(e.target.value)}/>
                         </div>
                         <div className={"w-9/12 mt-7"}>
                             <label htmlFor={"subject"} className={"font-medium"}>Subject</label>
-                            <input id={"subject"} name="subject" type={"text"} className={"tgrayd3 text-sm mt-1 border-bottom bwhite3 w-full p-1 outline-none"} value={subject} onChange={(e) => setSubject(e.target.value)}/>
+                            <input id={"subject"} name="subject" type={"text"} className={"tgrayd3 mt-1 border-bottom bwhite3 w-full p-1 outline-none"} value={subject} onChange={(e) => setSubject(e.target.value)}/>
                         </div>
                         <div className={"w-9/12 mt-10"}>
                             <label htmlFor={"auto-resizing-textarea"} className={"font-medium"}>Write a message</label>
-                            <textarea id={"auto-resizing-textarea"} name="message" rows="1" ref={textareaRef} className={"tgrayd3 text-sm mt-1 border-bottom bwhite3 w-full p-1 resize-none overflow-hidden outline-none"} value={message} onChange={(e) => setMessage(e.target.value)}/>
+                            <textarea id={"auto-resizing-textarea"} name="message" rows="1" ref={textareaRef} className={"tgrayd3 mt-1 border-bottom bwhite3 w-full p-1 resize-none overflow-hidden outline-none"} value={message} onChange={(e) => setMessage(e.target.value)}/>
                         </div>
                         <button className={"btn mt-10 mb-14"}>Send message</button>
                     </form>
