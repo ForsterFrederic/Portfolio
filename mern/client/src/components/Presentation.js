@@ -83,7 +83,7 @@ export default function Presentation() {
                                 </button>
                                 <Link
                                     className={classNames('lg:ml-0 border tprimary rounded leading-none px-6 py-3 cursor-pointer mx-2 hover:bprimary hover:twhite1 transition uppercase text-xs font-bold')}
-                                    to={"competencies"} smooth={true} duration={500} offset={-68}>
+                                    to={"competencies"} smooth={true} duration={500} offset={-210}>
                                     My competencies
                                 </Link>
                             </div>
@@ -134,8 +134,8 @@ export default function Presentation() {
                             }}>Download my CV
                             </button>
                             <Link
-                                className={classNames('lg:ml-0 border tprimary rounded leading-none px-6 py-3 cursor-pointer mx-2 hover:bprimary hover:twhite1 transition uppercase text-xs font-bold')}
-                                to={"competencies"} smooth={true} duration={500} offset={-68}>
+                                className={classNames('lg:ml-0 border tprimary rounded leading-none px-6 py-3 cursor-pointer hover:bprimary hover:twhite1 transition uppercase text-xs font-bold')}
+                                to={"competencies"} smooth={true} duration={500} offset={-210}>
                                 My competencies
                             </Link>
                         </div>

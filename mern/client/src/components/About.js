@@ -15,7 +15,7 @@ export default function About() {
                     <p className={"md:text-lg lg:text-lg xl:text-xl tgrayd3 max-w-3xl text-center lg:text-left mx-auto lg:mx-0 lg:max-w-full mt-8"}>I design innovative web solutions by integrating comprehensive expertise, from front-end to back-  end, along with proficiency in low-level languages.</p>
                     <p className={"md:text-lg lg:text-lg xl:text-xl tgrayd3 max-w-3xl text-center lg:text-left mx-auto lg:mx-0 lg:max-w-full mt-8"}>I am seeking a full-time role where I can contribute my skills and collaborate effectively for long-term growth.</p>
                 </div>
-                <img className={"w-7/12 xl:w-5/12 2xl:w-2/6 rounded-3xl 2xl:mr-32 my-auto mx-auto lg:mx-0 mt-20 lg:mt-0 mb-52 lg:mb-0"} src={Picture}/>
+                <img className={"w-full sm:w-10/12 md:w-8/12 lg:w-5/12 xl:w-5/12 2xl:w-2/6 rounded-3xl 2xl:mr-32 my-auto mx-auto lg:mx-0 mt-20 lg:mt-0 mb-52 lg:mb-0"} src={Picture}/>
             </div>
         </div>
     );

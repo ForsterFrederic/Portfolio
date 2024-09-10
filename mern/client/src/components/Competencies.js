@@ -50,7 +50,7 @@ export default function Competencies() {
             itemsArray.items.slice(0, itemsToShow).map((item, index) => (
                 <div
                     key={index}
-                    className={`flex flex-col items-center justify-center mb-2 w-32 h-32 rounded-lg mx-auto backdrop-blur-xl bg-white/30 shadow-md transition-transform transform hover:scale-105 cursor-pointer tgrayd3 ${!expand && index >= itemsPerRow ? 'hover:fade-opacity' : ''}`}
+                    className={`flex flex-col items-center justify-center mb-2 w-28 h-28 sm:w-32 sm:h-32 rounded-lg mx-auto backdrop-blur-xl bg-white/30 shadow-md transition-transform transform hover:scale-105 cursor-pointer tgrayd3 ${!expand && index >= itemsPerRow ? 'hover:fade-opacity' : ''}`}
                     // onClick={() => window.open(item.link)}
                 >
                     <div className="w-14 h-14 mb-3">

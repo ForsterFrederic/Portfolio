@@ -61,7 +61,7 @@ export default function Contact() {
 
     return (
         <div name={"contact"} className={"gradient-bg-right min-height-screen flex-col pb-28"}>
-            <div className={"pt-36 mx-12 md:mx-14 lg:mx-20 xl:mx-28 2xl:mx-32"}>
+            <div className={"pt-36 mx-6 md:mx-14 lg:mx-20 xl:mx-28 2xl:mx-32"}>
                 <div className={"mx-auto w-max mb-24 lg:mb-12 xl:mb-14 2xl:mb-16"}>
                     <div className={"bprimary mx-auto w-28 h-1.5 rounded mb-3"}/>
                     <p className={"text-2xl md:text-3xl lg:text-4xl xl:text-5xl tblack3"}>Contact me</p>
@@ -83,7 +83,7 @@ export default function Contact() {
                                 <img src={Upwork} alt="Upwork" onClick={() => window.open("https://www.upwork.com/freelancers/~012846dea0085750d1?mp_source=sharehttps://www.upwork.com/freelancers/~012846dea0085750d1?mp_source=share")}/>
                             </div>
                         </div>
-                        <p className={"w-2/3 md:w-full mx-auto lg:mx-0 mt-8 lg:text-md xl:text-lg tgrayd3 lg:text-justify text-center"}>I'm always open to new opportunities and collaborations. Feel free to get in touch with me through the contact form on the right or via LinkedIn, GitHub, or email.</p>
+                        <p className={"w-10/12 md:w-full mx-auto lg:mx-0 mt-8 lg:text-md xl:text-lg tgrayd3 lg:text-justify text-center"}>I'm always open to new opportunities and collaborations. Feel free to get in touch with me through the contact form on the right or via LinkedIn, GitHub, or email.</p>
                     </div>
                     <form className={"mt-12 mx-auto lg:mt-0 lg:ml-auto flex-col-center items-center 2xl:ml-24 w-full md:w-8/12 lg:w-1/2 2xl:mr-32 bwhite3 rounded-xl shadow-black drop-shadow-lg"} ref={form} onSubmit={sendEmail}>
                         <div className={"w-9/12 mt-14"}>
