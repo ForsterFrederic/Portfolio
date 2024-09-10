@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="cc1a50cb-9061-46fe-a637-844192143d4c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mern/server/.env" beforeDir="false" afterPath="$PROJECT_DIR$/mern/server/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/components/About.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/components/About.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/components/Presentation.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/components/Presentation.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +162,7 @@
       <workItem from="1724946883670" duration="3291000" />
       <workItem from="1724962717394" duration="5770000" />
       <workItem from="1725549996338" duration="1894000" />
-      <workItem from="1725553864314" duration="48653000" />
+      <workItem from="1725553864314" duration="49784000" />
     </task>
     <servers />
   </component>

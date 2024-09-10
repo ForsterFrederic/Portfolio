@@ -4,7 +4,7 @@ import Picture from "../assets/pictures/full-stack.png"
 
 export default function About() {
     return (
-        <div name="about" className={"min-height-screen flex-col gradient-bg-left"}>
+        <div name="about" className={"min-height-screen flex-col gradient-bg-left pb-40"}>
             <div className={"pt-36 mx-auto w-max mb-10 xl:mb-12 2xl:mb-24"}>
                 <div className={"bprimary mx-auto w-28 h-1.5 rounded mb-3"}/>
                 <p className={"text-2xl md:text-3xl lg:text-4xl xl:text-5xl tblack3"}>About me</p>

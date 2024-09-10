@@ -27,7 +27,7 @@ export default function Presentation() {
     const CardDesktop = () => {
         return (
             <div name={"presentation"} className={"gradient-bg-left-darker shadow-black drop-shadow-lg"}>
-                <div className={"flex justify-between min-h-lvh"}>
+                <div className={"flex justify-between min-h-lvh pt-16"}>
                     <div className={"absolute grid gap-6 grid-flow-row left-20 top-36"}>
                         <div className="w-11 h-11 cursor-pointer hover:scale-105">
                             <img src={Linkedin} alt="LinkedIn" onClick={() => window.open("https://linkedin.com/in/frédéric-forster")}/>
