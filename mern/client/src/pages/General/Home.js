@@ -32,7 +32,7 @@ export default function Home() {
             <Projects/>
             <Contact/>
             <Footer/>
-            <ScreenSize/>
+            {/*<ScreenSize/>*/}
         </div>
     );
 };
