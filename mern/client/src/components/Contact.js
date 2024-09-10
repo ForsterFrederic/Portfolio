@@ -60,9 +60,9 @@ export default function Contact() {
 
 
     return (
-        <div name={"contact"} className={"gradient-bg-right min-height-screen flex-col pb-28"}>
-            <div className={"pt-36 mx-6 md:mx-14 lg:mx-20 xl:mx-28 2xl:mx-32"}>
-                <div className={"mx-auto w-max mb-24 lg:mb-12 xl:mb-14 2xl:mb-16"}>
+        <div name={"contact"} className={"gradient-bg-right min-height-screen flex-col py-24"}>
+            <div className={"mx-6 md:mx-14 lg:mx-20 xl:mx-28 2xl:mx-32"}>
+                <div className={"mx-auto w-max mb-10 lg:mb-12 xl:mb-14 2xl:mb-16"}>
                     <div className={"bprimary mx-auto w-28 h-1.5 rounded mb-3"}/>
                     <p className={"text-2xl md:text-3xl lg:text-4xl xl:text-5xl tblack3"}>Contact me</p>
                 </div>

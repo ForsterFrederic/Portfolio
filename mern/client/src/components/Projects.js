@@ -35,8 +35,8 @@ export default function Projects() {
     }, [expand]);
 
     return (
-        <div name={"projects"} className={"gradient-bg-left pb-14"}>
-            <div className={"pt-52 mb-24 mx-auto w-max"}>
+        <div name={"projects"} className={"gradient-bg-left py-24"}>
+            <div className={"mb-10 lg:mb-12 xl:mb-14 2xl:mb-16 mx-auto w-max"}>
                 <div className={"bprimary mx-auto w-28 h-1.5 rounded mb-3"}/>
                 <p className={"text-2xl md:text-3xl lg:text-4xl xl:text-5xl tblack3"}>Public projects</p>
             </div>

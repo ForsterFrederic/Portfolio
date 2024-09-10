@@ -66,17 +66,17 @@ export default function Competencies() {
     }
 
     return (
-        <div name={"competencies"} className={"min-height-screen gradient-bg-right"}>
-            <div className={"mb-16 mx-auto w-max"}>
+        <div name={"competencies"} className={"min-height-screen gradient-bg-right py-24"}>
+            <div className={"mb-10 mx-auto w-max"}>
                 <div className={"bprimary mx-auto w-28 h-1.5 rounded mb-3"}/>
                 <p className={"text-2xl md:text-3xl lg:text-4xl xl:text-5xl tblack3"}>My Competencies</p>
             </div>
-            <div className={"pb-10"}>
-                {itemsFullArray.map((itemsArray) => {
+            <div>
+                {itemsFullArray.map((itemsArray, index) => {
                     return (
                         <div>
                             <div className={"flex mx-3 sm:mx-14 md:mx-16 lg:mx-24 xl:mx-32 2xl:mx-40 justify-between mb-3"} onClick={() => setExpand(!expand)}>
-                                <p className={"my-auto ml-6 mt-10 mb-2 underline underline-offset-4 font-medium text-xl"} style={{ textDecorationColor: "lightgray" }}>
+                                <p className={"my-auto ml-6 mb-2 underline underline-offset-4 font-medium text-xl"} style={{ textDecorationColor: "lightgray", marginTop: index !== 0 ? "40px" : "" }}>
                                     {itemsArray.title}
                                 </p>
                             </div>

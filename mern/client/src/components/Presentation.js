@@ -83,7 +83,7 @@ export default function Presentation() {
                                 </button>
                                 <Link
                                     className={classNames('lg:ml-0 border tprimary rounded leading-none px-6 py-3 cursor-pointer mx-2 hover:bprimary hover:twhite1 transition uppercase text-xs font-bold')}
-                                    to={"competencies"} smooth={true} duration={500} offset={-210}>
+                                    to={"competencies"} smooth={true} duration={500} offset={-68}>
                                     My competencies
                                 </Link>
                             </div>
@@ -96,7 +96,7 @@ export default function Presentation() {
 
     const CardMobile = () => {
         return (
-            <div name={"presentation"} className={"flex-col-center rounded-b-xl pt-[150px] pb-4 gradient-bg-right mb-p0"}>
+            <div name={"presentation"} className={"flex-col-center rounded-b-xl pt-32 pb-4 gradient-bg-right mb-p0"}>
                 <div className={"flex-center items-end w-full"}>
                     <div className={"flex-col-center items-center"}>
                         <div>
@@ -135,7 +135,7 @@ export default function Presentation() {
                             </button>
                             <Link
                                 className={classNames('lg:ml-0 border tprimary rounded leading-none px-6 py-3 cursor-pointer hover:bprimary hover:twhite1 transition uppercase text-xs font-bold')}
-                                to={"competencies"} smooth={true} duration={500} offset={-210}>
+                                to={"competencies"} smooth={true} duration={500} offset={-68}>
                                 My competencies
                             </Link>
                         </div>

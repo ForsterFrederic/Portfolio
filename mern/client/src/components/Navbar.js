@@ -11,9 +11,9 @@ import { Link, animateScroll } from 'react-scroll';
 const navigation = [
     { name: 'Home', to: "presentation", current: false, offset: -68 },
     { name: 'About', to: "about", current: false, offset: -68 },
-    { name: 'Competencies', to: "competencies", current: false, offset: -210 },
+    { name: 'Competencies', to: "competencies", current: false, offset: -68 },
     // { name: 'Experience', to: "experience", current: false, offset: -144},
-    { name: 'Projets', to: "projects", current: false, offset: -2 },
+    { name: 'Projets', to: "projects", current: false, offset: -68 },
 ]
 
 const navigationRight = [
@@ -45,7 +45,7 @@ export default function Navbar() {
                                 </DisclosureButton>
                             </div>
                             <div className="flex flex-1 items-center justify-center sm:justify-start">
-                                <div className="flex flex-shrink-0 items-center cursor-pointer mr-6" onClick={() => navigate(process.env.REACT_APP_IS_DEVELOPMENT ? "/home" : "/")}>
+                                <div className="flex flex-shrink-0 items-center cursor-pointer mr-6" onClick={() => navigate(process.env.REACT_APP_IS_DEVELOPMENT ? "/" : "/")}>
                                     <img
                                         className="h-12 w-auto"
                                         src="/logo.png"
