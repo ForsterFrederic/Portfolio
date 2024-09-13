@@ -8,9 +8,21 @@ import ScreenSize from "../../components/ScreenSize";
 import About from "../../components/About";
 import Footer from "../../components/Footer";
 import Experience from "../../components/Experience";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+import Transition from "../../components/Transition";
+import { motion } from "framer-motion";
 
 export default function Home() {
+    const [isTransitionVisible, setIsTransitionVisible] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsTransitionVisible(false);
+        }, 800);
+
+        return () => clearTimeout(timer);
+    }, []);
+
 
     useEffect(() => {
         const updateMinHeight = () => {
@@ -24,15 +36,25 @@ export default function Home() {
 
     return (
         <div>
-            <Navbar/>
-            <Presentation/>
-            <About/>
-            <Competencies/>
-            {/*<Experience/>*/}
-            <Projects/>
-            <Contact/>
-            <Footer/>
-            {/*<ScreenSize/>*/}
+            {isTransitionVisible ? (
+                <Transition />
+            ) : (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.8 }}
+                >
+                    <Navbar />
+                    <Presentation />
+                    <About />
+                    <Competencies />
+                    {/*<Experience />*/}
+                    <Projects />
+                    <Contact />
+                    <Footer />
+                    {/*<ScreenSize />*/}
+                </motion.div>
+            )}
         </div>
     );
 };
