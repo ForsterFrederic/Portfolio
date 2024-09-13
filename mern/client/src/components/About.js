@@ -12,7 +12,7 @@ export default function About() {
             <div className={"flex flex-col lg:flex-row mx-16 md:mx-20 lg:mx-16 xl:mx-32 2xl:mx-36 mt-12 lg:mt-32"}>
                 <div className={"flex-row lg:mr-36 xl:mr-44 2xl:mr-52 my-auto"}>
                     <p className={"md:text-lg lg:text-lg xl:text-xl tgrayd3 max-w-3xl mx-auto lg:mx-0 lg:max-w-full text-center lg:text-justify"}>
-                        I am a Full Stack Developer, graduating from Epitech in France with a focus on React and Node.js.
+                        I am a Full Stack Developer, graduating from my master degree at Epitech in France with a focus on React and Node.js.
                     </p>
                     <p className={"md:text-lg lg:text-lg xl:text-xl tgrayd3 max-w-3xl mx-auto lg:mx-0 lg:max-w-full mt-8 text-center lg:text-justify"}>
                         I design innovative web solutions by integrating comprehensive expertise, from front-end to back-end, along with proficiency in low-level languages.

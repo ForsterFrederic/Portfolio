@@ -43,7 +43,6 @@ export default function Presentation() {
                         <img src={PictureMe} className={"flex justify-between"}/>
                         <div className={"border-bottom-big mx-auto mt-1.5 rounded"}/>
                     </div>
-                    {/*<img src={PictureMe} className={"bg-left-top bg-cover w-5/12 mt-auto pt-12"}/>*/}
                     <div className={"flex-center px-12 mx-auto"}>
                         <div className={"flex-col-center items-center py-8"}>
                             <div className={"lg:ml-0"}>
