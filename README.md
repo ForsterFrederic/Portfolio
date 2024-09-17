@@ -4,9 +4,20 @@
 
 ```
 MONGODB ATLAS URI = mongodb+srv://<username>:<password>@sandbox.jadwj.mongodb.net/
-PORT LOCAL        = 3001
-PORT PRODUCTION   = 5000
 .env in /server and generated in /client
+
+in .env file:
+    IS_PROD=FALSE
+    IS_DEVELOPMENT=FALSE
+    
+    BACKEND_PORT=3001
+    PROD_BACKEND_PORT=5000
+    
+    BACKEND_API_URL=http://localhost:3001/api
+    PROD_BACKEND_API_URL=https://frederic-forster.com/api
+    
+    MONGODB_URI=mongodb://localhost:27017/PortfolioDB
+    PROD_MONGODB_URI=mongodb+srv://<username>:<password>@sandbox.jadwj.mongodb.net/    --change with the real one from MongoDB Atlas
 ```
 
 ## How To Run

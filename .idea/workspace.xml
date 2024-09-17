@@ -5,16 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc1a50cb-9061-46fe-a637-844192143d4c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mern/client/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mern/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mern/client/src/components/About.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/components/About.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mern/client/src/components/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/components/Navbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mern/client/src/components/Presentation.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/components/Presentation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mern/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/mern/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mern/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/mern/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/public/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/public/logo512.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,11 +68,11 @@
       <recent name="$PROJECT_DIR$/mern/client/public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/mern/client/src/assets/pictures" />
       <recent name="$PROJECT_DIR$/mern/client/src/components" />
       <recent name="$PROJECT_DIR$/mern/client" />
       <recent name="$PROJECT_DIR$/mern/client/src" />
-      <recent name="$PROJECT_DIR$/mern/server" />
     </key>
   </component>
   <component name="RunManager" selected="npm.start (2)">
@@ -171,7 +166,9 @@
       <workItem from="1725549996338" duration="1894000" />
       <workItem from="1725553864314" duration="55179000" />
       <workItem from="1726016802311" duration="1399000" />
-      <workItem from="1726214981974" duration="1948000" />
+      <workItem from="1726214981974" duration="4459000" />
+      <workItem from="1726219475131" duration="34000" />
+      <workItem from="1726537557659" duration="279000" />
     </task>
     <servers />
   </component>
