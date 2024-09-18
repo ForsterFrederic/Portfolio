@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import PictureMe from "../assets/pictures/picture-me.png"
 import Linkedin from "../assets/pictures/linkedin.png";
 import Mail from "../assets/pictures/email.png";
-import Upwork from "../assets/pictures/upwork.png";
+import WhatsApp from "../assets/pictures/whatsapp.png";
 import {Link} from 'react-scroll';
 import CV from "../assets/documents/CV Frédéric Forster - English.pdf"
 
@@ -13,6 +13,12 @@ export default function Presentation() {
     const [subtitle, setSubtitle] = useState("Software & Web Engineer")
     const [description, setDescription] = useState("With a background in both front-end and back-end development and a specialization in React and Node.js, I am dedicated to crafting cutting-edge solutions and leveraging my technical skills for long-term growth and success.")
     const [freelance, setFreelance] = useState("Also available in Freelance.")
+
+    const WhatsAppOrCall = () => {
+        const whatsappUrl = `https://wa.me/+33669012285`;
+
+        window.open(whatsappUrl, '_blank');
+    };
 
     useEffect(() => {
         addEventListener('resize', () => {
@@ -36,7 +42,7 @@ export default function Presentation() {
                             <img src={Mail} alt="Mail" onClick={() => window.location.href = "mailto:forster.frederic@gmail.com"}/>
                         </div>
                         <div className="w-11 h-11 cursor-pointer hover:scale-105">
-                            <img src={Upwork} alt="Upwork" onClick={() => window.open("https://www.upwork.com/freelancers/~012846dea0085750d1?mp_source=sharehttps://www.upwork.com/freelancers/~012846dea0085750d1?mp_source=share")}/>
+                            <img src={WhatsApp} alt="WhatsApp" onClick={() => WhatsAppOrCall()}/>
                         </div>
                     </div>
                     <div className={"w-5/12 ml-32 my-auto 2xl:my-0 2xl:mt-auto 2xl:mb-2"}>
@@ -150,7 +156,7 @@ export default function Presentation() {
                         <img src={Mail} alt="Mail" onClick={() => window.location.href = "mailto:forster.frederic@gmail.com"}/>
                     </div>
                     <div className="w-10 h-10 cursor-pointer hover:scale-105 transition">
-                        <img src={Upwork} alt="Upwork" onClick={() => window.open("https://www.upwork.com/freelancers/~012846dea0085750d1?mp_source=sharehttps://www.upwork.com/freelancers/~012846dea0085750d1?mp_source=share")}/>
+                        <img src={WhatsApp} alt="WhatsApp" onClick={() => WhatsAppOrCall()}/>
                     </div>
                 </div>
             </div>

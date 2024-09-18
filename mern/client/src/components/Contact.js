@@ -2,7 +2,7 @@ import "../css/constants.css"
 import React, {useEffect, useRef, useState} from "react";
 import Linkedin from "../assets/pictures/linkedin.png";
 import Mail from "../assets/pictures/email.png";
-import Upwork from "../assets/pictures/upwork.png";
+import WhatsApp from "../assets/pictures/whatsapp.png";
 import * as emailjs from "@emailjs/browser";
 
 export default function Contact() {
@@ -44,6 +44,12 @@ export default function Contact() {
             );
     };
 
+    const WhatsAppOrCall = () => {
+        const whatsappUrl = `https://wa.me/+33669012285`;
+
+        window.open(whatsappUrl, '_blank');
+    };
+
     useEffect(() => {
         const textarea = textareaRef.current;
         const autoResize = () => {
@@ -80,7 +86,7 @@ export default function Contact() {
                                 <img src={Mail} alt="Mail" onClick={() => window.location.href = "mailto:forster.frederic@gmail.com"}/>
                             </div>
                             <div className="w-10 h-10 cursor-pointer hover:scale-105 transition">
-                                <img src={Upwork} alt="Upwork" onClick={() => window.open("https://www.upwork.com/freelancers/~012846dea0085750d1?mp_source=sharehttps://www.upwork.com/freelancers/~012846dea0085750d1?mp_source=share")}/>
+                                <img src={WhatsApp} alt="WhatsApp" onClick={() => WhatsAppOrCall()}/>
                             </div>
                         </div>
                         <p className={"w-10/12 md:w-full mx-auto lg:mx-0 mt-8 lg:text-md xl:text-lg tgrayd3 lg:text-justify text-center"}>I'm always open to new opportunities and collaborations. Feel free to get in touch with me through the contact form on the right or via LinkedIn, GitHub, or email.</p>
