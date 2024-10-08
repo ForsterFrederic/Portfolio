@@ -6,13 +6,20 @@ import Mail from "../assets/pictures/email.png";
 import WhatsApp from "../assets/pictures/whatsapp.png";
 import {Link} from 'react-scroll';
 import CV from "../assets/documents/CV Frédéric Forster - English.pdf"
+import axios from "axios";
 
-export default function Presentation() {
+export default function Presentation({ backendApiUrl, language }) {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-    const [title, setTitle] = useState("FORSTER Frédéric")
-    const [subtitle, setSubtitle] = useState("Software & Web Engineer")
+    const [name, setName] = useState("FORSTER Frédéric")
+    const [title, setTitle] = useState("Software & Web Engineer")
+    const [freelance, setFreelance] = useState("Also available as Freelance.")
     const [description, setDescription] = useState("With a background in both front-end and back-end development and a specialization in React and Node.js, I am dedicated to crafting cutting-edge solutions and leveraging my technical skills for long-term growth and success.")
-    const [freelance, setFreelance] = useState("Also available in Freelance.")
+    const [numberYearsExperience, setNumberYearsExperience] = useState("7")
+    const [textYearsExperience, setTextYearsExperience] = useState("7")
+    const [numberSuccessfulProjects, setNumberSuccessfulProjects] = useState("11")
+    const [textSuccessfulProjects, setTextSuccessfulProjects] = useState("11")
+    const [downloadCV, setDownloadCV] = useState("Download my CV")
+    const [goToCompetencies, setGoToCompetencies] = useState("My competencies")
 
     const WhatsAppOrCall = () => {
         const whatsappUrl = `https://wa.me/+33669012285`;
@@ -20,11 +27,33 @@ export default function Presentation() {
         window.open(whatsappUrl, '_blank');
     };
 
+    const getPresentation = async () => {
+        try {
+            const response = await axios.get(`${backendApiUrl}/presentation/` + language);
+            setName(response.data.name);
+            setTitle(response.data.title);
+            setFreelance(response.data.freelance);
+            setDescription(response.data.description);
+            setNumberYearsExperience(response.data.numberYearsExperience);
+            setTextYearsExperience(response.data.textYearsExperience);
+            setNumberSuccessfulProjects(response.data.numberSuccessfulProjects);
+            setTextSuccessfulProjects(response.data.textSuccessfulProjects);
+            setDownloadCV(response.data.downloadCV);
+            setGoToCompetencies(response.data.goToCompetencies);
+        } catch (error) {
+            console.error('Error fetching presentation:', error);
+        }
+    };
+
     useEffect(() => {
         addEventListener('resize', () => {
             setWindowWidth(window.innerWidth);
         }, false);
     }, []);
+
+    useEffect(() => {
+        getPresentation()
+    }, [language]);
 
     function classNames(...classes) {
         return classes.filter(Boolean).join(' ')
@@ -53,43 +82,41 @@ export default function Presentation() {
                         <div className={"flex-col-center items-center py-8"}>
                             <div className={"lg:ml-0"}>
                                 <div className={"bprimary w-4/12 h-1.5 rounded mb-3"}/>
-                                <h1 className={"text-3xl md:text-4xl lg:text-5xl xl:text-6xl tblack3"}>{title}</h1>
+                                <h1 className={"text-3xl md:text-4xl lg:text-5xl xl:text-6xl tblack3"}>{name}</h1>
                             </div>
-                            <h2 className={"lg:ml-0 font-light mt-0.5 md:mt-1 lg:mt-2 tgrayd3 text-2sm md:text-lg lg:text-2xl xl:text-3xl"}>{subtitle}</h2>
-                            <p className={"lg:ml-0 font-light mt-12 text-2sm md:text-lg lg:text-xl xl:text-2xl"}>{freelance}</p>
-                            <p className={"max-w-[450px] text-center mt-6 font-light"}>{description}</p>
+                            <h2 className={"lg:ml-0 font-light mt-0.5 md:mt-1 lg:mt-2 tgrayd3 text-2sm md:text-lg lg:text-xl xl:text-2xl text-center"}>{title}</h2>
+                            <p className={"lg:ml-0 font-light mt-12 text-2sm md:text-md lg:text-lg xl:text-xl tblue text-center"}>{freelance}</p>
+                            <p className={"max-w-[475px] text-center mt-6 font-light"}>{description}</p>
                             <div className={"lg:ml-0 flex-center mt-24"}>
                                 <div className={"flex-center w-52"}>
-                                    <p className={"font-medium tblack2 text-3xl md:text-4xl lg:text-5xl xl:text-5xl"}>7</p>
+                                    <p className={"font-medium tblack2 text-3xl md:text-4xl lg:text-5xl xl:text-5xl"}>{numberYearsExperience}</p>
                                     <p className={"font-semibold tprimary ml-1 text-xl md:text-2xl lg:text-3xl xl:text-3xl"}>+</p>
-                                    <div className={"ml-3"}>
-                                        <p className={"tblack1 font-medium"}>Years of</p>
-                                        <p className={"tblack1 font-medium"}>experience</p>
+                                    <div className={"ml-3 max-w-28"}>
+                                        <p className={"tblack1 font-medium"}>{textYearsExperience}</p>
                                     </div>
                                 </div>
                                 <div className={"flex-center w-52"}>
-                                    <p className={"font-medium tblack2 text-3xl md:text-4xl lg:text-5xl xl:text-5xl"}>11</p>
+                                    <p className={"font-medium tblack2 text-3xl md:text-4xl lg:text-5xl xl:text-5xl"}>{numberSuccessfulProjects}</p>
                                     <p className={"font-semibold tprimary ml-1 text-xl md:text-2xl lg:text-3xl xl:text-3xl"}>+</p>
-                                    <div className={"ml-3"}>
-                                        <p className={"tblack2 font-medium"}>Successful</p>
-                                        <p className={"tblack2 font-medium"}>projects</p>
+                                    <div className={"ml-3 max-w-28"}>
+                                        <p className={"tblack1 font-medium"}>{textSuccessfulProjects}</p>
                                     </div>
                                 </div>
                             </div>
                             <div className={"flex gap-4 mt-8 items-center ml-4"}>
-                                <button className={"lg:ml-0 btn w-44"} onClick={() => {
+                                <button className={"lg:ml-0 btn w-48"} onClick={() => {
                                     const link = document.createElement('a');
                                     link.href = CV;
                                     link.download = 'CV Frédéric Forster - English.pdf';
                                     document.body.appendChild(link);
                                     link.click();
                                     document.body.removeChild(link);
-                                }}>Download my CV
+                                }}>{downloadCV}
                                 </button>
                                 <Link
-                                    className={classNames('lg:ml-0 border tprimary rounded leading-none px-6 py-3 cursor-pointer mx-2 hover:bprimary hover:twhite1 transition uppercase text-xs font-bold')}
+                                    className={classNames('lg:ml-0 border tprimary rounded leading-none px-6 py-3 cursor-pointer mx-2 hover:bprimary hover:twhite1 transition uppercase text-xs font-bold w-48 text-center')}
                                     to={"competencies"} smooth={true} duration={500} offset={-68}>
-                                    My competencies
+                                    {goToCompetencies}
                                 </Link>
                             </div>
                         </div>
@@ -106,42 +133,41 @@ export default function Presentation() {
                     <div className={"flex-col-center items-center"}>
                         <div>
                             <div className={"bprimary w-4/12 h-1.5 rounded mb-3"}/>
-                            <h1 className={"text-4xl md:text-5xl tblack3"}>{title}</h1>
+                            <h1 className={"text-4xl md:text-5xl tblack3"}>{name}</h1>
                         </div>
-                        <h2 className={"font-light mt-0.5 md:mt-1 tgrayd3 text-lg md:text-2xl"}>{subtitle}</h2>
+                        <h2 className={"font-light mt-0.5 md:mt-1 tgrayd3 text-lg md:text-2xl"}>{title}</h2>
+                        <p className={"lg:ml-0 font-light mt-5 text-2sm md:text-lg lg:text-xl xl:text-2xl tblue"}>{freelance}</p>
                         <p className={"max-w-72 md:max-w-lg text-sm mt-6 mb-10 tgrayd3 text-center text-2sm md:text-lg"}>{description}</p>
-                        <div className={"flex-center gap-x-8 mt-2"}>
+                        <div className={"flex-center mt-2"}>
                             <div className={"flex-center"}>
-                                <p className={"font-medium tblack2 text-3xl md:text-4xl"}>7</p>
+                                <p className={"font-medium tblack2 text-3xl md:text-4xl"}>{numberYearsExperience}</p>
                                 <p className={"font-semibold tprimary ml-1 text-xl md:text-2xl"}>+</p>
-                                <div className={"ml-3"}>
-                                    <p className={"tblack1 font-medium"}>Years of</p>
-                                    <p className={"tblack1 font-medium"}>experience</p>
+                                <div className={"ml-3 max-w-28"}>
+                                    <p className={"tblack1 font-medium"}>{textYearsExperience}</p>
                                 </div>
                             </div>
                             <div className={"flex-center"}>
-                                <p className={"font-medium tblack2 text-3xl md:text-4xl"}>11</p>
+                                <p className={"font-medium tblack2 text-3xl md:text-4xl"}>{numberSuccessfulProjects}</p>
                                 <p className={"font-semibold tprimary ml-1 text-xl md:text-2xl"}>+</p>
-                                <div className={"ml-3"}>
-                                    <p className={"tblack2 font-medium"}>Successful</p>
-                                    <p className={"tblack2 font-medium"}>projects</p>
+                                <div className={"ml-3 max-w-28"}>
+                                    <p className={"tblack1 font-medium"}>{textSuccessfulProjects}</p>
                                 </div>
                             </div>
                         </div>
                         <div className={"flex gap-3 mt-12"}>
-                            <button className={"lg:ml-0 btn w-44"} onClick={() => {
+                            <button className={"lg:ml-0 btn w-40"} onClick={() => {
                                 const link = document.createElement('a');
                                 link.href = CV;
                                 link.download = 'CV Frédéric Forster - English.pdf';
                                 document.body.appendChild(link);
                                 link.click();
                                 document.body.removeChild(link);
-                            }}>Download my CV
+                            }}>{downloadCV}
                             </button>
                             <Link
-                                className={classNames('lg:ml-0 border tprimary rounded leading-none px-6 py-3 cursor-pointer hover:bprimary hover:twhite1 transition uppercase text-xs font-bold')}
+                                className={classNames('lg:ml-0 border tprimary rounded leading-none py-3 cursor-pointer hover:bprimary hover:twhite1 transition uppercase text-xs font-bold text-center w-40')}
                                 to={"competencies"} smooth={true} duration={500} offset={-68}>
-                                My competencies
+                                {goToCompetencies}
                             </Link>
                         </div>
                     </div>
@@ -164,6 +190,6 @@ export default function Presentation() {
     }
 
     return (
-        windowWidth > 1024 ? <CardDesktop/> : <CardMobile/>
+        windowWidth > 1023 ? <CardDesktop/> : <CardMobile/>
     )
 }

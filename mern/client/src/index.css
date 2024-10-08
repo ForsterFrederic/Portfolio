@@ -493,53 +493,53 @@
 
     .corner-cross-frame {
         position: relative;
-        padding: 15px;
+        padding: 11px;
     }
 
     .corner-cross-frame::before,
     .corner-cross-frame::after {
         content: '';
         position: absolute;
-        background-color: var(--my-grayd2);
+        background-color: var(--my-blue);
     }
 
     .corner-cross-frame::before {
         top: 20px;
         left: 20px;
-        width: 5px;
-        height: 5px;
+        width: 6px;
+        height: 6px;
         box-shadow:
-                0 10px 0 0 var(--my-grayd2),
-                0 5px 0 0 var(--my-grayd2),
-                5px 0 0 0 var(--my-grayd2),
-                10px 0 0 0 var(--my-grayd2);
+                0 10px 0 0 var(--my-blue),
+                0 5px 0 0 var(--my-blue),
+                5px 0 0 0 var(--my-blue),
+                10px 0 0 0 var(--my-blue);
     }
 
     .corner-cross-frame::after {
         bottom: 20px;
         right: 20px;
-        width: 5px;
-        height: 5px;
+        width: 6px;
+        height: 6px;
         box-shadow:
-                0 -10px 0 0 var(--my-grayd2),
-                0 -5px 0 0 var(--my-grayd2),
-                -5px 0 0 0 var(--my-grayd2),
-                -10px 0 0 0 var(--my-grayd2);
+                0 -10px 0 0 var(--my-blue),
+                0 -5px 0 0 var(--my-blue),
+                -5px 0 0 0 var(--my-blue),
+                -10px 0 0 0 var(--my-blue);
     }
 
 }
 
 body {
     @apply m-0 p-0 font-sans antialiased;
-    background: linear-gradient(to bottom right, var(--my-white1), var(--my-grayl2));
     font-family: "Nunito Sans", 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background: linear-gradient(to bottom right, var(--my-white1), var(--my-grayl2));
     min-height: 100vh;
     margin: 0;
     padding: 0;
 }
 
 code {
-    font-family: 'Courier New', monospace;
+    font-family: 'Poppins', sans-serif;
 }

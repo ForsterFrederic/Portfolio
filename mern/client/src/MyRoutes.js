@@ -1,26 +1,46 @@
-import {Route, Routes} from "react-router-dom";
-import Private from "./pages/General/Private";
-import Projects from "./pages/Projects/Projects";
-import Development from "./pages/General/Development";
-import Home from "./pages/General/Home";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import Private from "./pages/Private";
+import Development from "./pages/Development";
+import Home from "./pages/Home";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export function MyRoutes() {
+    const [language, setLanguage] = useState("EN");
+    const BACKEND_API_URL = process.env.REACT_APP_BACKEND_API_URL || "https://frederic-forster.com/api";
+    const location = useLocation();
+
+    const incrementCounter = async () => {
+        try {
+            await axios.post(`${BACKEND_API_URL}/counter`);
+        } catch (error) {
+            console.error('Error incrementing counter:', error);
+        }
+    };
+
+    useEffect(() => {
+        const path = location.pathname;
+
+        if (path !== '/private' && path !== '/no' && process.env.REACT_APP_IS_DEVELOPMENT === "FALSE") {
+            incrementCounter();
+        }
+    }, []);
+
     return (
         process.env.REACT_APP_IS_DEVELOPMENT === "TRUE" ?
             <Routes>
-                <Route path="/private" element={<Private/>}/>
-                <Route path="/projects" element={<Projects/>}/>
-                <Route path="/home" element={<Home/>}/>
+                <Route path="/private" element={<Private backendApiUrl={BACKEND_API_URL}/>}/>
+                <Route path="/home" element={<Home language={language} setLanguage={setLanguage} backendApiUrl={BACKEND_API_URL}/>}/>
                 <Route path="/" element={<Development/>}/>
             </Routes>
             :
             <Routes>
-                <Route path="/private" element={<Private/>}/>
-                <Route path="/projects" element={<Projects/>}/>
+                <Route path="/private" element={<Private backendApiUrl={BACKEND_API_URL}/>}/>
                 <Route path="/development" element={<Development/>}/>
-                <Route path="/" element={<Home/>}/>
+                <Route path="/" element={<Home language={language} setLanguage={setLanguage} backendApiUrl={BACKEND_API_URL}/>}/>
+                <Route path="/no" element={<Home language={language} setLanguage={setLanguage} backendApiUrl={BACKEND_API_URL}/>}/>
             </Routes>
-    )
+    );
 }
 
 export default MyRoutes;
