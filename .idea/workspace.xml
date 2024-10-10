@@ -4,23 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cc1a50cb-9061-46fe-a637-844192143d4c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mern/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mern/client/src/MyRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/MyRoutes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mern/client/src/components/About.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/components/About.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mern/client/src/components/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/components/Navbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mern/client/src/components/Projects.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/components/Projects.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mern/client/src/css/constants.css" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/css/constants.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mern/client/src/pages/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/pages/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mern/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/mern/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mern/server/generateClientEnv.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/server/generateClientEnv.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mern/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/mern/server/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mern/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/mern/server/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mern/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/server/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mern/server/uploads/1728373182232-wollenschneider.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mern/server/uploads/1728373624758-thomschrama.png" beforeDir="false" />
-    </list>
+    <list default="true" id="cc1a50cb-9061-46fe-a637-844192143d4c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -196,7 +180,7 @@
       <workItem from="1728394201613" duration="660000" />
       <workItem from="1728394885224" duration="3701000" />
       <workItem from="1728398644073" duration="2807000" />
-      <workItem from="1728414495974" duration="44628000" />
+      <workItem from="1728414495974" duration="44863000" />
     </task>
     <servers />
   </component>
