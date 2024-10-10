@@ -15,14 +15,15 @@ const PROD_BACKEND_PORT = process.env.PROD_BACKEND_PORT;
 const PORT = (IS_PROD === "TRUE" ? PROD_BACKEND_PORT : BACKEND_PORT) || 3001;
 
 const corsOptions = {
-    origin: function (origin, callback) {
-        const allowedOrigins = ['https://frederic-forster.com', 'http://localhost:3000', 'http://localhost:3002'];
-        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
+    // origin: function (origin, callback) {
+    //     const allowedOrigins = ['https://frederic-forster.com', 'http://localhost:3000', 'http://localhost:3002'];
+    //     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+    //         callback(null, true);
+    //     } else {
+    //         callback(new Error('Not allowed by CORS'));
+    //     }
+    // },
+    origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     optionsSuccessStatus: 200,
