@@ -5,11 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc1a50cb-9061-46fe-a637-844192143d4c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mern/client/public/logo192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mern/client/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/MyRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/MyRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/components/About.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/components/About.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/components/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/components/Navbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/components/Projects.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/components/Projects.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/css/constants.css" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/css/constants.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/pages/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/pages/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/mern/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/server/generateClientEnv.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/server/generateClientEnv.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/mern/server/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/mern/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/server/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/server/uploads/1728373182232-wollenschneider.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/server/uploads/1728373624758-thomschrama.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +31,8 @@
       <list>
         <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -49,7 +61,9 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/fredericforster/Fichiers mac/Projets/Portfolio/mern/client/public&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;22.2.0&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;22.2.0&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/fredericforster/Fichiers mac/Projets/Portfolio/mern/client/control-dashboard/app/(dashboard)&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
@@ -59,38 +73,42 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/fredericforster/Library/Application Support/JetBrains/Toolbox/apps/WebStorm/ch-0/232.10072.28/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/fredericforster/Fichiers mac/Projets/Portfolio/mern/client/control-dashboard/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/mern/client/public" />
+      <recent name="$PROJECT_DIR$/mern/client/control-dashboard/app/(dashboard)" />
+      <recent name="$PROJECT_DIR$/mern/client/control-dashboard/app" />
+      <recent name="$PROJECT_DIR$/mern/client/control-dashboard/app/dashboard" />
+      <recent name="$PROJECT_DIR$/mern/server/controllers" />
+      <recent name="$PROJECT_DIR$/mern/server/models" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/mern/client/src/assets/pictures" />
-      <recent name="$PROJECT_DIR$/mern/client/src/components" />
-      <recent name="$PROJECT_DIR$/mern/client" />
-      <recent name="$PROJECT_DIR$/mern/client/src" />
+      <recent name="$PROJECT_DIR$/mern/client/control-dashboard/app/(dashboard)/home" />
+      <recent name="$PROJECT_DIR$/mern/client/control-dashboard/app/(dashboard)" />
+      <recent name="$PROJECT_DIR$/mern/client/control-dashboard/app/dashboard" />
+      <recent name="$PROJECT_DIR$/mern/client/control-dashboard/src/app" />
+      <recent name="$PROJECT_DIR$/mern/client/control-dashboard/src" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start (2)">
-    <configuration name="back" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/mern/package.json" />
+  <component name="RunManager" selected="npm.build">
+    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/mern/client/control-dashboard/package.json" />
       <command value="run" />
       <scripts>
-        <script value="back" />
+        <script value="build" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="front" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/mern/package.json" />
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/mern/client/control-dashboard/package.json" />
       <command value="run" />
       <scripts>
-        <script value="front" />
+        <script value="dev" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -116,8 +134,8 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/mern/package.json" />
+    <configuration name="start (3)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/mern/client/control-dashboard/package.json" />
       <command value="run" />
       <scripts>
         <script value="start" />
@@ -128,11 +146,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.build" />
+        <item itemvalue="npm.dev" />
+        <item itemvalue="npm.start (3)" />
         <item itemvalue="npm.start (2)" />
         <item itemvalue="npm.start (1)" />
-        <item itemvalue="npm.back" />
-        <item itemvalue="npm.front" />
-        <item itemvalue="npm.start" />
       </list>
     </recent_temporary>
   </component>
@@ -168,7 +186,17 @@
       <workItem from="1726016802311" duration="1399000" />
       <workItem from="1726214981974" duration="4459000" />
       <workItem from="1726219475131" duration="34000" />
-      <workItem from="1726537557659" duration="279000" />
+      <workItem from="1726537557659" duration="3977000" />
+      <workItem from="1726654876510" duration="1343000" />
+      <workItem from="1726720543003" duration="918000" />
+      <workItem from="1726922262470" duration="598000" />
+      <workItem from="1727676764543" duration="1069000" />
+      <workItem from="1727774090656" duration="20000" />
+      <workItem from="1727944339612" duration="81368000" />
+      <workItem from="1728394201613" duration="660000" />
+      <workItem from="1728394885224" duration="3701000" />
+      <workItem from="1728398644073" duration="2807000" />
+      <workItem from="1728414495974" duration="44628000" />
     </task>
     <servers />
   </component>

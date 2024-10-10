@@ -48,7 +48,7 @@ export default function Home({ language, setLanguage, backendApiUrl }) {
                     <Presentation backendApiUrl={backendApiUrl} language={language}/>
                     <About backendApiUrl={backendApiUrl} language={language}/>
                     <Competencies backendApiUrl={backendApiUrl} language={language}/>
-                    <Experience backendApiUrl={backendApiUrl} language={language}/>
+                    {/*<Experience backendApiUrl={backendApiUrl} language={language}/>*/}
                     <Projects backendApiUrl={backendApiUrl} language={language}/>
                     <Contact backendApiUrl={backendApiUrl} language={language}/>
                     <Footer backendApiUrl={backendApiUrl} language={language}/>

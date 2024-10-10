@@ -21,7 +21,9 @@ export function MyRoutes() {
     useEffect(() => {
         const path = location.pathname;
 
-        if (path !== '/private' && path !== '/no' && process.env.REACT_APP_IS_DEVELOPMENT === "FALSE") {
+        if (path === '/private') {
+            window.location.href = 'http://localhost:3002/';
+        } else if (path !== '/privatee' && path !== '/no' && process.env.REACT_APP_IS_DEVELOPMENT === "FALSE") {
             incrementCounter();
         }
     }, []);
@@ -29,13 +31,13 @@ export function MyRoutes() {
     return (
         process.env.REACT_APP_IS_DEVELOPMENT === "TRUE" ?
             <Routes>
-                <Route path="/private" element={<Private backendApiUrl={BACKEND_API_URL}/>}/>
+                <Route path="/privatee" element={<Private backendApiUrl={BACKEND_API_URL}/>}/>
                 <Route path="/home" element={<Home language={language} setLanguage={setLanguage} backendApiUrl={BACKEND_API_URL}/>}/>
                 <Route path="/" element={<Development/>}/>
             </Routes>
             :
             <Routes>
-                <Route path="/private" element={<Private backendApiUrl={BACKEND_API_URL}/>}/>
+                <Route path="/privatee" element={<Private backendApiUrl={BACKEND_API_URL}/>}/>
                 <Route path="/development" element={<Development/>}/>
                 <Route path="/" element={<Home language={language} setLanguage={setLanguage} backendApiUrl={BACKEND_API_URL}/>}/>
                 <Route path="/no" element={<Home language={language} setLanguage={setLanguage} backendApiUrl={BACKEND_API_URL}/>}/>

@@ -78,7 +78,7 @@ export default function Projects({ backendApiUrl, language }) {
                 duration: item.duration,
                 technologies: item.technologies,
                 link: item.link,
-                picture: `${backendApiUrl.replace('/api', '')}/${item.picture}`
+                picture: item.picture ? `${backendApiUrl.replace('/api', '')}/${item.picture}` : ""
             }));
             setItems(newItems);
         } catch (error) {
@@ -135,12 +135,12 @@ export default function Projects({ backendApiUrl, language }) {
                 <div>
                     <div className="grid gap-6 xl:gap-8 2xl:gap-12 mx-6 sm:mx-14 md:mx-16 lg:mx-24 xl:mx-32 2xl:mx-40 justify-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
                         {items.slice(0, itemsToShow).map((item, index) => (
-                            <div key={index} className="cursor-pointer hover:scale-105 rounded-lg shadow-md hover:shadow-xl transition bwhite1 flex flex-col border-1 border-primary hover:border-secondary"
+                            <div key={index} className="cursor-pointer hover:scale-105 rounded-lg shadow-md hover:shadow-xl transition bwhite1 flex flex-col border-1 border-primary hover:border-secondary w-full"
                                 onClick={() => handleOpen(item)}
                             >
                                 <p className="font-medium text-xl lg:text-3xl mt-6 text-center">{item.title}</p>
                                 <div className="bblue mx-auto w-2/12 h-1 mt-1 relative rounded mb-1" />
-                                <div className="relative w-full overflow-hidden">
+                                {item.picture && <div className="relative w-full overflow-hidden">
                                     <div className="relative w-full overflow-hidden corner-cross-frame">
                                         <div className="aspect-[16/6] md:aspect-[16/8] bwhite3 rounded lg:aspect-[16/8] xl:aspect-[16/6] w-full">
                                             <img className="p-6 w-full h-full object-cover object-top rounded-t"
@@ -149,7 +149,7 @@ export default function Projects({ backendApiUrl, language }) {
                                             />
                                         </div>
                                     </div>
-                                </div>
+                                </div>}
                                 <div className="flex flex-col w-full px-6 pb-6 flex-grow">
                                     <p className="tgrayd3 text-sm lg:text-base font-light text-justify line-clamp-3">
                                         {item.description}

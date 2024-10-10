@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently --kill-others \"cd server && npm start\" \"cd client && npm start\"",
+    "start": "concurrently --kill-others \"cd server && npm start\" \"cd client && npm start\" \"cd client/control-dashboard && npm run start\"",
     "back": "node server/server.js",
-    "front": "cd client && npm start",
+    "front": "concurrently --kill-others \"cd client && npm start\" \"cd client/control-dashboard && npm start\"",
     "push": "./scripts/push.sh",
     "generateClientEnv": "cd server && node generateClientEnv.js",
+    "buildNext": "cd client/control-dashboard && npm run build",
     "build": "cd client && npm install && npm run build"
   },
   "dependencies": {

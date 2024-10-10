@@ -5,6 +5,7 @@ const cors = require('cors');
 const router = require('./routes/router');
 const mongoose = require('./db/db');
 const path = require('path');
+const morgan = require('morgan');
 
 const app = express();
 
@@ -15,7 +16,7 @@ const PORT = (IS_PROD === "TRUE" ? PROD_BACKEND_PORT : BACKEND_PORT) || 3001;
 
 const corsOptions = {
     origin: function (origin, callback) {
-        const allowedOrigins = ['https://frederic-forster.com', 'http://localhost:3000'];
+        const allowedOrigins = ['https://frederic-forster.com', 'http://localhost:3000', 'http://localhost:3002'];
         if (!origin || allowedOrigins.indexOf(origin) !== -1) {
             callback(null, true);
         } else {
@@ -26,6 +27,8 @@ const corsOptions = {
     allowedHeaders: ['Content-Type', 'Authorization'],
     optionsSuccessStatus: 200,
 };
+
+app.use(morgan('dev'));
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());

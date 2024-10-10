@@ -64,8 +64,9 @@ export default function Navbar({ backendApiUrl, language, setLanguage }) {
     const [navigation, setNavigation] = useState([{ name: 'Home', to: "presentation", current: false, offset: -68 },
         { name: 'About', to: "about", current: false, offset: -68 },
         { name: 'Competencies', to: "competencies", current: false, offset: -68 },
-        { name: 'Experience', to: "experience", current: false, offset: -68},
-        { name: 'Projets', to: "projects", current: false, offset: -68 }]);
+        // { name: 'Experience', to: "experience", current: false, offset: -68},
+        // { name: 'Projets', to: "projects", current: false, offset: -68 }
+    ]);
     const [navigationRight, setNavigationRight] = useState([{ name: 'Contact', to: 'contact', current: false, offset: -68 }]);
 
     const getNavigation = async () => {
@@ -76,8 +77,8 @@ export default function Navbar({ backendApiUrl, language, setLanguage }) {
                 { name: response.data.home, to: "presentation", current: false, offset: -68 },
                 { name: response.data.about, to: "about", current: false, offset: -68 },
                 { name: response.data.competencies, to: "competencies", current: false, offset: -68 },
-                { name: response.data.experience, to: "experience", current: false, offset: -68 },
-                { name: response.data.projects, to: "projects", current: false, offset: -68 },
+                // { name: response.data.experience, to: "experience", current: false, offset: -68 },
+                // { name: response.data.projects, to: "projects", current: false, offset: -68 },
             ]);
             setNavigationRight([
                 { name: response.data.contact, to: "contact", current: false, offset: -68 }
