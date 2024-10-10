@@ -1,4 +1,5 @@
 const mongoose= require('mongoose');
+require('dotenv').config();
 
 const IS_PROD = process.env.IS_PROD;
 const MONGODB_URI = process.env.MONGODB_URI;

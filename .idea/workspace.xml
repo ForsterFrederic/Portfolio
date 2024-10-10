@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc1a50cb-9061-46fe-a637-844192143d4c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/.env" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/control-dashboard/.env" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/control-dashboard/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/server/.env" beforeDir="false" afterPath="$PROJECT_DIR$/mern/server/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/server/db/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/server/db/db.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,7 +187,7 @@
       <workItem from="1728394201613" duration="660000" />
       <workItem from="1728394885224" duration="3701000" />
       <workItem from="1728398644073" duration="2807000" />
-      <workItem from="1728414495974" duration="46150000" />
+      <workItem from="1728414495974" duration="49066000" />
     </task>
     <servers />
   </component>
