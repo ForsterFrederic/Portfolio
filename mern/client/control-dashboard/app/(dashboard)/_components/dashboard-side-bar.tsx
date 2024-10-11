@@ -11,13 +11,14 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 export default function DashboardSideBar() {
+  const IS_PROD = process.env.NEXT_PUBLIC_IS_PROD || true;
   const pathname = usePathname();
 
   return (
     <div className="lg:block hidden border-r h-full">
       <div className="flex h-full max-h-screen flex-col gap-2 ">
         <div className="flex h-[55px] items-center justify-between border-b px-3 w-full">
-          <Link className="flex items-center gap-2 font-semibold ml-1" href="/home">
+          <Link className="flex items-center gap-2 font-semibold ml-1" href={`${IS_PROD ? "/private" : ""}/home`}>
             <span className="">Control Dashboard</span>
           </Link>
         </div>
@@ -25,9 +26,9 @@ export default function DashboardSideBar() {
           <nav className="grid items-start px-4 text-sm font-medium">
             <Link
               className={clsx("flex items-center gap-2 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50", {
-                "flex items-center gap-2 rounded-lg bg-gray-100 px-3 py-2 text-gray-900  transition-all hover:text-gray-900 dark:bg-gray-800 dark:text-gray-50 dark:hover:text-gray-50": pathname === "/home"
+                "flex items-center gap-2 rounded-lg bg-gray-100 px-3 py-2 text-gray-900  transition-all hover:text-gray-900 dark:bg-gray-800 dark:text-gray-50 dark:hover:text-gray-50": pathname === `${IS_PROD ? "/private" : ""}/home`
               })}
-              href="/home"
+              href={`${IS_PROD ? "/private" : ""}/home`}
             >
               <div className="border rounded-lg dark:bg-black dark:border-gray-800 border-gray-400 p-1 bg-white">
                 <HomeIcon className="h-3 w-3" />
@@ -36,9 +37,9 @@ export default function DashboardSideBar() {
             </Link>
             <Link
               className={clsx("flex items-center gap-2 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50", {
-                "flex items-center gap-2 rounded-lg bg-gray-100 px-3 py-2 text-gray-900  transition-all hover:text-gray-900 dark:bg-gray-800 dark:text-gray-50 dark:hover:text-gray-50": pathname === "/projects"
+                "flex items-center gap-2 rounded-lg bg-gray-100 px-3 py-2 text-gray-900  transition-all hover:text-gray-900 dark:bg-gray-800 dark:text-gray-50 dark:hover:text-gray-50": pathname === `${IS_PROD ? "/private" : ""}/projects`
               })}
-              href="/projects"
+              href={`${IS_PROD ? "/private" : ""}/projects`}
             >
               <div className="border rounded-lg dark:bg-black dark:border-gray-800 border-gray-400 p-1 bg-white">
                 <Folder className="h-3 w-3" />
@@ -47,9 +48,9 @@ export default function DashboardSideBar() {
             </Link>
             <Link
               className={clsx("flex items-center gap-2 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50", {
-                "flex items-center gap-2 rounded-lg bg-gray-100 px-3 py-2 text-gray-900  transition-all hover:text-gray-900 dark:bg-gray-800 dark:text-gray-50 dark:hover:text-gray-50": pathname === "/competencies"
+                "flex items-center gap-2 rounded-lg bg-gray-100 px-3 py-2 text-gray-900  transition-all hover:text-gray-900 dark:bg-gray-800 dark:text-gray-50 dark:hover:text-gray-50": pathname === `${IS_PROD ? "/private" : ""}/competencies`
               })}
-              href="/competencies"
+              href={`${IS_PROD ? "/private" : ""}/competencies`}
             >
               <div className="border rounded-lg dark:bg-black dark:border-gray-800 border-gray-400 p-1 bg-white">
                 <Star className="h-3 w-3" />
@@ -58,9 +59,9 @@ export default function DashboardSideBar() {
             </Link>
             <Link
                 className={clsx("flex items-center gap-2 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50", {
-                  "flex items-center gap-2 rounded-lg bg-gray-100 px-3 py-2 text-gray-900  transition-all hover:text-gray-900 dark:bg-gray-800 dark:text-gray-50 dark:hover:text-gray-50": pathname === "/translations"
+                  "flex items-center gap-2 rounded-lg bg-gray-100 px-3 py-2 text-gray-900  transition-all hover:text-gray-900 dark:bg-gray-800 dark:text-gray-50 dark:hover:text-gray-50": pathname === `${IS_PROD ? "/private" : ""}/translations`
                 })}
-                href="/translations"
+                href={`${IS_PROD ? "/private" : ""}/translations`}
             >
               <div className="border rounded-lg dark:bg-black dark:border-gray-800 border-gray-400 p-1 bg-white">
                 <Languages className="h-3 w-3" />
@@ -70,9 +71,9 @@ export default function DashboardSideBar() {
             <Separator className="my-3" />
             <Link
               className={clsx("flex items-center gap-2 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50", {
-                "flex items-center gap-2 rounded-lg bg-gray-100 px-3 py-2 text-gray-900  transition-all hover:text-gray-900 dark:bg-gray-800 dark:text-gray-50 dark:hover:text-gray-50": pathname === "/settings"
+                "flex items-center gap-2 rounded-lg bg-gray-100 px-3 py-2 text-gray-900  transition-all hover:text-gray-900 dark:bg-gray-800 dark:text-gray-50 dark:hover:text-gray-50": pathname === `${IS_PROD ? "/private" : ""}/settings`
               })}
-              href="/settings"
+              href={`${IS_PROD ? "/private" : ""}/settings`}
             >
               <div className="border rounded-lg dark:bg-black dark:border-gray-800 border-gray-400 p-1 bg-white">
                 <Settings className="h-3 w-3" />

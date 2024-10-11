@@ -11,25 +11,27 @@ import Link from 'next/link'
 import { ReactNode } from 'react'
 
 export default function DashboardTopNav({ children }: { children: ReactNode }) {
+  const IS_PROD = process.env.NEXT_PUBLIC_IS_PROD || true;
+
   return (
     <div className="flex flex-col">
       <header className="flex h-14 lg:h-[55px] items-center gap-4 border-b px-3">
         <Dialog>
           <SheetTrigger className="min-[1024px]:hidden p-2 transition">
             <HamburgerMenuIcon />
-            <Link href="/home">
+            <Link href={`${IS_PROD ? "/private" : ""}/home`}>
               <span className="sr-only">Home</span>
             </Link>
           </SheetTrigger>
           <SheetContent side="left">
             <SheetHeader>
-              <Link href="/home">
+              <Link href={`${IS_PROD ? "/private" : ""}/home`}>
                 <SheetTitle>Control Dashboard</SheetTitle>
               </Link>
             </SheetHeader>
             <div className="flex flex-col space-y-3 mt-[1rem]">
               <DialogClose asChild>
-                <Link href="/home">
+                <Link href={`${IS_PROD ? "/private" : ""}/home`}>
                   <Button variant="outline" className="w-full">
                     <HomeIcon className="mr-2 h-4 w-4" />
                     Home
@@ -37,7 +39,7 @@ export default function DashboardTopNav({ children }: { children: ReactNode }) {
                 </Link>
               </DialogClose>
               <DialogClose asChild>
-                <Link href="/projects">
+                <Link href={`${IS_PROD ? "/private" : ""}/projects`}>
                   <Button variant="outline" className="w-full">
                     <Folder className="mr-2 h-4 w-4" />
                     Projects
@@ -45,7 +47,7 @@ export default function DashboardTopNav({ children }: { children: ReactNode }) {
                 </Link>
               </DialogClose>
               <DialogClose asChild>
-                <Link href="/competencies">
+                <Link href={`${IS_PROD ? "/private" : ""}/competencies`}>
                   <Button variant="outline" className="w-full">
                     <Star className="mr-2 h-4 w-4" />
                     Competencies
@@ -53,7 +55,7 @@ export default function DashboardTopNav({ children }: { children: ReactNode }) {
                 </Link>
               </DialogClose>
               <DialogClose asChild>
-                <Link href="/translations">
+                <Link href={`${IS_PROD ? "/private" : ""}/translations`}>
                   <Button variant="outline" className="w-full">
                     <Languages className="mr-2 h-4 w-4" />
                     Translations
@@ -62,7 +64,7 @@ export default function DashboardTopNav({ children }: { children: ReactNode }) {
               </DialogClose>
               <Separator className="my-3" />
               <DialogClose asChild>
-                <Link href="/settings">
+                <Link href={`${IS_PROD ? "/private" : ""}/settings`}>
                   <Button variant="outline" className="w-full">
                     <Settings className="mr-2 h-4 w-4" />
                     Settings
