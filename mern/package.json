@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently --kill-others \"cd server && npm start\" \"cd client && npm start\" \"cd client/control-dashboard && npm run start\"",
+    "start": "concurrently --kill-others \"cd server && npm start\" \"cd client && npm start\" \"cd client/control-dashboard && npm run dev\"",
     "back": "node server/server.js",
     "front": "concurrently --kill-others \"cd client && npm start\" \"cd client/control-dashboard && npm start\"",
     "push": "./scripts/push.sh",

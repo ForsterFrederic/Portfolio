@@ -30,7 +30,7 @@ export function MyRoutes() {
     useEffect(() => {
         const path = location.pathname;
 
-        if (path === '/private') {
+        if (path === '/private' && process.env.REACT_APP_IS_PROD === "FALSE") {
             window.location.href = 'http://localhost:3002/';
         } else if (path !== '/privatee' && path !== '/no' && process.env.REACT_APP_IS_DEVELOPMENT === "FALSE") {
             incrementCounter();
