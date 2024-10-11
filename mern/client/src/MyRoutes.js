@@ -18,6 +18,15 @@ export function MyRoutes() {
         }
     };
 
+    const getCounter = async () => {
+        try {
+            const res = await axios.get(`${BACKEND_API_URL}/counter`);
+            console.log("COUNTER: ", res)
+        } catch (error) {
+            console.error('Error getting counter:', error);
+        }
+    };
+
     useEffect(() => {
         const path = location.pathname;
 
@@ -26,6 +35,10 @@ export function MyRoutes() {
         } else if (path !== '/privatee' && path !== '/no' && process.env.REACT_APP_IS_DEVELOPMENT === "FALSE") {
             incrementCounter();
         }
+    }, []);
+
+    useEffect(() => {
+        getCounter()
     }, []);
 
     return (
