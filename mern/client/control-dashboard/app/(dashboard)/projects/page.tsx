@@ -121,17 +121,23 @@ export default function Private() {
     const fetchProjects = async () => {
         setLoading(true);
         try {
-            const response = await axios.get<Project[]>(`${BACKEND_API_URL}/project/EN`);
-            if (response.data.length === 0)
-                setError("No projects found");
-            const newItems = response.data.map((item) => ({
-                ...item,
-                picture: item.picture ? `${BACKEND_API_URL.replace("/api", "")}/${item.picture}` : "",
-            }));
-            setProjects(newItems);
+            const response = await axios.get<Project[]>(`${BACKEND_API_URL}/project/`);
+            if (response.status === 200 && response.data.length > 0) {
+                const newItems = response.data.map((item) => ({
+                    ...item,
+                    picture: item.picture ? `${BACKEND_API_URL.replace("/api", "")}/${item.picture}` : "",
+                }));
+                setProjects(newItems);
+            } else if (response.status === 404) {
+                setError(response.data.error);
+            }
         } catch (error) {
-            console.error("Error fetching projects:", error);
-            setError("Error fetching projects");
+            if (error.response) {
+                setError(error.response.data.error || 'Error fetching projects');
+            } else {
+                setError('Error fetching projects');
+            }
+            console.error('Error fetching projects:', error);
         } finally {
             setLoading(false);
         }

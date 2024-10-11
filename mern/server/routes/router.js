@@ -24,30 +24,30 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-router.get('/project/:language', ProjectController.getProject);
+router.get('/project/:language?', ProjectController.getProject);
 router.post('/project', upload.single('picture'), ProjectController.createProject);
 router.put('/project/:id', upload.single('picture'), ProjectController.updateProject);
 router.delete('/project/:id', ProjectController.deleteProject);
 
-router.get('/presentation/:language', PresentationController.getPresentation);
+router.get('/presentation/:language?', PresentationController.getPresentation);
 router.post('/presentation', PresentationController.createPresentation);
 
-router.get('/about/:language', AboutController.getAbout);
+router.get('/about/:language?', AboutController.getAbout);
 router.post('/about', AboutController.createAbout);
 
-router.get('/contact/:language', ContactController.getContact);
+router.get('/contact/:language?', ContactController.getContact);
 router.post('/contact', ContactController.createContact);
 
-router.get('/navigation/:language', NavigationController.getNavigation);
+router.get('/navigation/:language?', NavigationController.getNavigation);
 router.post('/navigation', NavigationController.createNavigation);
 
-router.get('/footer/:language', FooterController.getFooter);
+router.get('/footer/:language?', FooterController.getFooter);
 router.post('/footer', FooterController.createFooter);
 
-router.get('/competencies/:language', CompetenciesController.getCompetencies);
+router.get('/competencies/:language?', CompetenciesController.getCompetencies);
 router.post('/competencies', CompetenciesController.createCompetencies);
 
-router.get('/experience/:language', ExperienceController.getExperience);
+router.get('/experience/:language?', ExperienceController.getExperience);
 router.post('/experience', ExperienceController.createExperience);
 
 router.get('/counter', CounterController.getCounter);

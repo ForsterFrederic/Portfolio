@@ -4,13 +4,20 @@ const fs = require('fs');
 
 exports.getProject = async (req, res) => {
     const language = req.params.language;
+
     try {
-        const projects = await Project.find({ language: language });
+        let query = {};
+
+        if (language) {
+            query = { language: language };
+        }
+
+        const projects = await Project.find(query);
 
         if (projects.length > 0) {
             res.status(200).json(projects);
         } else {
-            res.status(404).json({ error: 'No projects found for the specified language' });
+            res.status(404).json({ error: 'No projects found' });
         }
     } catch (err) {
         console.error('Error fetching projects:', err);
@@ -61,8 +68,9 @@ exports.updateProject = async (req, res) => {
 
         if (picturePath) {
             if (project.picture) {
-                const oldPicturePath = path.join(__dirname, '../', project.picture);
+                const oldPicturePath = path.resolve(__dirname, '../uploads', path.basename(project.picture));
                 try {
+                    console.log(`Deleting old image at: ${oldPicturePath}`);
                     await fs.promises.unlink(oldPicturePath);
                 } catch (err) {
                     console.error('Failed to delete old image:', err);
@@ -90,20 +98,20 @@ exports.deleteProject = async (req, res) => {
         }
 
         if (project.picture) {
-            const picturePath = path.join(__dirname, '../', project.picture);
-            console.log('Picture path:', picturePath);
+            const picturePath = path.resolve(__dirname, '../uploads', path.basename(project.picture));
+            console.log('Deleting picture at:', picturePath);
 
             if (!fs.existsSync(picturePath)) {
                 return res.status(404).json({ message: 'Image file not found' });
             }
 
-            fs.unlink(picturePath, (err) => {
-                if (err) {
-                    console.error('Failed to delete image:', err);
-                    return res.status(500).json({ message: 'Error deleting image', error: err.message });
-                }
-                res.json({ message: 'Project deleted successfully' });
-            });
+            try {
+                await fs.promises.unlink(picturePath);
+                console.log('Image deleted successfully');
+            } catch (err) {
+                console.error('Failed to delete image:', err);
+                return res.status(500).json({ message: 'Error deleting image', error: err.message });
+            }
         } else {
             res.json({ message: 'Project deleted successfully, no image to remove' });
         }
