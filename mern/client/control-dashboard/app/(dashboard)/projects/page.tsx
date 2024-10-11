@@ -127,9 +127,9 @@ export default function Private() {
                 setProjects(newItems);
             } else if (response.status === 404) {
                 setProjects([]);
-                setError(response.data.error);
+                setError("No projects found");
             }
-        } catch (error) {
+        } catch (error: any) {
             if (error.response) {
                 setError(error.response.data.error || 'Error fetching projects');
             } else {
