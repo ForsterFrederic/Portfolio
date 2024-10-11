@@ -115,32 +115,32 @@ export default function Private() {
         picture: "",
     });
 
-    const fetchProjects = async () => {
-        setLoading(true);
-        try {
-            const response = await axios.get<Project[]>(`${BACKEND_API_URL}/project/`);
-            if (response.status === 200 && response.data.length > 0) {
-                const newItems = response.data.map((item) => ({
-                    ...item,
-                    picture: item.picture ? `${BACKEND_API_URL.replace("/api", "")}/${item.picture}` : "",
-                }));
-                setProjects(newItems);
-            } else if (response.status === 404) {
-                setProjects([]);
-                setError("No projects found");
-            }
-        } catch (error: any) {
-            if (error.response) {
-                setError(error.response.data.error || 'Error fetching projects');
-            } else {
-                setError('Error fetching projects');
-            }
-            setProjects([]);
-            console.error('Error fetching projects:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
+    // const fetchProjects = async () => {
+    //     setLoading(true);
+    //     try {
+    //         const response = await axios.get<Project[]>(`${BACKEND_API_URL}/project/`);
+    //         if (response.status === 200 && response.data.length > 0) {
+    //             const newItems = response.data.map((item) => ({
+    //                 ...item,
+    //                 picture: item.picture ? `${BACKEND_API_URL.replace("/api", "")}/${item.picture}` : "",
+    //             }));
+    //             setProjects(newItems);
+    //         } else if (response.status === 404) {
+    //             setProjects([]);
+    //             setError("No projects found");
+    //         }
+    //     } catch (error: any) {
+    //         if (error.response) {
+    //             setError(error.response.data.error || 'Error fetching projects');
+    //         } else {
+    //             setError('Error fetching projects');
+    //         }
+    //         setProjects([]);
+    //         console.error('Error fetching projects:', error);
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // };
 
     const handleProjectSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -234,9 +234,9 @@ export default function Private() {
         if (!isOpen) resetForm();
     }, [isOpen]);
 
-    useEffect(() => {
-        fetchProjects();
-    }, []);
+    // useEffect(() => {
+    //     fetchProjects();
+    // }, []);
 
     return (
         <div>
