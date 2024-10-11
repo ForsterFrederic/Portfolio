@@ -121,7 +121,8 @@ export default function Private() {
             const response = await axios.get<Project[]>(`${BACKEND_API_URL}/project/`);
             if (response.status === 200 && response.data.length > 0) {
                 const newItems = response.data.map((item) => {
-                    const pictureUrl = item.picture ? `${BACKEND_API_URL.replace("/api", "")}/${item.picture}` : "";
+                    const pictureUrl = item.picture ? `${BACKEND_API_URL.replace("/api", "")}${item.picture}` : "";
+                    // const pictureUrl = item.picture ? `${BACKEND_API_URL.replace("/api", "")}/${item.picture}` : "";
                     console.log("Picture URL:", pictureUrl); // Log the URL
                     return { ...item, picture: pictureUrl };
                 });
