@@ -8,8 +8,8 @@
     "front": "concurrently --kill-others \"cd client && npm start\" \"cd client/control-dashboard && npm start\"",
     "push": "./scripts/push.sh",
     "generateClientEnv": "cd server && node generateClientEnv.js",
+    "buildReact": "cd client && npm install && npm install && npm run build",
     "buildNext": "cd client/control-dashboard && npm install && npm run build",
-    "buildBack": "cd client && npm install && npm run build",
     "build": "concurrently --kill-others \"cd client && npm install && npm run build\" \"cd client/control-dashboard && npm install && npm run build\""
   },
   "dependencies": {

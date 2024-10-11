@@ -11,13 +11,13 @@ import axios from "axios";
 export default function Presentation({ backendApiUrl, language }) {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [name, setName] = useState("FORSTER Frédéric")
-    const [title, setTitle] = useState("Software & Web Engineer")
-    const [freelance, setFreelance] = useState("Also available as Freelance.")
-    const [description, setDescription] = useState("With a background in both front-end and back-end development and a specialization in React and Node.js, I am dedicated to crafting cutting-edge solutions and leveraging my technical skills for long-term growth and success.")
+    const [title, setTitle] = useState("Full Stack Developer & Software Architect")
+    const [freelance, setFreelance] = useState("Available for Full-Time or Freelance Opportunities.")
+    const [description, setDescription] = useState("With a strong background in front-end and back-end development, I specialize in React, Node.js, and low-level programming (C, C++), designing scalable, high-performance software solutions tailored to diverse needs. I’m committed to delivering innovative and impactful results that drive long-term growth and success, while continuously embracing new technologies and best practices.")
     const [numberYearsExperience, setNumberYearsExperience] = useState("7")
-    const [textYearsExperience, setTextYearsExperience] = useState("7")
+    const [textYearsExperience, setTextYearsExperience] = useState("Years of Experience")
     const [numberSuccessfulProjects, setNumberSuccessfulProjects] = useState("11")
-    const [textSuccessfulProjects, setTextSuccessfulProjects] = useState("11")
+    const [textSuccessfulProjects, setTextSuccessfulProjects] = useState("Successful Projects")
     const [downloadCV, setDownloadCV] = useState("Download my CV")
     const [goToCompetencies, setGoToCompetencies] = useState("My competencies")
 

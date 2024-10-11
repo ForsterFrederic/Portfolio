@@ -5,9 +5,9 @@ import axios from "axios";
 
 export default function About({ backendApiUrl, language }) {
     const [title, setTitle] = useState("About me")
-    const [text1, setText1] = useState("I am a Full Stack Developer, graduating from my master degree at Epitech in France with a focus on React and Node.js.")
-    const [text2, setText2] = useState("I design innovative web solutions by integrating comprehensive expertise, from front-end to back-end, along with proficiency in low-level languages.")
-    const [text3, setText3] = useState("I am seeking a full-time role where I can contribute my skills and collaborate effectively for long-term growth.")
+    const [text1, setText1] = useState("I am a Full Stack Developer with a master’s degree from Epitech in France, specializing in React and Node.js. I build dynamic, responsive applications using modern technologies like React, Node.js, and Express, alongside databases such as MongoDB and PostgreSQL to deliver scalable solutions tailored to diverse needs.")
+    const [text2, setText2] = useState("In addition to full-stack development, I have a strong foundation in low-level programming (C, C++), which allows me to address complex architectural challenges and optimize performance. This combination of skills enables me to create solutions that are both user-friendly and highly efficient.")
+    const [text3, setText3] = useState("I am looking for a full-time role where I can contribute my technical expertise to innovative projects, collaborate with a passionate team, and continue growing through the adoption of new technologies and practices.")
 
     const getAbout = async () => {
         try {
