@@ -9,12 +9,13 @@ const FooterController = require('../controllers/footer');
 const CompetenciesController = require('../controllers/competencies');
 const ExperienceController = require('../controllers/experience');
 const CounterController = require('../controllers/counter');
+const {join} = require("path");
 
 const router = express.Router();
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'uploads/');
+        cb(null, join(__dirname, '..', 'uploads'));
     },
     filename: (req, file, cb) => {
         cb(null, Date.now() + '-' + file.originalname);
