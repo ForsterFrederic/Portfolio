@@ -10,12 +10,18 @@ const CompetenciesController = require('../controllers/competencies');
 const ExperienceController = require('../controllers/experience');
 const CounterController = require('../controllers/counter');
 const {join} = require("path");
+const {existsSync, mkdirSync} = require("fs");
 
 const router = express.Router();
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, join(__dirname, '..', 'uploads'));
+        // cb(null, 'uploads/');
+        const uploadPath = 'uploads';
+        if (!existsSync(uploadPath)) {
+            mkdirSync(uploadPath);
+        }
+        cb(null, uploadPath);
     },
     filename: (req, file, cb) => {
         cb(null, Date.now() + '-' + file.originalname);

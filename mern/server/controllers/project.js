@@ -50,7 +50,7 @@ exports.createProject = async (req, res) => {
 exports.updateProject = async (req, res) => {
     const projectId = req.params.id;
     const { language, title, description, duration, technologies, link } = req.body;
-    const picturePath = req.file ? req.file.path : null;
+    const picturePath = req.file ? req.file.filename : null; // Store just the filename
 
     try {
         const project = await Project.findById(projectId);
@@ -59,6 +59,7 @@ exports.updateProject = async (req, res) => {
             return res.status(404).json({ message: 'Project not found' });
         }
 
+        // Update project fields
         project.language = language || project.language;
         project.title = title || project.title;
         project.description = description || project.description;
@@ -66,9 +67,10 @@ exports.updateProject = async (req, res) => {
         project.technologies = technologies || project.technologies;
         project.link = link || project.link;
 
+        // If there's a new picture, delete the old one
         if (picturePath) {
             if (project.picture) {
-                const oldPicturePath = path.resolve(__dirname, '../uploads', path.basename(project.picture));
+                const oldPicturePath = path.join(__dirname, '../uploads', path.basename(project.picture));
                 try {
                     console.log(`Deleting old image at: ${oldPicturePath}`);
                     await fs.promises.unlink(oldPicturePath);
@@ -77,7 +79,7 @@ exports.updateProject = async (req, res) => {
                     return res.status(500).json({ message: 'Error deleting old image', error: err.message });
                 }
             }
-            project.picture = picturePath;
+            project.picture = "uploads/"+picturePath; // Save the new filename
         }
 
         await project.save();
@@ -97,24 +99,25 @@ exports.deleteProject = async (req, res) => {
             return res.status(404).json({ message: 'Project not found' });
         }
 
+        // Delete the picture if it exists
         if (project.picture) {
-            const picturePath = path.resolve(__dirname, '../uploads', path.basename(project.picture));
+            const picturePath = path.join(__dirname, '../uploads', path.basename(project.picture));
             console.log('Deleting picture at:', picturePath);
 
-            if (!fs.existsSync(picturePath)) {
-                return res.status(404).json({ message: 'Image file not found' });
+            if (fs.existsSync(picturePath)) {
+                try {
+                    await fs.promises.unlink(picturePath);
+                    console.log('Image deleted successfully');
+                } catch (err) {
+                    console.error('Failed to delete image:', err);
+                    return res.status(500).json({ message: 'Error deleting image', error: err.message });
+                }
+            } else {
+                console.warn('Image file not found for deletion');
             }
-
-            try {
-                await fs.promises.unlink(picturePath);
-                console.log('Image deleted successfully');
-            } catch (err) {
-                console.error('Failed to delete image:', err);
-                return res.status(500).json({ message: 'Error deleting image', error: err.message });
-            }
-        } else {
-            res.json({ message: 'Project deleted successfully, no image to remove' });
         }
+
+        res.json({ message: 'Project deleted successfully' });
     } catch (error) {
         console.error('Error deleting project:', error);
         res.status(500).json({ message: 'Error deleting project', error });

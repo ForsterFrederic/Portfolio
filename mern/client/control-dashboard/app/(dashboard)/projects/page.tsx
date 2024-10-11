@@ -25,7 +25,6 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
-// Define type for project data
 type Project = {
     _id: string;
     language: string;
@@ -37,12 +36,10 @@ type Project = {
     picture: string;
 };
 
-// Define type for form data
 type ProjectFormData = Omit<Project, "_id" | "picture"> & {
     picture: File | string;
 };
 
-// Component for sortable project items
 const SortableProject = ({
                              project,
                              handleEditProject,
@@ -129,6 +126,7 @@ export default function Private() {
                 }));
                 setProjects(newItems);
             } else if (response.status === 404) {
+                setProjects([]);
                 setError(response.data.error);
             }
         } catch (error) {
@@ -137,6 +135,7 @@ export default function Private() {
             } else {
                 setError('Error fetching projects');
             }
+            setProjects([]);
             console.error('Error fetching projects:', error);
         } finally {
             setLoading(false);

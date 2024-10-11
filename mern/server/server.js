@@ -32,14 +32,13 @@ const corsOptions = {
 app.use(morgan('dev'));
 
 app.use(cors(corsOptions));
-app.use(bodyParser.json({ limit: '10mb' }));
-app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
+app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, '/../client/build')));
 
 app.use('/api', router);
 
-app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.get('/api/test', (req, res) => {
     res.send('Hi from the server! (OK)');

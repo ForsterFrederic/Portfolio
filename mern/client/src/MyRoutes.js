@@ -31,7 +31,7 @@ export function MyRoutes() {
         const path = location.pathname;
 
         if (path === '/private' && process.env.REACT_APP_IS_PROD === "FALSE") {
-            window.location.href = 'http://localhost:3002/';
+            window.location.href = 'http://localhost:3003/';
         } else if (path !== '/privatee' && path !== '/no' && process.env.REACT_APP_IS_DEVELOPMENT === "FALSE") {
             incrementCounter();
         }
