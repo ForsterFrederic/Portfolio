@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc1a50cb-9061-46fe-a637-844192143d4c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mern/client/control-dashboard/app/(dashboard)/projects/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/control-dashboard/app/(dashboard)/projects/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -183,7 +184,7 @@
       <workItem from="1728394885224" duration="3701000" />
       <workItem from="1728398644073" duration="2807000" />
       <workItem from="1728414495974" duration="60287000" />
-      <workItem from="1728651406372" duration="19350000" />
+      <workItem from="1728651406372" duration="19877000" />
     </task>
     <servers />
   </component>
