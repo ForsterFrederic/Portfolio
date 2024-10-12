@@ -44,6 +44,7 @@ exports.resetCount = async (req, res) => {
         }
 
         counter.count = 0;
+        counter.lastResetAt = new Date();
         await counter.save();
 
         res.status(200).json(counter);
