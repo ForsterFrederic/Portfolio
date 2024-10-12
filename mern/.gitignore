@@ -1,0 +1,9 @@
+# Ignore node_modules
+node_modules/
+
+# Ignore environment variable files
+config.env
+server/.env
+
+# Ignore uploads directory
+server/uploads/
