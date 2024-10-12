@@ -78,7 +78,7 @@ export default function Projects({ backendApiUrl, language }) {
                 duration: item.duration,
                 technologies: item.technologies,
                 link: item.link,
-                picture: item.picture ? `${backendApiUrl.replace('/api', '')}/${item.picture}` : ""
+                picture: item.picture ? `${backendApiUrl.replace('/api', '')}/${item.picture.replace('/root/apps/portfolio/dest/mern/server/', '')}` : ""
             }));
             setItems(newItems);
         } catch (error) {

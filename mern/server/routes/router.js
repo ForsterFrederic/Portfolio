@@ -17,8 +17,8 @@ const IS_PROD = process.env.IS_PROD;
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        const uploadPath = 'uploads';
-        // const uploadPath = join(__dirname, '..', 'uploads');
+        // const uploadPath = 'uploads';
+        const uploadPath = join(__dirname, '..', 'uploads');
         // const uploadPath = IS_PROD ? join(__dirname, '..', 'uploads') : "uploads";
         if (!existsSync(uploadPath)) {
             mkdirSync(uploadPath);
@@ -26,9 +26,9 @@ const storage = multer.diskStorage({
         cb(null, uploadPath);
     },
     filename: (req, file, cb) => {
-        cb(null, Date.now() + '-' + file.originalname);
-        // const filePath = `${Date.now()}-${file.originalname}`;
-        // cb(null, filePath);
+        // cb(null, Date.now() + '-' + file.originalname);
+        const filePath = `${Date.now()}-${file.originalname}`;
+        cb(null, filePath);
         // Save the full path to your database
         // const fullPath = `${uploadPath}/${filePath}`;
     }
