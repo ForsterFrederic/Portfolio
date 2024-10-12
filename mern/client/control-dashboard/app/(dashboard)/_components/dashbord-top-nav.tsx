@@ -19,19 +19,19 @@ export default function DashboardTopNav({ children }: { children: ReactNode }) {
         <Dialog>
           <SheetTrigger className="min-[1024px]:hidden p-2 transition">
             <HamburgerMenuIcon />
-            <Link href={`${IS_PROD ? "/private" : ""}/home`}>
+            <Link href={`${IS_PROD === "TRUE" ? "/private" : ""}/home`}>
               <span className="sr-only">Home</span>
             </Link>
           </SheetTrigger>
           <SheetContent side="left">
             <SheetHeader>
-              <Link href={`${IS_PROD ? "/private" : ""}/home`}>
+              <Link href={`${IS_PROD === "TRUE" ? "/private" : ""}/home`}>
                 <SheetTitle>Control Dashboard</SheetTitle>
               </Link>
             </SheetHeader>
             <div className="flex flex-col space-y-3 mt-[1rem]">
               <DialogClose asChild>
-                <Link href={`${IS_PROD ? "/private" : ""}/home`}>
+                <Link href={`${IS_PROD === "TRUE" ? "/private" : ""}/home`}>
                   <Button variant="outline" className="w-full">
                     <HomeIcon className="mr-2 h-4 w-4" />
                     Home
@@ -39,7 +39,7 @@ export default function DashboardTopNav({ children }: { children: ReactNode }) {
                 </Link>
               </DialogClose>
               <DialogClose asChild>
-                <Link href={`${IS_PROD ? "/private" : ""}/projects`}>
+                <Link href={`${IS_PROD === "TRUE" ? "/private" : ""}/projects`}>
                   <Button variant="outline" className="w-full">
                     <Folder className="mr-2 h-4 w-4" />
                     Projects
@@ -47,7 +47,7 @@ export default function DashboardTopNav({ children }: { children: ReactNode }) {
                 </Link>
               </DialogClose>
               <DialogClose asChild>
-                <Link href={`${IS_PROD ? "/private" : ""}/competencies`}>
+                <Link href={`${IS_PROD === "TRUE" ? "/private" : ""}/competencies`}>
                   <Button variant="outline" className="w-full">
                     <Star className="mr-2 h-4 w-4" />
                     Competencies
@@ -55,7 +55,7 @@ export default function DashboardTopNav({ children }: { children: ReactNode }) {
                 </Link>
               </DialogClose>
               <DialogClose asChild>
-                <Link href={`${IS_PROD ? "/private" : ""}/translations`}>
+                <Link href={`${IS_PROD === "TRUE" ? "/private" : ""}/translations`}>
                   <Button variant="outline" className="w-full">
                     <Languages className="mr-2 h-4 w-4" />
                     Translations
@@ -64,7 +64,7 @@ export default function DashboardTopNav({ children }: { children: ReactNode }) {
               </DialogClose>
               <Separator className="my-3" />
               <DialogClose asChild>
-                <Link href={`${IS_PROD ? "/private" : ""}/settings`}>
+                <Link href={`${IS_PROD === "TRUE" ? "/private" : ""}/settings`}>
                   <Button variant="outline" className="w-full">
                     <Settings className="mr-2 h-4 w-4" />
                     Settings

@@ -25,6 +25,7 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 
 export function UserProfile() {
+    const IS_PROD = process.env.NEXT_PUBLIC_IS_PROD || true;
     const router = useRouter()
 
     if (!config?.auth?.enabled) {
@@ -42,7 +43,7 @@ export function UserProfile() {
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                    <Link href="/settings">
+                    <Link href={`${IS_PROD === "TRUE" ? "/private" : ""}/settings`}>
                         <DropdownMenuItem>
                             <Settings className="mr-2 h-4 w-4" />
                             <span>Settings</span>

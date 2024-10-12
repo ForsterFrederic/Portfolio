@@ -15,11 +15,13 @@ const {existsSync, mkdirSync} = require("fs");
 const router = express.Router();
 const IS_PROD = process.env.IS_PROD;
 
+const uploadPath = IS_PROD === "TRUE" ? join(__dirname, '..', 'uploads') : "uploads";
+console.log("Upload Path ", uploadPath);
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         // const uploadPath = 'uploads';
-        const uploadPath = join(__dirname, '..', 'uploads');
-        // const uploadPath = IS_PROD ? join(__dirname, '..', 'uploads') : "uploads";
+        // const uploadPath = join(__dirname, '..', 'uploads');
         if (!existsSync(uploadPath)) {
             mkdirSync(uploadPath);
         }
