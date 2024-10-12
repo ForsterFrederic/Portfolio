@@ -17,8 +17,9 @@ const IS_PROD = process.env.IS_PROD;
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        // cb(null, 'uploads/');
-        const uploadPath = IS_PROD ? join(__dirname, '..', 'uploads') : "uploads";
+        const uploadPath = 'uploads';
+        console.log("ezghbjdknzl,ajkjez ", IS_PROD)
+        // const uploadPath = IS_PROD ? join(__dirname, '..', 'uploads') : "uploads";
         if (!existsSync(uploadPath)) {
             mkdirSync(uploadPath);
         }
