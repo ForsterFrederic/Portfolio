@@ -30,7 +30,7 @@ const storage = multer.diskStorage({
         const filePath = `${Date.now()}-${file.originalname}`;
         cb(null, filePath);
         // Save the full path to your database
-        const fullPath = `${uploadPath}/${filePath}`;
+        // const fullPath = `${uploadPath}/${filePath}`;
     }
 });
 

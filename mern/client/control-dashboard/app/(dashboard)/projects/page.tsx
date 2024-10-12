@@ -122,7 +122,8 @@ export default function Private() {
             if (response.status === 200 && response.data.length > 0) {
                 const newItems = response.data.map((item) => {
                     // const pictureUrl = item.picture ? `${BACKEND_API_URL.replace("/api", "")}/${item.picture.replace("/root", "root")}` : "";
-                    const pictureUrl = item.picture ? `https://frederic-forster.com/uploads/${item.picture.split('/').pop()}` : "";
+                    // const pictureUrl = item.picture ? `https://frederic-forster.com/uploads/${item.picture.split('/').pop()}` : "";
+                    const pictureUrl = item.picture ? `https://frederic-forster.com/${item.picture}` : "";
                     console.log("Picture URL:", pictureUrl); // Log the URL
                     return { ...item, picture: pictureUrl };
                 });
