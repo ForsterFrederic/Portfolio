@@ -226,7 +226,7 @@ export default function Projects() {
         setError("");
     };
 
-    const editProjectOrder = async (project, index)=> {
+    const editProjectOrder = async (project: any)=> {
         const formData = new FormData();
 
         Object.keys(project).forEach((key) => {
@@ -255,8 +255,8 @@ export default function Projects() {
                 updatedProjects.map((project, index) => {
                     project.position = index;
                 })
-                updatedProjects.map((project, index) => {
-                    editProjectOrder(project, index);
+                updatedProjects.map((project) => {
+                    editProjectOrder(project);
                 })
                 setProjects(updatedProjects);
             }
