@@ -2,7 +2,7 @@ import {
     Avatar,
     AvatarFallback,
     AvatarImage,
-} from "@/components/ui/avatar"
+} from "@/app/components/ui/avatar"
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -12,7 +12,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuShortcut,
     DropdownMenuTrigger
-} from "@/components/ui/dropdown-menu"
+} from "@/app/components/ui/dropdown-menu"
 import config from "@/config"
 import {
     CreditCard,
@@ -34,7 +34,7 @@ export function UserProfile() {
         <DropdownMenu>
             <DropdownMenuTrigger asChild className="w-[2.25rem] h-[2.25rem]">
                 <Avatar >
-                    {/*<AvatarImage src={user?.imageUrl} alt="User Profile" />*/}
+                    <AvatarImage src={"/logo.png"} alt="User Profile" />
                     <AvatarFallback></AvatarFallback>
                 </Avatar>
             </DropdownMenuTrigger>

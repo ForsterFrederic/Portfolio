@@ -8,17 +8,14 @@ const {
 } = require("tailwindcss/lib/util/flattenColorPalette");
 
 const config: Config = {
-  // Merging the content arrays and removing duplicates
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/**/*.{ts,tsx}",
   ],
-  // Enabling dark mode
-  darkMode: "class", // Assuming you want to enable dark mode based on the class strategy
+  darkMode: "class",
   theme: {
-    // Merging container configuration from the second file
     container: {
       center: true,
       padding: "2rem",
@@ -27,13 +24,11 @@ const config: Config = {
       },
     },
     extend: {
-      // Merging backgroundImage from the first file
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
-      // Merging colors, borderRadius, keyframes, and animation from the second file
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -140,7 +135,7 @@ const config: Config = {
         },
       },
       animation: {
-        "logo-cloud": "logo-cloud 30s linear infinite", // Adjust duration and timing as needed for your design.
+        "logo-cloud": "logo-cloud 30s linear infinite",
         orbit: "orbit calc(var(--duration)*1s) linear infinite",
         gradient: "gradient 8s linear infinite",
         shimmer: "shimmer 8s infinite",
@@ -152,10 +147,8 @@ const config: Config = {
       },
     },
   },
-  // Merging plugins, adding any unique plugins from both files
   plugins: [
-    require("tailwindcss-animate"), // Assuming require is resolved in your environment
-    // Add other unique plugins here
+    require("tailwindcss-animate"),
     function ({ matchUtilities, theme }: any) {
       matchUtilities(
         {

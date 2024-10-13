@@ -1,5 +1,5 @@
-import {ThemeProvider} from "@/components/theme-provider"
-import {Toaster} from "@/components/ui/sonner"
+import {ThemeProvider} from "@/app/components/theme-provider"
+import {Toaster} from "@/app/components/ui/sonner"
 import {Analytics} from "@vercel/analytics/react"
 import {GeistSans} from 'geist/font/sans'
 import type {Metadata} from 'next'

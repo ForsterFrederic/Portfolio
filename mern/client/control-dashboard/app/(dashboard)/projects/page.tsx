@@ -13,9 +13,9 @@ import {
     Input,
     Link,
 } from "@nextui-org/react";
-import { Separator } from "@/components/ui/separator";
-import { Select } from "@/components/ui/select";
-import { Dropzone } from "@/components/ui/dropzone";
+import { Separator } from "@/app/components/ui/separator";
+import { Select } from "@/app/components/ui/select";
+import { Dropzone } from "@/app/components/ui/dropzone";
 import { DndContext, closestCenter, DragEndEvent } from "@dnd-kit/core";
 import {
     arrayMove,

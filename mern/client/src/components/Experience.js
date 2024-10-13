@@ -14,10 +14,9 @@ import axios from "axios";
 
 export default function Experience({ backendApiUrl, language }) {
     const [items, setItems] = useState([]);
-
     const getExperience = async () => {
         try {
-            const response = await axios.get(`${backendApiUrl}/experience/` + language);
+            const response = await axios.get(`${backendApiUrl}/experience/${language}`);
             const newItems = response.data
                 .map((item) => ({
                     company: item.company,
@@ -31,6 +30,7 @@ export default function Experience({ backendApiUrl, language }) {
                 .sort((a, b) => a.position - b.position);
             setItems(newItems);
         } catch (error) {
+            setItems([]);
             console.error('Error fetching experiences:', error);
         }
     };

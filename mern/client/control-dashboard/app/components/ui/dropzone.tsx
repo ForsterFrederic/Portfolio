@@ -2,8 +2,8 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 export interface DropzoneProps {
-    onChange: (file: File | string | null) => void; // Allow string for URL
-    initialFile?: File | string | null; // Allow string for URL
+    onChange: (file: File | string | null) => void;
+    initialFile?: File | string | null;
 }
 
 const Dropzone: React.FC<DropzoneProps> = ({ onChange, initialFile = null }) => {

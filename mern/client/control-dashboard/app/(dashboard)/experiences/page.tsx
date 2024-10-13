@@ -13,9 +13,9 @@ import {
     Input,
     Link,
 } from "@nextui-org/react";
-import { Separator } from "@/components/ui/separator";
-import { Select } from "@/components/ui/select";
-import { Dropzone } from "@/components/ui/dropzone";
+import { Separator } from "@/app/components/ui/separator";
+import { Select } from "@/app/components/ui/select";
+import { Dropzone } from "@/app/components/ui/dropzone";
 import { DndContext, closestCenter, DragEndEvent } from "@dnd-kit/core";
 import {
     arrayMove,
@@ -199,7 +199,6 @@ export default function Experiences() {
 
     const editExperienceOrder = async (experience: any) => {
         try {
-            // Check that the experience object being sent is correct
             console.log("Updating experience:", experience);
             await axios.put(`${BACKEND_API_URL}/experience/${experience._id}`, experience, {
                 headers: { "Content-Type": "application/json" },
@@ -220,17 +219,15 @@ export default function Experiences() {
             if (sourceIndex !== -1 && targetIndex !== -1 && sourceIndex !== targetIndex) {
                 const updatedExperiences = arrayMove(experiences, sourceIndex, targetIndex);
 
-                // Ensure that position is updated consistently
                 updatedExperiences.forEach((experience, index) => {
-                    experience.position = index; // Always update position in the correct order
+                    experience.position = index;
                 });
 
                 try {
-                    // Send all updated experiences to the server at once
                     await Promise.all(
                         updatedExperiences.map((experience) => editExperienceOrder(experience))
                     );
-                    setExperiences(updatedExperiences); // Update the state after successful sync
+                    setExperiences(updatedExperiences);
                 } catch (error) {
                     console.error("Error updating experiences:", error);
                     setError("Error updating experiences");

@@ -5,7 +5,6 @@ import * as RechartsPrimitive from "recharts"
 
 import { cn } from "@/lib/utils"
 
-// Format: { THEME_NAME: CSS_SELECTOR }
 const THEMES = { light: "", dark: ".dark" } as const
 
 export type ChartConfig = {
@@ -88,14 +87,14 @@ const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
                                     itemConfig.color
                                 return color ? `  --color-${key}: ${color};` : null
                             })
-                            .filter(Boolean) // Removes null values
+                            .filter(Boolean)
                             .join("\n")
 
                         return styles
                             ? `${prefix} [data-chart=${id}] {\n${styles}\n}`
                             : ''
                     })
-                    .join("\n"), // Join to produce a valid string for __html
+                    .join("\n"),
             }}
         />
     )
@@ -317,7 +316,6 @@ const ChartLegendContent = React.forwardRef<
 )
 ChartLegendContent.displayName = "ChartLegend"
 
-// Helper to extract item config from a payload.
 function getPayloadConfigFromPayload(
   config: ChartConfig,
   payload: unknown,
