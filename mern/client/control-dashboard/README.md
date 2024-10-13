@@ -5,7 +5,6 @@
 - Accounts and API keys for:
   - Supabase
   - Stripe (if using payments)
-  - Clerk (if using authentication)
 
 ## Setup
 

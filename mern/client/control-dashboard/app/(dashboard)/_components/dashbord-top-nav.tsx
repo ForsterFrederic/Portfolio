@@ -6,7 +6,7 @@ import { Separator } from '@/components/ui/separator'
 import { SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { UserProfile } from '@/components/user-profile'
 import { HamburgerMenuIcon } from '@radix-ui/react-icons'
-import { Star, Languages, Folder, HomeIcon, Settings } from 'lucide-react'
+import { Star, Languages, Folder, HomeIcon, Settings, BookOpenCheck } from 'lucide-react'
 import Link from 'next/link'
 import { ReactNode } from 'react'
 
@@ -39,18 +39,26 @@ export default function DashboardTopNav({ children }: { children: ReactNode }) {
                 </Link>
               </DialogClose>
               <DialogClose asChild>
-                <Link href={`${IS_PROD === "TRUE" ? "/private" : ""}/projects`}>
-                  <Button variant="outline" className="w-full">
-                    <Folder className="mr-2 h-4 w-4" />
-                    Projects
-                  </Button>
-                </Link>
-              </DialogClose>
-              <DialogClose asChild>
                 <Link href={`${IS_PROD === "TRUE" ? "/private" : ""}/competencies`}>
                   <Button variant="outline" className="w-full">
                     <Star className="mr-2 h-4 w-4" />
                     Competencies
+                  </Button>
+                </Link>
+              </DialogClose>
+              <DialogClose asChild>
+                <Link href={`${IS_PROD === "TRUE" ? "/private" : ""}/experiences`}>
+                  <Button variant="outline" className="w-full">
+                    <BookOpenCheck className="mr-2 h-4 w-4" />
+                    Experiences
+                  </Button>
+                </Link>
+              </DialogClose>
+              <DialogClose asChild>
+                <Link href={`${IS_PROD === "TRUE" ? "/private" : ""}/projects`}>
+                  <Button variant="outline" className="w-full">
+                    <Folder className="mr-2 h-4 w-4" />
+                    Projects
                   </Button>
                 </Link>
               </DialogClose>

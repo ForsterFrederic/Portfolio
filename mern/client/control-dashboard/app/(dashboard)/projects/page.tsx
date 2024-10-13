@@ -34,6 +34,7 @@ type Project = {
     technologies: string;
     link: string;
     picture: string;
+    position: number;
 };
 
 type ProjectFormData = Omit<Project, "_id" | "picture"> & {
@@ -97,7 +98,7 @@ const SortableProject = ({
     );
 };
 
-export default function Private() {
+export default function Projects() {
     const BACKEND_API_URL = process.env.NEXT_PUBLIC_BACKEND_API_URL || "https://frederic-forster.com/api";
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [projects, setProjects] = useState<Project[]>([]);
@@ -113,6 +114,7 @@ export default function Private() {
         technologies: "",
         link: "",
         picture: "",
+        position: 0,
     });
 
     const fetchProjects = async () => {
@@ -120,15 +122,15 @@ export default function Private() {
         try {
             const response = await axios.get<Project[]>(`${BACKEND_API_URL}/project/`);
             if (response.status === 200 && response.data.length > 0) {
-                const newItems = response.data.map((item) => {
-                    // const pictureUrl = item.picture ? `${BACKEND_API_URL.replace("/api", "")}/${item.picture}` : "";
-                    const pictureUrl = item.picture ? `${BACKEND_API_URL.replace("/api", "")}/${item.picture.replace('/root/apps/portfolio/dest/mern/server/', '')}` : "";
-                    // const pictureUrl = item.picture ? `https://frederic-forster.com/uploads/${item.picture.split('/').pop()}` : "";
-                    // const pictureUrl = item.picture ? `https://frederic-forster.com/${item.picture}` : "";
-                    console.log("Picture URL:", pictureUrl); // Log the URL
-                    return { ...item, picture: pictureUrl };
-                });
-                setProjects(newItems);
+                const sortedProjects = response.data
+                    .map((item) => {
+                        const pictureUrl = item.picture
+                            ? `${BACKEND_API_URL.replace("/api", "")}/${item.picture.replace('/root/apps/portfolio/dest/mern/server/', '')}`
+                            : "";
+                        return { ...item, picture: pictureUrl };
+                    })
+                    .sort((a, b) => a.position - b.position);
+                setProjects(sortedProjects);
             } else if (response.status === 404) {
                 setProjects([]);
                 setError("No projects found");
@@ -146,8 +148,10 @@ export default function Private() {
         }
     };
 
-    const handleProjectSubmit = async (event: React.FormEvent) => {
-        event.preventDefault();
+    const handleProjectSubmit = async (event?: React.FormEvent) => {
+        if (!projectId)
+            projectData.position = projects.length;
+        event?.preventDefault();
         const formData = new FormData();
         Object.keys(projectData).forEach((key) => {
             formData.append(key, projectData[key as keyof typeof projectData] as string);
@@ -200,6 +204,7 @@ export default function Private() {
             technologies: project.technologies,
             link: project.link,
             picture: project.picture,
+            position: project.position,
         });
         setFile(project.picture);
         onOpen();
@@ -215,10 +220,28 @@ export default function Private() {
             technologies: "",
             link: "",
             picture: "",
+            position: 0,
         });
         setFile(null);
         setError("");
     };
+
+    const editProjectOrder = async (project, index)=> {
+        const formData = new FormData();
+
+        Object.keys(project).forEach((key) => {
+            formData.append(key, project[key as keyof typeof project] as string);
+        });
+        try {
+            await axios.put(`${BACKEND_API_URL}/project/${project._id}`, formData, {
+                headers: { "Content-Type": "multipart/form-data" },
+            });
+            fetchProjects();
+        } catch (error) {
+            console.error("Error changing projects order:", error);
+            setError("Error changing projects order:");
+        }
+    }
 
     const handleDragEnd = (event: DragEndEvent) => {
         const { active, over } = event;
@@ -229,6 +252,12 @@ export default function Private() {
 
             if (sourceIndex !== -1 && targetIndex !== -1 && sourceIndex !== targetIndex) {
                 const updatedProjects = arrayMove(projects, sourceIndex, targetIndex);
+                updatedProjects.map((project, index) => {
+                    project.position = index;
+                })
+                updatedProjects.map((project, index) => {
+                    editProjectOrder(project, index);
+                })
                 setProjects(updatedProjects);
             }
         }
@@ -244,14 +273,14 @@ export default function Private() {
 
     return (
         <div>
-            <div className={"flex flex-wrap gap-6 justify-between mt-6 px-10"}>
-                <Button onPress={onOpen} color="secondary" className={"rounded-lg font-bold"}>
+            <div className={"flex flex-wrap gap-6 justify-between mt-6 px-14"}>
+                <Button onPress={onOpen} color="secondary" className={"rounded-lg font-bold w-44"}>
                     Create Project
                 </Button>
                 <h1 className="text-center font-extrabold text-2xl text-foreground content-end justify-center">
                     MANAGE PROJECTS
                 </h1>
-                <div className={"my-auto font-bold"}>{projects.length + " Projects"}</div>
+                <div className={"my-auto font-bold w-44 text-right"}>{projects.length + " Projects"}</div>
             </div>
 
             {isOpen && <div className="modal-backdrop" onClick={onClose}></div>}

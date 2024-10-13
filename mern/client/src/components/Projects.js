@@ -72,14 +72,19 @@ export default function Projects({ backendApiUrl, language }) {
     const getProject = async () => {
         try {
             const response = await axios.get(`${backendApiUrl}/project/${language}`);
-            const newItems = response.data.map((item) => ({
-                title: item.title,
-                description: item.description,
-                duration: item.duration,
-                technologies: item.technologies,
-                link: item.link,
-                picture: item.picture ? `${backendApiUrl.replace('/api', '')}/${item.picture.replace('/root/apps/portfolio/dest/mern/server/', '')}` : ""
-            }));
+
+            const newItems = response.data
+                .map((item) => ({
+                    title: item.title,
+                    description: item.description,
+                    duration: item.duration,
+                    technologies: item.technologies,
+                    link: item.link,
+                    picture: item.picture ? `${backendApiUrl.replace('/api', '')}/${item.picture.replace('/root/apps/portfolio/dest/mern/server/', '')}` : "",
+                    position: item.position,
+                }))
+                .sort((a, b) => a.position - b.position);
+            console.log(newItems)
             setItems(newItems);
         } catch (error) {
             setItems([]);

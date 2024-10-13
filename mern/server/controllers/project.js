@@ -26,7 +26,7 @@ exports.getProject = async (req, res) => {
 };
 
 exports.createProject = async (req, res) => {
-    const { language, title, description, duration, technologies, link } = req.body;
+    const { language, title, description, duration, technologies, link, position } = req.body;
     const picturePath = req.file ? req.file.path : null;
 
     try {
@@ -37,7 +37,8 @@ exports.createProject = async (req, res) => {
             duration,
             technologies,
             link,
-            picture: picturePath
+            picture: picturePath,
+            position
         });
         await project.save();
         res.status(201).json({ success: true, project });
@@ -49,8 +50,8 @@ exports.createProject = async (req, res) => {
 
 exports.updateProject = async (req, res) => {
     const projectId = req.params.id;
-    const { language, title, description, duration, technologies, link } = req.body;
-    const picturePath = req.file ? req.file.filename : null; // Store just the filename
+    const { language, title, description, duration, technologies, link, position } = req.body;
+    const picturePath = req.file ? req.file.filename : null;
 
     try {
         const project = await Project.findById(projectId);
@@ -59,15 +60,14 @@ exports.updateProject = async (req, res) => {
             return res.status(404).json({ message: 'Project not found' });
         }
 
-        // Update project fields
         project.language = language || project.language;
         project.title = title || project.title;
         project.description = description || project.description;
         project.duration = duration || project.duration;
         project.technologies = technologies || project.technologies;
         project.link = link || project.link;
+        project.position = position || project.position;
 
-        // If there's a new picture, delete the old one
         if (picturePath) {
             if (project.picture) {
                 const oldPicturePath = path.join(__dirname, '../uploads', path.basename(project.picture));
@@ -79,7 +79,7 @@ exports.updateProject = async (req, res) => {
                     return res.status(500).json({ message: 'Error deleting old image', error: err.message });
                 }
             }
-            project.picture = "uploads/"+picturePath; // Save the new filename
+            project.picture = "uploads/"+picturePath;
         }
 
         await project.save();
@@ -99,7 +99,6 @@ exports.deleteProject = async (req, res) => {
             return res.status(404).json({ message: 'Project not found' });
         }
 
-        // Delete the picture if it exists
         if (project.picture) {
             const picturePath = path.join(__dirname, '../uploads', path.basename(project.picture));
             console.log('Deleting picture at:', picturePath);

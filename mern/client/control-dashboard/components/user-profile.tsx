@@ -14,7 +14,6 @@ import {
     DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu"
 import config from "@/config"
-// import { SignOutButton, useUser } from "@clerk/nextjs"
 import {
     CreditCard,
     LogOut,

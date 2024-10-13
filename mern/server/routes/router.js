@@ -63,6 +63,8 @@ router.post('/competencies', CompetenciesController.createCompetencies);
 
 router.get('/experience/:language?', ExperienceController.getExperience);
 router.post('/experience', ExperienceController.createExperience);
+router.put('/experience/:id',  ExperienceController.updateExperience);
+router.delete('/experience/:id', ExperienceController.deleteExperience);
 
 router.get('/counter', CounterController.getCounter);
 router.post('/counter', CounterController.incrementCounter);

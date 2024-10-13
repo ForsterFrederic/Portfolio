@@ -29,6 +29,10 @@ const experienceSchema = new mongoose.Schema({
         type: String,
         required: false,
     },
+    position: {
+        type: Number,
+        required: true,
+    },
 }, {
     timestamps: false
 });
