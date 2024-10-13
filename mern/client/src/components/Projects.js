@@ -84,7 +84,6 @@ export default function Projects({ backendApiUrl, language }) {
                     position: item.position,
                 }))
                 .sort((a, b) => a.position - b.position);
-            console.log(newItems)
             setItems(newItems);
         } catch (error) {
             setItems([]);

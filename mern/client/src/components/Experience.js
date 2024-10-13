@@ -18,14 +18,17 @@ export default function Experience({ backendApiUrl, language }) {
     const getExperience = async () => {
         try {
             const response = await axios.get(`${backendApiUrl}/experience/` + language);
-            const newItems = response.data.map((item) => ({
-                company: item.company,
-                title: item.title,
-                duration: item.duration,
-                description: item.description,
-                technologies: item.technologies,
-                url: item.url
-            }));
+            const newItems = response.data
+                .map((item) => ({
+                    company: item.company,
+                    title: item.title,
+                    duration: item.duration,
+                    description: item.description,
+                    technologies: item.technologies,
+                    url: item.url,
+                    position: item.position,
+                }))
+                .sort((a, b) => a.position - b.position);
             setItems(newItems);
         } catch (error) {
             console.error('Error fetching experiences:', error);
