@@ -197,7 +197,7 @@ export default function Experiences() {
         setError("");
     };
 
-    const editExperienceOrder = async (experience) => {
+    const editExperienceOrder = async (experience: any) => {
         try {
             // Check that the experience object being sent is correct
             console.log("Updating experience:", experience);
