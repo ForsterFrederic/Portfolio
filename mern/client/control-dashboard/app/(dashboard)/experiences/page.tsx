@@ -214,7 +214,8 @@ export default function Experiences() {
     const handleDragEnd = async (event: DragEndEvent) => {
         const { active, over } = event;
 
-        let activeExperience, languageSet, setLanguageExperience;
+        let languageSet: typeof experiencesEN | undefined;
+        let setLanguageExperience: typeof setExperiencesEN | undefined;
 
         if (experiencesEN.some(experience => experience._id === active.id)) {
             languageSet = experiencesEN;
@@ -227,7 +228,7 @@ export default function Experiences() {
             setLanguageExperience = setExperiencesDE;
         }
 
-        if (over && languageSet) {
+        if (over && languageSet && setLanguageExperience) { // Ensure both are defined
             const sourceIndex = languageSet.findIndex((experience) => experience._id === active.id);
             const targetIndex = languageSet.findIndex((experience) => experience._id === over.id);
 

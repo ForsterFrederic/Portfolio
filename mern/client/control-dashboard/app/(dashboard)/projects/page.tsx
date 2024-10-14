@@ -248,7 +248,8 @@ export default function Projects() {
     const handleDragEnd = async (event: DragEndEvent) => {
         const { active, over } = event;
 
-        let activeExperience, languageSet, setLanguageExperience;
+        let languageSet: typeof projectsEN | undefined;
+        let setLanguageExperience: typeof setProjectsEN | undefined;
 
         if (projectsEN.some(project => project._id === active.id)) {
             languageSet = projectsEN;
@@ -261,20 +262,20 @@ export default function Projects() {
             setLanguageExperience = setProjectsDE;
         }
 
-        if (over && languageSet) {
+        if (over && languageSet && setLanguageExperience) {
             const sourceIndex = languageSet.findIndex((project) => project._id === active.id);
             const targetIndex = languageSet.findIndex((project) => project._id === over.id);
 
             if (sourceIndex !== -1 && targetIndex !== -1 && sourceIndex !== targetIndex) {
                 const updatedProjects = arrayMove(languageSet, sourceIndex, targetIndex);
 
-                updatedProjects.forEach((experience, index) => {
-                    experience.position = index;
+                updatedProjects.forEach((project, index) => {
+                    project.position = index;
                 });
 
                 try {
                     await Promise.all(
-                        updatedProjects.map((experience) => editProjectOrder(experience))
+                        updatedProjects.map((project) => editProjectOrder(project))
                     );
                     setLanguageExperience(updatedProjects);
                 } catch (error) {
