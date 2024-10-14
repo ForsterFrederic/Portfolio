@@ -15,7 +15,6 @@ import {
 } from "@nextui-org/react";
 import { Separator } from "@/app/components/ui/separator";
 import { Select } from "@/app/components/ui/select";
-import { Dropzone } from "@/app/components/ui/dropzone";
 import { DndContext, closestCenter, DragEndEvent } from "@dnd-kit/core";
 import {
     arrayMove,
@@ -90,9 +89,10 @@ const SortableExperience = ({
 export default function Experiences() {
     const BACKEND_API_URL = process.env.NEXT_PUBLIC_BACKEND_API_URL || "https://frederic-forster.com/api";
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const [experiences, setExperiences] = useState<Experience[]>([]);
+    const [experiencesEN, setExperiencesEN] = useState<Experience[]>([]);
+    const [experiencesFR, setExperiencesFR] = useState<Experience[]>([]);
+    const [experiencesDE, setExperiencesDE] = useState<Experience[]>([]);
     const [experienceId, setExperienceId] = useState<string | null>(null);
-    const [error, setError] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
     const [experienceData, setExperienceData] = useState<ExperienceFormData>({
         language: "EN",
@@ -105,32 +105,32 @@ export default function Experiences() {
         position: 0,
     });
 
-    const fetchExperiences = async () => {
+    const fetchExperiences = async (language: string, setExperience: any) => {
         setLoading(true);
         try {
-            const response = await axios.get<Experience[]>(`${BACKEND_API_URL}/experience/`);
+            const response = await axios.get<Experience[]>(`${BACKEND_API_URL}/experience/` + language);
             if (response.status === 200 && response.data.length > 0) {
                 const sortedExperiences = response.data.sort((a, b) => a.position - b.position);
-                setExperiences(sortedExperiences);
+                setExperience(sortedExperiences);
             } else if (response.status === 404) {
-                setExperiences([]);
-                setError("No experiences found");
+                console.error("No " + language + " experiences found.")
+                setExperience([]);
             }
-        } catch (error: any) {
-            if (error.response) {
-                setError(error.response.data.error || 'Error fetching experiences');
-            } else {
-                setError('Error fetching experiences');
-            }
-            setExperiences([]);
-            console.error('Error fetching experiences:', error);
+        } catch (err: any) {
+            setExperience([]);
+            console.error('Error fetching experiences:',err)
         } finally {
             setLoading(false);
         }
     };
 
     const handleExperienceSubmit = async (event?: React.FormEvent) => {
-        if (!experienceId) experienceData.position = experiences.length;
+        if (!experienceId)
+            experienceData.position =
+                experienceData.language === "EN" ? experiencesEN.length :
+                    experienceData.language === "FR" ? experiencesFR.length :
+                        experienceData.language === "DE" ? experiencesDE.length :
+                            0;
         event?.preventDefault();
 
         setLoading(true);
@@ -145,10 +145,11 @@ export default function Experiences() {
                 });
             }
             resetForm();
-            fetchExperiences();
+            fetchExperiences("EN", setExperiencesEN);
+            fetchExperiences("FR", setExperiencesFR);
+            fetchExperiences("DE", setExperiencesDE);
         } catch (error) {
             console.error("Error submitting experience:", error);
-            setError("Error submitting experience");
         } finally {
             setLoading(false);
         }
@@ -158,10 +159,11 @@ export default function Experiences() {
         setLoading(true);
         try {
             await axios.delete(`${BACKEND_API_URL}/experience/${id}`);
-            fetchExperiences();
+            fetchExperiences("EN", setExperiencesEN);
+            fetchExperiences("FR", setExperiencesFR);
+            fetchExperiences("DE", setExperiencesDE);
         } catch (error) {
             console.error("Error deleting experience:", error);
-            setError("Error deleting experience");
         } finally {
             setLoading(false);
         }
@@ -194,30 +196,43 @@ export default function Experiences() {
             url: "",
             position: 0,
         });
-        setError("");
     };
 
     const editExperienceOrder = async (experience: any) => {
         try {
-            console.log("Updating experience:", experience);
             await axios.put(`${BACKEND_API_URL}/experience/${experience._id}`, experience, {
                 headers: { "Content-Type": "application/json" },
             });
+            fetchExperiences("EN", setExperiencesEN);
+            fetchExperiences("FR", setExperiencesFR);
+            fetchExperiences("DE", setExperiencesDE);
         } catch (error) {
             console.error("Error changing experience order:", error);
-            setError("Error changing experience order");
         }
     };
 
     const handleDragEnd = async (event: DragEndEvent) => {
         const { active, over } = event;
 
-        if (over) {
-            const sourceIndex = experiences.findIndex((experience) => experience._id === active.id);
-            const targetIndex = experiences.findIndex((experience) => experience._id === over.id);
+        let activeExperience, languageSet, setLanguageExperience;
+
+        if (experiencesEN.some(experience => experience._id === active.id)) {
+            languageSet = experiencesEN;
+            setLanguageExperience = setExperiencesEN;
+        } else if (experiencesFR.some(experience => experience._id === active.id)) {
+            languageSet = experiencesFR;
+            setLanguageExperience = setExperiencesFR;
+        } else if (experiencesDE.some(experience => experience._id === active.id)) {
+            languageSet = experiencesDE;
+            setLanguageExperience = setExperiencesDE;
+        }
+
+        if (over && languageSet) {
+            const sourceIndex = languageSet.findIndex((experience) => experience._id === active.id);
+            const targetIndex = languageSet.findIndex((experience) => experience._id === over.id);
 
             if (sourceIndex !== -1 && targetIndex !== -1 && sourceIndex !== targetIndex) {
-                const updatedExperiences = arrayMove(experiences, sourceIndex, targetIndex);
+                const updatedExperiences = arrayMove(languageSet, sourceIndex, targetIndex);
 
                 updatedExperiences.forEach((experience, index) => {
                     experience.position = index;
@@ -227,34 +242,62 @@ export default function Experiences() {
                     await Promise.all(
                         updatedExperiences.map((experience) => editExperienceOrder(experience))
                     );
-                    setExperiences(updatedExperiences);
+                    setLanguageExperience(updatedExperiences);
                 } catch (error) {
                     console.error("Error updating experiences:", error);
-                    setError("Error updating experiences");
                 }
             }
         }
     };
 
+    interface ExperienceProps {
+        experiences: any[];
+    }
+
+    const DisplayCards = ({ experiences }: ExperienceProps) => {
+        return (
+            <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+                <SortableContext items={experiences.map((experience) => experience._id)} strategy={rectSortingStrategy}>
+                    <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8 mb-8">
+                        {experiences.map((experience) => (
+                            <SortableExperience
+                                key={experience._id}
+                                experience={experience}
+                                handleEditExperience={handleEditExperience}
+                                handleDeleteExperience={handleDeleteExperience}
+                            />
+                        ))}
+                    </div>
+                </SortableContext>
+            </DndContext>
+        );
+    };
 
     useEffect(() => {
-        if (!isOpen) resetForm();
+        if (!isOpen)
+            resetForm();
     }, [isOpen]);
 
     useEffect(() => {
-        fetchExperiences();
+        fetchExperiences("EN", setExperiencesEN);
+        fetchExperiences("FR", setExperiencesFR);
+        fetchExperiences("DE", setExperiencesDE);
     }, []);
 
     return (
         <div>
-            <div className={"flex flex-wrap gap-6 justify-between mt-6 px-14"}>
-                <Button onPress={onOpen} color="secondary" className={"rounded-lg font-bold w-44"}>
-                    Create Experience
-                </Button>
-                <h1 className="text-center font-extrabold text-2xl text-foreground content-end justify-center">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6 mt-6 px-4 md:px-14">
+                <h1 className="text-center font-extrabold text-2xl text-foreground w-full md:w-auto">
                     MANAGE EXPERIENCES
                 </h1>
-                <div className={"my-auto font-bold w-44 text-right"}>{experiences.length + " Experiences"}</div>
+                <div className="flex flex-col w-full md:w-auto md:flex-row items-center gap-4">
+                    <div className="font-bold text-center w-full md:w-auto">
+                        {`${experiencesEN.length + experiencesFR.length + experiencesDE.length} Experiences`}
+                    </div>
+                    <Button onPress={onOpen} color="secondary" className="rounded-lg font-bold w-full md:w-44">
+                        Create Experience
+                    </Button>
+                </div>
             </div>
 
             {isOpen && <div className="modal-backdrop" onClick={onClose}></div>}
@@ -335,25 +378,23 @@ export default function Experiences() {
                 </ModalContent>
             </Modal>
 
-            <Separator className="my-6 w-11/12 mx-auto" />
-
-            {error && <p className="text-red-500 mt-6 text-center">{error}</p>}
             {loading && <p className="mt-6 text-center">Loading...</p>}
 
-            <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-                <SortableContext items={experiences.map((experience) => experience._id)} strategy={rectSortingStrategy}>
-                    <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8 mb-8">
-                        {experiences.map((experience) => (
-                            <SortableExperience
-                                key={experience._id}
-                                experience={experience}
-                                handleEditExperience={handleEditExperience}
-                                handleDeleteExperience={handleDeleteExperience}
-                            />
-                        ))}
-                    </div>
-                </SortableContext>
-            </DndContext>
+            <div className="flex items-center justify-center w-full py-6 pt-12">
+                <p className="text-center pl-8">EN</p>
+                <Separator className="my-6 w-11/12 mx-auto" />
+            </div>
+            <DisplayCards experiences={experiencesEN} />
+            <div className="flex items-center justify-center w-full py-6">
+                <p className="text-center pl-8">FR</p>
+                <Separator className="my-6 w-11/12 mx-auto" />
+            </div>
+            <DisplayCards experiences={experiencesFR} />
+            <div className="flex items-center justify-center w-full py-6">
+                <p className="text-center pl-8">DE</p>
+                <Separator className="my-6 w-11/12 mx-auto" />
+            </div>
+            <DisplayCards experiences={experiencesDE} />
         </div>
     );
 }

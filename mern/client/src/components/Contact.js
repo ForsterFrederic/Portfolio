@@ -3,8 +3,10 @@ import React, {useEffect, useRef, useState} from "react";
 import Linkedin from "../assets/pictures/linkedin.png";
 import Mail from "../assets/pictures/email.png";
 import WhatsApp from "../assets/pictures/whatsapp.png";
+import Phone from "../assets/pictures/phone.png";
 import * as emailjs from "@emailjs/browser";
 import axios from "axios";
+import Tooltip from "@mui/material/Tooltip";
 
 export default function Contact({ backendApiUrl, language }) {
     const textareaRef = useRef(null);
@@ -77,10 +79,15 @@ export default function Contact({ backendApiUrl, language }) {
             );
     };
 
-    const WhatsAppOrCall = () => {
+    const CallWhatsApp = () => {
         const whatsappUrl = `https://wa.me/+33669012285`;
 
         window.open(whatsappUrl, '_blank');
+    };
+
+    const CallPhone = () => {
+        const phoneUrl = `tel:+6285355458421`;
+        window.open(phoneUrl, '_self');
     };
 
     useEffect(() => {
@@ -112,15 +119,26 @@ export default function Contact({ backendApiUrl, language }) {
                         </div>
                         <p className={"md:w-full text-lg md:text-xl lg:text-2xl xl:text-3xl tblack3 lg:mt-10"}>{touch}</p>
                         <div className={"grid gap-4 grid-flow-col w-max lg:w-2/12 mx-auto lg:mx-0 mt-10"}>
-                            <div className="w-10 h-10 cursor-pointer hover:scale-105 transition">
-                                <img src={Linkedin} alt="LinkedIn" onClick={() => window.open("https://linkedin.com/in/frédéric-forster")}/>
-                            </div>
-                            <div className="w-10 h-10 cursor-pointer hover:scale-105 transition">
-                                <img src={Mail} alt="Mail" onClick={() => window.location.href = "mailto:forster.frederic@gmail.com"}/>
-                            </div>
-                            <div className="w-10 h-10 cursor-pointer hover:scale-105 transition">
-                                <img src={WhatsApp} alt="WhatsApp" onClick={() => WhatsAppOrCall()}/>
-                            </div>
+                            <Tooltip title="LinkedIn: https://linkedin.com/in/frédéric-forster">
+                                <div className="w-10 h-10 cursor-pointer hover:scale-105 transition">
+                                    <img src={Linkedin} alt="LinkedIn" onClick={() => window.open("https://linkedin.com/in/frédéric-forster")}/>
+                                </div>
+                            </Tooltip>
+                            <Tooltip title="Mail: forster.frederic@gmail.com">
+                                <div className="w-10 h-10 cursor-pointer hover:scale-105 transition">
+                                    <img src={Mail} alt="Mail" onClick={() => window.location.href = "mailto:forster.frederic@gmail.com"}/>
+                                </div>
+                            </Tooltip>
+                            <Tooltip title="WhatsApp: +33 06 69 01 22 85">
+                                <div className="w-10 h-10 cursor-pointer hover:scale-105 transition">
+                                    <img src={WhatsApp} alt="WhatsApp" onClick={() => CallWhatsApp()}/>
+                                </div>
+                            </Tooltip>
+                            <Tooltip title="Tel: +62 853 5545 8421">
+                                <div className="w-10 h-10 cursor-pointer hover:scale-105 transition">
+                                    <img src={Phone} alt="Phone" onClick={() => CallPhone()}/>
+                                </div>
+                            </Tooltip>
                         </div>
                         <p className={"w-10/12 md:w-full mx-auto lg:mx-0 mt-10 lg:text-md xl:text-lg tgrayd3 lg:text-justify text-center"}>{text1}</p>
                         <p className={"w-10/12 md:w-full mx-auto lg:mx-0 mt-4 lg:text-md xl:text-lg tgrayd3 lg:text-justify text-center"}>{text2}</p>

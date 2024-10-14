@@ -101,10 +101,11 @@ const SortableProject = ({
 export default function Projects() {
     const BACKEND_API_URL = process.env.NEXT_PUBLIC_BACKEND_API_URL || "https://frederic-forster.com/api";
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const [projects, setProjects] = useState<Project[]>([]);
+    const [projectsEN, setProjectsEN] = useState<Project[]>([]);
+    const [projectsFR, setProjectsFR] = useState<Project[]>([]);
+    const [projectsDE, setProjectsDE] = useState<Project[]>([]);
     const [file, setFile] = useState<File | string | null>(null);
     const [projectId, setProjectId] = useState<string | null>(null);
-    const [error, setError] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
     const [projectData, setProjectData] = useState<ProjectFormData>({
         language: "EN",
@@ -117,10 +118,10 @@ export default function Projects() {
         position: 0,
     });
 
-    const fetchProjects = async () => {
+    const fetchProjects = async (language: string, setExperience: any) => {
         setLoading(true);
         try {
-            const response = await axios.get<Project[]>(`${BACKEND_API_URL}/project/`);
+            const response = await axios.get<Project[]>(`${BACKEND_API_URL}/project/` + language);
             if (response.status === 200 && response.data.length > 0) {
                 const sortedProjects = response.data
                     .map((item) => {
@@ -130,18 +131,13 @@ export default function Projects() {
                         return { ...item, picture: pictureUrl };
                     })
                     .sort((a, b) => a.position - b.position);
-                setProjects(sortedProjects);
+                setExperience(sortedProjects);
             } else if (response.status === 404) {
-                setProjects([]);
-                setError("No projects found");
+                console.error("No " + language + " projects found.")
+                setExperience([]);
             }
         } catch (error: any) {
-            if (error.response) {
-                setError(error.response.data.error || 'Error fetching projects');
-            } else {
-                setError('Error fetching projects');
-            }
-            setProjects([]);
+            setExperience([]);
             console.error('Error fetching projects:', error);
         } finally {
             setLoading(false);
@@ -150,7 +146,11 @@ export default function Projects() {
 
     const handleProjectSubmit = async (event?: React.FormEvent) => {
         if (!projectId)
-            projectData.position = projects.length;
+            projectData.position =
+                projectData.language === "EN" ? projectsEN.length :
+                    projectData.language === "FR" ? projectsFR.length :
+                        projectData.language === "DE" ? projectsDE.length :
+                            0;
         event?.preventDefault();
         const formData = new FormData();
         Object.keys(projectData).forEach((key) => {
@@ -172,10 +172,11 @@ export default function Projects() {
                 });
             }
             resetForm();
-            fetchProjects();
+            fetchProjects("EN", setProjectsEN);
+            fetchProjects("FR", setProjectsFR);
+            fetchProjects("DE", setProjectsDE);
         } catch (error) {
             console.error("Error submitting project:", error);
-            setError("Error submitting project");
         } finally {
             setLoading(false);
         }
@@ -185,10 +186,11 @@ export default function Projects() {
         setLoading(true);
         try {
             await axios.delete(`${BACKEND_API_URL}/project/${id}`);
-            fetchProjects();
+            fetchProjects("EN", setProjectsEN);
+            fetchProjects("FR", setProjectsFR);
+            fetchProjects("DE", setProjectsDE);
         } catch (error) {
             console.error("Error deleting project:", error);
-            setError("Error deleting project");
         } finally {
             setLoading(false);
         }
@@ -223,7 +225,6 @@ export default function Projects() {
             position: 0,
         });
         setFile(null);
-        setError("");
     };
 
     const editProjectOrder = async (project: any)=> {
@@ -236,51 +237,101 @@ export default function Projects() {
             await axios.put(`${BACKEND_API_URL}/project/${project._id}`, formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
-            fetchProjects();
+            fetchProjects("EN", setProjectsEN);
+            fetchProjects("FR", setProjectsFR);
+            fetchProjects("DE", setProjectsDE);
         } catch (error) {
             console.error("Error changing projects order:", error);
-            setError("Error changing projects order:");
         }
     }
 
-    const handleDragEnd = (event: DragEndEvent) => {
+    const handleDragEnd = async (event: DragEndEvent) => {
         const { active, over } = event;
 
-        if (over) {
-            const sourceIndex = projects.findIndex((project) => project._id === active.id);
-            const targetIndex = projects.findIndex((project) => project._id === over.id);
+        let activeExperience, languageSet, setLanguageExperience;
+
+        if (projectsEN.some(project => project._id === active.id)) {
+            languageSet = projectsEN;
+            setLanguageExperience = setProjectsEN;
+        } else if (projectsFR.some(project => project._id === active.id)) {
+            languageSet = projectsFR;
+            setLanguageExperience = setProjectsFR;
+        } else if (projectsDE.some(project => project._id === active.id)) {
+            languageSet = projectsDE;
+            setLanguageExperience = setProjectsDE;
+        }
+
+        if (over && languageSet) {
+            const sourceIndex = languageSet.findIndex((project) => project._id === active.id);
+            const targetIndex = languageSet.findIndex((project) => project._id === over.id);
 
             if (sourceIndex !== -1 && targetIndex !== -1 && sourceIndex !== targetIndex) {
-                const updatedProjects = arrayMove(projects, sourceIndex, targetIndex);
-                updatedProjects.map((project, index) => {
-                    project.position = index;
-                })
-                updatedProjects.map((project) => {
-                    editProjectOrder(project);
-                })
-                setProjects(updatedProjects);
+                const updatedProjects = arrayMove(languageSet, sourceIndex, targetIndex);
+
+                updatedProjects.forEach((experience, index) => {
+                    experience.position = index;
+                });
+
+                try {
+                    await Promise.all(
+                        updatedProjects.map((experience) => editProjectOrder(experience))
+                    );
+                    setLanguageExperience(updatedProjects);
+                } catch (error) {
+                    console.error("Error updating projects:", error);
+                }
             }
         }
     };
 
+    interface ProjectProps {
+        projects: any[];
+    }
+
+    const DisplayCards = ({ projects }: ProjectProps) => {
+        return (
+            <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+                <SortableContext items={projects.map((project) => project._id)} strategy={rectSortingStrategy}>
+                    <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8 mb-8">
+                        {projects.map((project) => (
+                            <SortableProject
+                                key={project._id}
+                                project={project}
+                                handleEditProject={handleEditProject}
+                                handleDeleteProject={handleDeleteProject}
+                            />
+                        ))}
+                    </div>
+                </SortableContext>
+            </DndContext>
+        );
+    };
+
     useEffect(() => {
-        if (!isOpen) resetForm();
+        if (!isOpen)
+            resetForm();
     }, [isOpen]);
 
     useEffect(() => {
-        fetchProjects();
+        fetchProjects("EN", setProjectsEN);
+        fetchProjects("FR", setProjectsFR);
+        fetchProjects("DE", setProjectsDE);
     }, []);
 
     return (
         <div>
-            <div className={"flex flex-wrap gap-6 justify-between mt-6 px-14"}>
-                <Button onPress={onOpen} color="secondary" className={"rounded-lg font-bold w-44"}>
-                    Create Project
-                </Button>
-                <h1 className="text-center font-extrabold text-2xl text-foreground content-end justify-center">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6 mt-6 px-4 md:px-14">
+                <h1 className="text-center font-extrabold text-2xl text-foreground w-full md:w-auto">
                     MANAGE PROJECTS
                 </h1>
-                <div className={"my-auto font-bold w-44 text-right"}>{projects.length + " Projects"}</div>
+                <div className="flex flex-col w-full md:w-auto md:flex-row items-center gap-4">
+                    <div className="font-bold text-center w-full md:w-auto">
+                        {`${projectsEN.length + projectsFR.length + projectsDE.length} Projects`}
+                    </div>
+                    <Button onPress={onOpen} color="secondary" className="rounded-lg font-bold w-full md:w-44">
+                        Create Project
+                    </Button>
+                </div>
             </div>
 
             {isOpen && <div className="modal-backdrop" onClick={onClose}></div>}
@@ -354,25 +405,23 @@ export default function Projects() {
                 </ModalContent>
             </Modal>
 
-            <Separator className="my-6 w-11/12 mx-auto" />
-
-            {error && <p className="text-red-500 mt-6 text-center">{error}</p>}
             {loading && <p className="mt-6 text-center">Loading...</p>}
 
-            <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-                <SortableContext items={projects.map((project) => project._id)} strategy={rectSortingStrategy}>
-                    <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8 mb-8">
-                        {projects.map((project) => (
-                            <SortableProject
-                                key={project._id}
-                                project={project}
-                                handleEditProject={handleEditProject}
-                                handleDeleteProject={handleDeleteProject}
-                            />
-                        ))}
-                    </div>
-                </SortableContext>
-            </DndContext>
+            <div className="flex items-center justify-center w-full py-6 pt-12">
+                <p className="text-center pl-8">EN</p>
+                <Separator className="my-6 w-11/12 mx-auto" />
+            </div>
+            <DisplayCards projects={projectsEN} />
+            <div className="flex items-center justify-center w-full py-6">
+                <p className="text-center pl-8">FR</p>
+                <Separator className="my-6 w-11/12 mx-auto" />
+            </div>
+            <DisplayCards projects={projectsFR} />
+            <div className="flex items-center justify-center w-full py-6">
+                <p className="text-center pl-8">DE</p>
+                <Separator className="my-6 w-11/12 mx-auto" />
+            </div>
+            <DisplayCards projects={projectsDE} />
         </div>
     );
 }

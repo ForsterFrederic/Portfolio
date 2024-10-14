@@ -4,9 +4,12 @@ import PictureMe from "../assets/pictures/picture-me.png"
 import Linkedin from "../assets/pictures/linkedin.png";
 import Mail from "../assets/pictures/email.png";
 import WhatsApp from "../assets/pictures/whatsapp.png";
+import Phone from "../assets/pictures/phone.png";
 import {Link} from 'react-scroll';
 import CV from "../assets/documents/CV Frédéric Forster - English.pdf"
+import CVFR from "../assets/documents/CV Frédéric Forster.pdf"
 import axios from "axios";
+import Tooltip from '@mui/material/Tooltip';
 
 export default function Presentation({ backendApiUrl, language }) {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -20,11 +23,20 @@ export default function Presentation({ backendApiUrl, language }) {
     const [textSuccessfulProjects, setTextSuccessfulProjects] = useState("Successful Projects")
     const [downloadCV, setDownloadCV] = useState("Download my CV")
     const [goToCompetencies, setGoToCompetencies] = useState("My competencies")
+    const [tooltipOpenLinkedin, setTooltipOpenLinkedin] = useState(false);
+    const [tooltipOpenMail, setTooltipOpenMail] = useState(false);
+    const [tooltipOpenWhatsApp, setTooltipOpenWhatsApp] = useState(false);
+    const [tooltipOpenPhone, setTooltipOpenPhone] = useState(false);
 
-    const WhatsAppOrCall = () => {
+    const CallWhatsApp = () => {
         const whatsappUrl = `https://wa.me/+33669012285`;
 
         window.open(whatsappUrl, '_blank');
+    };
+
+    const CallPhone = () => {
+        const phoneUrl = `tel:+6285355458421`;
+        window.open(phoneUrl, '_self');
     };
 
     const getPresentation = async () => {
@@ -46,9 +58,14 @@ export default function Presentation({ backendApiUrl, language }) {
     };
 
     useEffect(() => {
-        addEventListener('resize', () => {
+        const handleResize = () => {
             setWindowWidth(window.innerWidth);
-        }, false);
+        };
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
     }, []);
 
     useEffect(() => {
@@ -64,15 +81,70 @@ export default function Presentation({ backendApiUrl, language }) {
             <div name={"presentation"} className={"gradient-bg-left-darker shadow-black drop-shadow-lg"}>
                 <div className={"flex justify-between min-h-lvh pt-16"}>
                     <div className={"absolute grid gap-6 grid-flow-row left-20 top-36"}>
-                        <div className="w-11 h-11 cursor-pointer hover:scale-105">
-                            <img src={Linkedin} alt="LinkedIn" onClick={() => window.open("https://linkedin.com/in/frédéric-forster")}/>
-                        </div>
-                        <div className="w-11 h-11 cursor-pointer hover:scale-105">
-                            <img src={Mail} alt="Mail" onClick={() => window.location.href = "mailto:forster.frederic@gmail.com"}/>
-                        </div>
-                        <div className="w-11 h-11 cursor-pointer hover:scale-105">
-                            <img src={WhatsApp} alt="WhatsApp" onClick={() => WhatsAppOrCall()}/>
-                        </div>
+                        <Tooltip open={tooltipOpenLinkedin} onClose={() => setTooltipOpenLinkedin(false)} onOpen={() => setTooltipOpenLinkedin(true)} title="LinkedIn: https://linkedin.com/in/frédéric-forster" slotProps={{
+                            popper: {
+                                modifiers: [
+                                    {
+                                        name: 'offset',
+                                        options: {
+                                            offset: [0, -12],
+                                        },
+                                    },
+                                ],
+                            },
+                        }}>
+                            <div className="w-11 h-11 cursor-pointer hover:scale-105">
+                                <img src={Linkedin} alt="LinkedIn" onClick={() => window.open("https://linkedin.com/in/frédéric-forster")}/>
+                            </div>
+                        </Tooltip>
+                        <Tooltip open={tooltipOpenMail} onClose={() => setTooltipOpenMail(false)} onOpen={() => setTooltipOpenMail(true)} title="Mail: forster.frederic@gmail.com" slotProps={{
+                            popper: {
+                                modifiers: [
+                                    {
+                                        name: 'offset',
+                                        options: {
+                                            offset: [0, -12],
+                                        },
+                                    },
+                                ],
+                            },
+                        }}>
+                            <div className="w-11 h-11 cursor-pointer hover:scale-105">
+                                <img src={Mail} alt="Mail" onClick={() => window.location.href = "mailto:forster.frederic@gmail.com"}/>
+                            </div>
+                        </Tooltip>
+                        <Tooltip open={tooltipOpenWhatsApp} onClose={() => setTooltipOpenWhatsApp(false)} onOpen={() => setTooltipOpenWhatsApp(true)} title="WhatsApp: +33 06 69 01 22 85" slotProps={{
+                            popper: {
+                                modifiers: [
+                                    {
+                                        name: 'offset',
+                                        options: {
+                                            offset: [0, -12],
+                                        },
+                                    },
+                                ],
+                            },
+                        }}>
+                            <div className="w-11 h-11 cursor-pointer hover:scale-105">
+                                <img src={WhatsApp} alt="WhatsApp" onClick={() => CallWhatsApp()}/>
+                            </div>
+                        </Tooltip>
+                        <Tooltip open={tooltipOpenPhone} onClose={() => setTooltipOpenPhone(false)} onOpen={() => setTooltipOpenPhone(true)} title="Tel: +62 853 5545 8421" slotProps={{
+                            popper: {
+                                modifiers: [
+                                    {
+                                        name: 'offset',
+                                        options: {
+                                            offset: [0, -12],
+                                        },
+                                    },
+                                ],
+                            },
+                        }}>
+                            <div className="w-11 h-11 cursor-pointer hover:scale-105">
+                                <img src={Phone} alt="WhatsApp" onClick={() => CallPhone()}/>
+                            </div>
+                        </Tooltip>
                     </div>
                     <div className={"w-5/12 ml-32 my-auto 2xl:my-0 2xl:mt-auto 2xl:mb-2"}>
                         <img src={PictureMe} className={"flex justify-between"}/>
@@ -106,8 +178,8 @@ export default function Presentation({ backendApiUrl, language }) {
                             <div className={"flex gap-4 mt-8 items-center ml-4"}>
                                 <button className={"lg:ml-0 btn w-48"} onClick={() => {
                                     const link = document.createElement('a');
-                                    link.href = CV;
-                                    link.download = 'CV Frédéric Forster - English.pdf';
+                                    link.href = language === "FR" ? CVFR : CV;
+                                    link.download = language === "FR" ? 'CV Frédéric Forster.pdf' : 'CV Frédéric Forster - English.pdf';
                                     document.body.appendChild(link);
                                     link.click();
                                     document.body.removeChild(link);
@@ -175,15 +247,26 @@ export default function Presentation({ backendApiUrl, language }) {
                 <img src={PictureMe} className={"w-8/12 md:w-6/12 mx-auto mt-8"}/>
                 <div className={"border-bottom-big w-9/12 md:w-6/12 mx-auto mt-1.5 rounded"}/>
                 <div className={"grid gap-4 grid-flow-col w-max mx-auto lg:mx-0 mt-10"}>
-                    <div className="w-10 h-10 cursor-pointer hover:scale-105 transition">
-                        <img src={Linkedin} alt="LinkedIn" onClick={() => window.open("https://linkedin.com/in/frédéric-forster")}/>
-                    </div>
-                    <div className="w-10 h-10 cursor-pointer hover:scale-105 transition">
-                        <img src={Mail} alt="Mail" onClick={() => window.location.href = "mailto:forster.frederic@gmail.com"}/>
-                    </div>
-                    <div className="w-10 h-10 cursor-pointer hover:scale-105 transition">
-                        <img src={WhatsApp} alt="WhatsApp" onClick={() => WhatsAppOrCall()}/>
-                    </div>
+                    <Tooltip title="LinkedIn: https://linkedin.com/in/frédéric-forster">
+                        <div className="w-10 h-10 cursor-pointer hover:scale-105 transition">
+                            <img src={Linkedin} alt="LinkedIn" onClick={() => window.open("https://linkedin.com/in/frédéric-forster")}/>
+                        </div>
+                    </Tooltip>
+                    <Tooltip title="Mail: forster.frederic@gmail.com">
+                        <div className="w-10 h-10 cursor-pointer hover:scale-105 transition">
+                            <img src={Mail} alt="Mail" onClick={() => window.location.href = "mailto:forster.frederic@gmail.com"}/>
+                        </div>
+                    </Tooltip>
+                    <Tooltip title="WhatsApp: +33 06 69 01 22 85">
+                        <div className="w-10 h-10 cursor-pointer hover:scale-105 transition">
+                            <img src={WhatsApp} alt="WhatsApp" onClick={() => CallWhatsApp()}/>
+                        </div>
+                    </Tooltip>
+                    <Tooltip title="Tel: +62 853 5545 8421">
+                        <div className="w-10 h-10 cursor-pointer hover:scale-105 transition">
+                            <img src={Phone} alt="WhatsApp" onClick={() => CallPhone()}/>
+                        </div>
+                    </Tooltip>
                 </div>
             </div>
         )

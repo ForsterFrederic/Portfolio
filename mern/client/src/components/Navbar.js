@@ -12,7 +12,7 @@ import { styled, alpha } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import LogoAngleterre from "../assets/pictures/angleterre.webp";
 import LogoFrance from "../assets/pictures/france.webp";
 import LogoAllemagne from "../assets/pictures/allemagne.webp";
@@ -61,36 +61,60 @@ function classNames(...classes) {
 
 export default function Navbar({ backendApiUrl, language, setLanguage }) {
     const [anchorEl, setAnchorEl] = useState(null);
-    const [navigation, setNavigation] = useState([{ name: 'Home', to: "presentation", current: false, offset: -68 },
+    const [navigation, setNavigation] = useState([
+        { name: 'Home', to: "presentation", current: false, offset: -68 },
         { name: 'About', to: "about", current: false, offset: -68 },
         { name: 'Competencies', to: "competencies", current: false, offset: -68 },
-        // { name: 'Experience', to: "experiences", current: false, offset: -68},
-        // { name: 'Projets', to: "projects", current: false, offset: -68 }
     ]);
-    const [navigationRight, setNavigationRight] = useState([{ name: 'Contact', to: 'contact', current: false, offset: -68 }]);
 
-    const getNavigation = async () => {
+    const [navigationRight, setNavigationRight] = useState([
+        { name: 'Contact', to: 'contact', current: false, offset: -68 }
+    ]);
+
+    const fetchNavigation = useCallback(async () => {
         try {
-            const response = await axios.get(`${backendApiUrl}/navigation/` + language);
+            const fetchData = async (url) => {
+                try {
+                    const response = await axios.get(url);
+                    return response;
+                } catch (error) {
+                    if (error.response && error.response.status === 404) {
+                        return { status: 404, data: [] };
+                    } else {
+                        throw error;
+                    }
+                }
+            };
 
-            setNavigation([
+            const [responseExperience, responseProjects, response] = await Promise.all([
+                fetchData(`${backendApiUrl}/experience/${language}`),
+                fetchData(`${backendApiUrl}/project/${language}`),
+                fetchData(`${backendApiUrl}/navigation/${language}`),
+            ]);
+
+            const navigationItems = [
                 { name: response.data.home, to: "presentation", current: false, offset: -68 },
                 { name: response.data.about, to: "about", current: false, offset: -68 },
                 { name: response.data.competencies, to: "competencies", current: false, offset: -68 },
-                // { name: response.data.experiences, to: "experiences", current: false, offset: -68 },
-                // { name: response.data.projects, to: "projects", current: false, offset: -68 },
-            ]);
-            setNavigationRight([
-                { name: response.data.contact, to: "contact", current: false, offset: -68 }
-            ]);
+            ];
+
+            if (responseExperience.status === 200 && responseExperience.data.length > 0) {
+                navigationItems.push({ name: response.data.experience, to: "experience", current: false, offset: -68 });
+            }
+
+            if (responseProjects.status === 200 && responseProjects.data.length > 0) {
+                navigationItems.push({ name: response.data.projects, to: "projects", current: false, offset: -68 });
+            }
+
+            setNavigation(navigationItems);
         } catch (error) {
             console.error('Error fetching navigation:', error);
         }
-    };
+    }, [backendApiUrl, language]);
 
     useEffect(() => {
-        getNavigation();
-    }, [language]);
+        fetchNavigation();
+    }, [fetchNavigation]);
 
     const getCurrentLanguageFlag = () => {
         if (language === "EN") return LogoAngleterre;
