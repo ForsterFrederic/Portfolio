@@ -7,6 +7,7 @@ import Phone from "../assets/pictures/phone.png";
 import * as emailjs from "@emailjs/browser";
 import axios from "axios";
 import Tooltip from "@mui/material/Tooltip";
+import {Bounce, toast} from "react-toastify";
 
 export default function Contact({ backendApiUrl, language }) {
     const textareaRef = useRef(null);
@@ -52,12 +53,32 @@ export default function Contact({ backendApiUrl, language }) {
         e.preventDefault();
 
         if (!name || !email || !subject || !message) {
-            alert("Fill up every fields please.")
+            toast.warning("Fill up every fields please.", {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Bounce,
+            });
             return
         }
 
         if (!email.includes("@") || !email.includes(".")) {
-            alert("Please enter a valid email address.")
+            toast.warning("Please enter a valid email address.", {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Bounce,
+            });
             return
         }
 
@@ -71,10 +92,30 @@ export default function Contact({ backendApiUrl, language }) {
                     setEmail("");
                     setSubject("");
                     setMessage("");
-                    alert('Your message has been delivered and I will get back to you as soon as possible.');
+                    toast.success('Your message has been delivered and I will get back to you as soon as possible.', {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                        transition: Bounce,
+                    });
                 },
                 (error) => {
-                    alert('Unfortunately, your message could not be delivered. Please try again later.');
+                    toast.error('Unfortunately, your message could not be delivered. Please try again later.', {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                        transition: Bounce,
+                    });
                 },
             );
     };
@@ -103,7 +144,6 @@ export default function Contact({ backendApiUrl, language }) {
             textarea.removeEventListener('input', autoResize);
         };
     }, []);
-
 
     return (
         <div name={"contact"} className={"gradient-bg-left min-height-screen flex-col py-24"}>
