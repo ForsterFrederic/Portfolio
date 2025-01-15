@@ -24,8 +24,6 @@ function MainContent({ language, setLanguage, backendApiUrl }) {
             </div>
             <div className={"bg-neutral-900 relative z-10"}>
                 <Presentation backendApiUrl={backendApiUrl} language={language} />
-            </div>
-            <div className={"bg-neutral-900 relative z-10"}>
                 <div className={"py-28 bg-neutral-900"}>
                     <About backendApiUrl={backendApiUrl} language={language} />
                 </div>

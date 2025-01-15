@@ -13,7 +13,7 @@ export function App() {
     useEffect(() => {
         const lenis = new Lenis({
             duration: 1.2,
-            easing: (t) => 1 - Math.pow(1 - t, 9),
+            easing: (t) => 1 - Math.pow(1 - t, 30),
             direction: "vertical",
             smooth: true,
         });

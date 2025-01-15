@@ -34,6 +34,15 @@ export default function Presentation({ backendApiUrl, language }) {
     const [tooltipOpenPhone, setTooltipOpenPhone] = useState(false);
     const [tooltipOpenUpwork, setTooltipOpenUpwork] = useState(false);
     const windowDimensions = useWindowDimensions()
+    const [hasAnimated, setHasAnimated] = useState(false);
+
+    useEffect(() => {
+        if (!hasAnimated) {
+            setTimeout(() => {
+                setHasAnimated(true);
+            }, 600)
+        }
+    }, [hasAnimated]);
 
     const CallWhatsApp = () => {
         const whatsappUrl = `https://wa.me/+33669012285`;
@@ -92,13 +101,13 @@ export default function Presentation({ backendApiUrl, language }) {
         initial: {
             opacity: 0,
         },
-        animate: {
+        animate: hasAnimated
+            ? {
             opacity: 1,
             transition: {
                 staggerChildren: 0.2,
                 delay: 0.3,
-            },
-        },
+            }} : {}
     };
 
     const itemVariants = {
@@ -106,7 +115,8 @@ export default function Presentation({ backendApiUrl, language }) {
             opacity: 0,
             x: -40,
         },
-        animate: {
+        animate: hasAnimated
+            ? {
             opacity: 1,
             x: 0,
             transition: {
@@ -115,7 +125,7 @@ export default function Presentation({ backendApiUrl, language }) {
                 stiffness: 50,
                 damping: 15,
             },
-        },
+        } : {}
     };
 
     const pictureVariants = {
@@ -123,16 +133,18 @@ export default function Presentation({ backendApiUrl, language }) {
             opacity: 0,
             y: 400,
         },
-        animate: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                type: "spring",
-                stiffness: 50,
-                damping: 15,
-                duration: 0.8,
-            },
-        },
+        animate: hasAnimated
+            ? {
+                opacity: 1,
+                y: 0,
+                transition: {
+                    type: 'spring',
+                    stiffness: 50,
+                    damping: 15,
+                    duration: 0.8,
+                },
+            }
+            : {}
     };
 
     const textVariants = {
@@ -140,7 +152,8 @@ export default function Presentation({ backendApiUrl, language }) {
             opacity: 0,
             x: 100,
         },
-        animate: {
+        animate: hasAnimated
+            ? {
             opacity: 1,
             x: 0,
             transition: {
@@ -149,8 +162,7 @@ export default function Presentation({ backendApiUrl, language }) {
                 stiffness: 50,
                 damping: 15,
                 duration: 0.8,
-            },
-        },
+            }} : {}
     };
 
     const text2Variants = {
@@ -158,7 +170,8 @@ export default function Presentation({ backendApiUrl, language }) {
             opacity: 0,
             x: 100,
         },
-        animate: {
+        animate: hasAnimated
+            ? {
             opacity: 1,
             x: 0,
             transition: {
@@ -167,8 +180,7 @@ export default function Presentation({ backendApiUrl, language }) {
                 stiffness: 50,
                 damping: 15,
                 duration: 0.8,
-            },
-        },
+            }} : {}
     };
 
     const boxVariants = {
@@ -176,7 +188,8 @@ export default function Presentation({ backendApiUrl, language }) {
             opacity: 0,
             x: 100,
         },
-        animate: {
+        animate: hasAnimated
+            ? {
             opacity: 1,
             x: 0,
             transition: {
@@ -185,8 +198,7 @@ export default function Presentation({ backendApiUrl, language }) {
                 stiffness: 50,
                 damping: 15,
                 duration: 0.8,
-            },
-        },
+            }} : {}
     };
 
     const availableVariants = {
@@ -194,7 +206,8 @@ export default function Presentation({ backendApiUrl, language }) {
             opacity: 0,
             y: 50,
         },
-        animate: {
+        animate: hasAnimated
+            ? {
             opacity: 1,
             y: 0,
             transition: {
@@ -203,8 +216,7 @@ export default function Presentation({ backendApiUrl, language }) {
                 stiffness: 50,
                 damping: 15,
                 duration: 0.8,
-            },
-        },
+            }} : {}
     };
 
     const itemsArray = [
@@ -270,7 +282,7 @@ export default function Presentation({ backendApiUrl, language }) {
 
     const CardDesktop = () => {
         return (
-            <div name={"presentation"} className={"shadow-black drop-shadow-lg"}>
+            <div name={"presentation"} className={"shadow-black drop-shadow-lg relative z-10"}>
                 <div className="min-h-lvh flex items-center">
                     <motion.div
                         className="absolute grid gap-8 top-36 z-2"
@@ -408,7 +420,7 @@ export default function Presentation({ backendApiUrl, language }) {
 
     const CardMobile = () => {
         return (
-            <div name={"presentation"} className={"flex-col-center rounded-b-xl pt-28 pb-4 bg-neutral-900 mb-p0 px-6 md:px-14"}>
+            <div name={"presentation"} className={"flex-col-center rounded-b-xl pt-28 pb-4 bg-neutral-900 mb-p0 px-6 md:px-14 relative z-10"}>
                 <div className={"flex-center items-end w-full"}>
                     <div className={"flex-col-center items-center"}>
                         <div className={"mr-auto"}>

@@ -47,7 +47,10 @@ router.post('/generate-screenshots', async (req, res) => {
             { name: 'large-desktop', landscape: { width: 1366, height: 1024 } },
         ];
 
-        const browser = await launch();
+        const browser = await launch({
+            headless: true,
+            args: ['--no-sandbox', '--disable-setuid-sandbox'],
+        });
         const page = await browser.newPage();
 
         if (login?.url) {
@@ -73,6 +76,8 @@ router.post('/generate-screenshots', async (req, res) => {
 
         await page.goto(url, { waitUntil: 'networkidle2' });
 
+        await new Promise(resolve => setTimeout(resolve, 6500));
+
         const outputDir = resolve(__dirname, `../../client/public/screenshots/project${projectNumber}`);
         if (existsSync(outputDir)) {
             rmdirSync(outputDir, { recursive: true });
@@ -80,16 +85,12 @@ router.post('/generate-screenshots', async (req, res) => {
 
         mkdirSync(outputDir, { recursive: true });
 
-        await page.evaluate(() => {
-            return new Promise(resolve => setTimeout(resolve, 6000));
-        });
-
         for (const device of devices) {
             try {
                 if (device.landscape) {
                     await page.setViewport(device.landscape);
                     const landscapeScreenshotPath = join(outputDir, `${device.name}-landscape.webp`);
-                    await page.screenshot({ path: landscapeScreenshotPath, type: 'webp', quality: 80 });
+                    await page.screenshot({ path: landscapeScreenshotPath, type: 'webp', quality: 60 });
                 }
             } catch (error) {
                 console.error(`Error capturing screenshots for ${device.name}:`, error);
@@ -97,7 +98,7 @@ router.post('/generate-screenshots', async (req, res) => {
             }
 
             await page.evaluate(() => {
-                return new Promise(resolve => setTimeout(resolve, 3000));
+                return new Promise(resolve => setTimeout(resolve, 6500));
             });
         }
 
@@ -108,6 +109,83 @@ router.post('/generate-screenshots', async (req, res) => {
         res.status(500).json({ message: 'An error occurred while generating screenshots', error });
     }
 });
+
+// router.post('/generate-screenshots', async (req, res) => {
+//     try {
+//         const { url, projectNumber, login } = req.body;
+//
+//         if (!url || !projectNumber) {
+//             return res.status(400).json({ message: 'URL, projectNumber, and login details are required' });
+//         }
+//
+//         const devices = [
+//             { name: 'large-desktop', landscape: { width: 1366, height: 1024 } },
+//         ];
+//
+//         const browser = await launch({
+//             headless: true,
+//             args: ['--no-sandbox', '--disable-setuid-sandbox'],
+//         });
+//         const page = await browser.newPage();
+//
+//         if (login?.url) {
+//             await page.goto(login.url, { waitUntil: 'networkidle2' });
+//
+//             await page.type(login.fields.username, login.credentials.username);
+//             await page.type(login.fields.password, login.credentials.password);
+//             const loginButton = await page.$('button');
+//             if (loginButton) {
+//                 const buttonText = await page.evaluate(button => button.textContent, loginButton);
+//
+//                 if (buttonText.includes("Se connecter")) {
+//                     await loginButton.click();
+//                 } else {
+//                     console.error('Login button not found.');
+//                 }
+//             } else {
+//                 console.error('Login button not found.');
+//             }
+//
+//             await page.waitForNavigation({ waitUntil: 'networkidle2' });
+//         }
+//
+//         await page.goto(url, { waitUntil: 'networkidle2' });
+//
+//         const outputDir = resolve(__dirname, `../../client/public/screenshots/project${projectNumber}`);
+//         if (existsSync(outputDir)) {
+//             rmdirSync(outputDir, { recursive: true });
+//         }
+//
+//         mkdirSync(outputDir, { recursive: true });
+//
+//         await page.evaluate(() => {
+//             return new Promise(resolve => setTimeout(resolve, 25000));
+//         });
+//
+//         for (const device of devices) {
+//             try {
+//                 if (device.landscape) {
+//                     await page.setViewport(device.landscape);
+//                     const landscapeScreenshotPath = join(outputDir, `${device.name}-landscape.webp`);
+//                     await page.screenshot({ path: landscapeScreenshotPath, type: 'webp', quality: 80 });
+//                 }
+//             } catch (error) {
+//                 console.error(`Error capturing screenshots for ${device.name}:`, error);
+//                 return res.status(500).json({ message: `Failed to capture screenshot for ${device.name}`, error });
+//             }
+//
+//             await page.evaluate(() => {
+//                 return new Promise(resolve => setTimeout(resolve, 25000));
+//             });
+//         }
+//
+//         await browser.close();
+//         res.status(200).json({ message: `Screenshots for project ${projectNumber} generated and optimized successfully!` });
+//     } catch (error) {
+//         console.error('Error generating screenshots:', error);
+//         res.status(500).json({ message: 'An error occurred while generating screenshots', error });
+//     }
+// });
 
 router.get('/project/:language?', ProjectController.getProject);
 router.post('/project', upload.single('picture'), ProjectController.createProject);
