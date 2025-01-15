@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /any-other-path
+Disallow: /control-dashboard/
 Sitemap: https://frederic-forster.com/sitemap.xml
