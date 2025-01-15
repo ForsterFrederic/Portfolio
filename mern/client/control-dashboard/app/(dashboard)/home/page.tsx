@@ -140,7 +140,7 @@ export default function Home() {
                                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                                 />
                                 {[...recent, ...week, ...older].map((location, index) => (
-                                    <DynamicMarker key={index} icon={locationIcon} position={[location.loc.split(",")[0], location.loc.split(",")[1]]}>
+                                    <DynamicMarker key={index} icon={locationIcon} position={[parseFloat(location.loc.split(",")[0]), parseFloat(location.loc.split(",")[1])]}>
                                         <DynamicPopup>
                                             <strong>{location.city}</strong>
                                             <br />
