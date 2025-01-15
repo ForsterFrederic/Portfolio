@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cc1a50cb-9061-46fe-a637-844192143d4c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mern/client/control-dashboard/app/(dashboard)/home/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/control-dashboard/app/(dashboard)/home/page.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="cc1a50cb-9061-46fe-a637-844192143d4c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -73,11 +70,11 @@
       <recent name="$PROJECT_DIR$/mern/client/control-dashboard/app" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/mern/client/control-dashboard/app/(dashboard)/_components" />
       <recent name="$PROJECT_DIR$/mern/client/src" />
       <recent name="$PROJECT_DIR$/mern/client/control-dashboard" />
       <recent name="$PROJECT_DIR$/mern/client/control-dashboard/app" />
       <recent name="$PROJECT_DIR$/mern" />
-      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunManager" selected="npm.build">
@@ -207,7 +204,7 @@
       <workItem from="1736325370533" duration="65938000" />
       <workItem from="1736845129345" duration="14005000" />
       <workItem from="1736877800104" duration="16000" />
-      <workItem from="1736890285946" duration="34923000" />
+      <workItem from="1736890285946" duration="35389000" />
     </task>
     <servers />
   </component>
