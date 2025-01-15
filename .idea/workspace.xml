@@ -6,7 +6,63 @@
   <component name="ChangeListManager">
     <list default="true" id="cc1a50cb-9061-46fe-a637-844192143d4c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mern/client/control-dashboard/app/(dashboard)/projects/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/control-dashboard/app/(dashboard)/projects/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/control-dashboard/app/(dashboard)/experiences/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/control-dashboard/app/(dashboard)/experiences/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/control-dashboard/app/(dashboard)/home/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/control-dashboard/app/(dashboard)/home/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/control-dashboard/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/control-dashboard/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/control-dashboard/components.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/control-dashboard/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/control-dashboard/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/control-dashboard/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/control-dashboard/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/control-dashboard/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/control-dashboard/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/public/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/MyRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/MyRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/assets/documents/CV Frédéric Forster - English.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/assets/documents/CV Frédéric Forster - English.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/assets/documents/CV Frédéric Forster.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/assets/documents/CV Frédéric Forster.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/assets/pictures/caret-up-fill-svgrepo-com.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/assets/pictures/dotsGrid.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/assets/pictures/dotsGrid2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/assets/pictures/down-arrow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/assets/pictures/email.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/assets/pictures/full-stack.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/assets/pictures/linkedin.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/assets/pictures/phone.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/assets/pictures/picture-me-old.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/assets/pictures/picture-me.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/assets/pictures/thomschrama.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/assets/pictures/upwork.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/assets/pictures/whatsapp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/assets/pictures/wollenschneider.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/components/About.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/components/About.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/components/Competencies.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/components/Competencies.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/components/Contact.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/components/Contact.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/components/Experience.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/components/Experience.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/components/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/components/Footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/components/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/components/Navbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/components/Presentation.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/components/Presentation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/components/Projects.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/components/Projects.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/components/ScreenSize.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/components/ScreenSize.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/components/Transition.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/components/Transition.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/css/constants.css" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/css/constants.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/pages/Development.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/pages/Development.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/pages/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/src/pages/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/src/pages/Private.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/client/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/client/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/server/.env" beforeDir="false" afterPath="$PROJECT_DIR$/mern/server/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/server/controllers/counter.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/server/controllers/counter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/server/models/Competencies.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/server/models/Competencies.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/server/models/Contact.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/server/models/Contact.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/server/models/Counter.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/server/models/Counter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/server/models/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/server/models/Footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/server/models/Presentation.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/server/models/Presentation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/mern/server/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/mern/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/server/routes/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/server/routes/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mern/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/mern/server/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,9 +73,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="JavaScript File" />
         <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -48,9 +104,9 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;22.2.0&quot;,
-    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;22.2.0&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/fredericforster/Fichiers mac/Projets/Portfolio/mern/client/control-dashboard/app/(dashboard)&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;23.3.0&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;22.10.2&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/fredericforster/Mac/Projets/Portfolio/mern/client&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
@@ -60,24 +116,24 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/fredericforster/Fichiers mac/Projets/Portfolio/mern/client/control-dashboard/node_modules/typescript/lib&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/fredericforster/Mac/Projets/Portfolio/mern/client/control-dashboard/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/mern/client" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/mern/client/control-dashboard/app/(dashboard)" />
+      <recent name="$PROJECT_DIR$/mern/server/uploads" />
       <recent name="$PROJECT_DIR$/mern/client/control-dashboard/app" />
-      <recent name="$PROJECT_DIR$/mern/client/control-dashboard/app/dashboard" />
-      <recent name="$PROJECT_DIR$/mern/server/controllers" />
-      <recent name="$PROJECT_DIR$/mern/server/models" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/mern/client/src" />
+      <recent name="$PROJECT_DIR$/mern/client/control-dashboard" />
       <recent name="$PROJECT_DIR$/mern/client/control-dashboard/app" />
-      <recent name="$PROJECT_DIR$/mern/client/control-dashboard/app/(dashboard)/home" />
-      <recent name="$PROJECT_DIR$/mern/client/control-dashboard/app/(dashboard)" />
-      <recent name="$PROJECT_DIR$/mern/client/control-dashboard/app/dashboard" />
-      <recent name="$PROJECT_DIR$/mern/client/control-dashboard/src/app" />
+      <recent name="$PROJECT_DIR$/mern" />
+      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunManager" selected="npm.build">
@@ -184,7 +240,30 @@
       <workItem from="1728394885224" duration="3701000" />
       <workItem from="1728398644073" duration="2807000" />
       <workItem from="1728414495974" duration="60287000" />
-      <workItem from="1728651406372" duration="23222000" />
+      <workItem from="1728651406372" duration="35818000" />
+      <workItem from="1728806809859" duration="37959000" />
+      <workItem from="1729087960227" duration="76000" />
+      <workItem from="1730091006832" duration="1754000" />
+      <workItem from="1730373045785" duration="9113000" />
+      <workItem from="1730654417260" duration="596000" />
+      <workItem from="1730656637603" duration="3850000" />
+      <workItem from="1730925580384" duration="631000" />
+      <workItem from="1730929788450" duration="5806000" />
+      <workItem from="1731343997245" duration="1797000" />
+      <workItem from="1731762901232" duration="7859000" />
+      <workItem from="1732029329363" duration="603000" />
+      <workItem from="1732127667520" duration="1816000" />
+      <workItem from="1732439211592" duration="1204000" />
+      <workItem from="1732634477400" duration="322000" />
+      <workItem from="1732785460834" duration="11530000" />
+      <workItem from="1734686289048" duration="11602000" />
+      <workItem from="1734721530334" duration="47257000" />
+      <workItem from="1734987463298" duration="1950000" />
+      <workItem from="1735019162778" duration="85005000" />
+      <workItem from="1736325370533" duration="65938000" />
+      <workItem from="1736845129345" duration="14005000" />
+      <workItem from="1736877800104" duration="16000" />
+      <workItem from="1736890285946" duration="33742000" />
     </task>
     <servers />
   </component>

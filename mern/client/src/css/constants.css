@@ -54,3 +54,733 @@
 .modal {
     z-index: 1001;
 }
+
+.stickyCards {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 10px;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltip-text {
+    visibility: hidden;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    left: 50%;
+    bottom: 20%;
+    margin-left: 30px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+@keyframes infinite-scale {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.infinite-scale {
+    animation: infinite-scale 2s infinite ease-in-out;
+}
+
+.bg-svg {
+    position: relative;
+    background-image: url('./../assets/svg/lines.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.bg-svg2 {
+    position: relative;
+    background-image: url('./../assets/svg/form1.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.glass {
+    background: rgba(64, 64, 64, 1);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(2.4px);
+    -webkit-backdrop-filter: blur(2.4px);
+    border: 1px solid rgba(64, 64, 64, 0.19);
+}
+
+/*.containerZoomParallax{*/
+/*    height: 250vh;*/
+/*    position: relative;*/
+/*    !*.sticky{*!*/
+/*    !*    position: sticky;*!*/
+/*    !*    overflow: hidden;*!*/
+/*    !*    top: 0;*!*/
+/*    !*    height: 100vh;*!*/
+
+/*    !*    .el{*!*/
+/*    !*        width: 100%;*!*/
+/*    !*        height: 100%;*!*/
+/*    !*        top: 0;*!*/
+/*    !*        position: absolute;*!*/
+/*    !*        display: flex;*!*/
+/*    !*        align-items: center;*!*/
+/*    !*        justify-content: center;*!*/
+
+/*    !*        !*.imageContainer {*!*!*/
+/*    !*        !*    position: relative;*!*!*/
+/*    !*        !*    width: 25vw; !* Set size relative to viewport width *!*!*!*/
+/*    !*        !*    height: calc(25vw * 9 / 16); !* Maintain 16:9 ratio *!*!*!*/
+/*    !*        !*    overflow: hidden;*!*!*/
+/*    !*        !*    border-radius: 5px;*!*!*/
+/*    !*        !*}*!*!*/
+
+/*    !*        !*!*.imageContainer iframe {*!*!*!*/
+/*    !*        !*!*    width: 1920px; !* Internal virtual width *!*!*!*!*/
+/*    !*        !*!*    height: 1080px; !* Internal virtual height *!*!*!*!*/
+/*    !*        !*!*    transform: scale(0.275);*!*!*!*/
+/*    !*        !*!*    transform-origin: top left; !* Scale from top-left corner *!*!*!*!*/
+/*    !*        !*!*    border-radius: 5px;*!*!*!*/
+/*    !*        !*!*    border: none;*!*!*!*/
+/*    !*        !*!*}*!*!*!*/
+
+/*    !*        !*.imageContainer iframe {*!*!*/
+/*    !*        !*    width: 1920px; !* Simulate desktop screen width *!*!*!*/
+/*    !*        !*    height: 1080px; !* Simulate desktop screen height *!*!*!*/
+/*    !*        !*    transform-origin: top left; !* Keep scaling from top-left corner *!*!*!*/
+/*    !*        !*    border-radius: 5px;*!*!*/
+/*    !*        !*    border: none;*!*!*/
+/*    !*        !*}*!*!*/
+
+/*    !*        !*.imageContainer {*!*!*/
+/*    !*        !*    position: relative;*!*!*/
+/*    !*        !*    width: 25vw; !* Responsive width: 25% of viewport width *!*!*!*/
+/*    !*        !*    height: calc(25vw * 9 / 16); !* Maintain 16:9 aspect ratio *!*!*!*/
+/*    !*        !*    overflow: hidden;*!*!*/
+/*    !*        !*    border-radius: 5px;*!*!*/
+/*    !*        !*    aspect-ratio: 16/9;*!*!*/
+/*    !*        !*}*!*!*/
+
+/*    !*        .imageContainer {*!*/
+/*    !*            position: relative;*!*/
+/*    !*            width: 25vw;*!*/
+/*    !*            height: 25vw;*!*/
+/*    !*            object-position: top;*!*/
+/*    !*            border-radius: 5px;*!*/
+/*    !*        }*!*/
+
+/*    !*        !*.imageContainer iframe {*!*!*/
+/*    !*        !*    position: absolute;*!*!*/
+/*    !*        !*    top: 3.6vw;*!*!*/
+/*    !*        !*    left: 0;*!*!*/
+/*    !*        !*    width: 100vw;*!*!*/
+/*    !*        !*    height: 100vh;*!*!*/
+/*    !*        !*    transform: scale(calc(25 / 100));*!*!*/
+/*    !*        !*    transform-origin: top left;*!*!*/
+/*    !*        !*    pointer-events: none;*!*!*/
+/*    !*        !*    border: none;*!*!*/
+/*    !*        !*    border-radius: 5px;*!*!*/
+/*    !*        !*}*!*!*/
+
+/*    !*        &:nth-of-type(2){*!*/
+/*    !*            .imageContainer{*!*/
+/*    !*                top: -28vh;*!*/
+/*    !*                left: 12vw;*!*/
+/*    !*                width: 25vw;*!*/
+/*    !*                height: 25vw;*!*/
+/*    !*                object-position: top;*!*/
+/*    !*                border-radius: 5px;*!*/
+/*    !*            }*!*/
+/*    !*        }*!*/
+/*    !*        &:nth-of-type(3){*!*/
+/*    !*            .imageContainer{*!*/
+/*    !*                top: -10vh;*!*/
+/*    !*                left: -26.8vw;*!*/
+/*    !*                width: 25vw;*!*/
+/*    !*                height: 25vw;*!*/
+/*    !*                object-position: top;*!*/
+/*    !*                border-radius: 5px;*!*/
+/*    !*            }*!*/
+/*    !*        }*!*/
+/*    !*        &:nth-of-type(4){*!*/
+/*    !*            .imageContainer{*!*/
+/*    !*                top: 4.5vh;*!*/
+/*    !*                left: 27vw;*!*/
+/*    !*                width: 25vw;*!*/
+/*    !*                height: 25vw;*!*/
+/*    !*                object-position: top;*!*/
+/*    !*                border-radius: 5px;*!*/
+/*    !*            }*!*/
+/*    !*        }*!*/
+/*    !*        &:nth-of-type(5){*!*/
+/*    !*            .imageContainer{*!*/
+/*    !*                top: 33vh;*!*/
+/*    !*                left: 8vw;*!*/
+/*    !*                width: 25vw;*!*/
+/*    !*                height: 25vw;*!*/
+/*    !*                object-position: top;*!*/
+/*    !*                border-radius: 5px;*!*/
+/*    !*            }*!*/
+/*    !*        }*!*/
+/*    !*        &:nth-of-type(6){*!*/
+/*    !*            .imageContainer{*!*/
+/*    !*                top: 28.5vh;*!*/
+/*    !*                left: -19vw;*!*/
+/*    !*                width: 25vw;*!*/
+/*    !*                height: 25vw;*!*/
+/*    !*                object-position: top;*!*/
+/*    !*                border-radius: 5px;*!*/
+/*    !*            }*!*/
+/*    !*        }*!*/
+/*    !*    }*!*/
+/*    !*}*!*/
+
+
+/*    .sticky {*/
+/*        position: sticky;*/
+/*        overflow: hidden;*/
+/*        top: 0;*/
+/*        height: 100vh;*/
+/*    }*/
+
+/*    .el {*/
+/*        width: 100%;*/
+/*        height: 100%;*/
+/*        top: 0;*/
+/*        position: absolute;*/
+/*        display: flex;*/
+/*        align-items: center;*/
+/*        justify-content: center;*/
+
+
+/*        .imageContainer {*/
+/*            position: relative;*/
+/*            width: 25vw;*/
+/*            height: 25vw;*/
+/*            object-position: top;*/
+/*            border-radius: 5px;*/
+/*        }*/
+
+/*        &:nth-of-type(1) {*/
+/*            .imageContainer {*/
+/*                top: 0;*/
+/*                left: 0;*/
+/*            }*/
+/*        }*/
+/*        &:nth-of-type(2) {*/
+/*            .imageContainer {*/
+/*                top: -28vh;*/
+/*                left: 12vw;*/
+/*            }*/
+/*        }*/
+/*        &:nth-of-type(3) {*/
+/*            .imageContainer {*/
+/*                top: -10vh;*/
+/*                left: -26.8vw;*/
+/*            }*/
+/*        }*/
+/*        &:nth-of-type(4) {*/
+/*            .imageContainer {*/
+/*                top: 4.5vh;*/
+/*                left: 27vw;*/
+/*            }*/
+/*        }*/
+/*        &:nth-of-type(5) {*/
+/*            .imageContainer {*/
+/*                top: 33vh;*/
+/*                left: 8vw;*/
+/*            }*/
+/*        }*/
+/*        &:nth-of-type(6) {*/
+/*            .imageContainer {*/
+/*                top: 28.5vh;*/
+/*                left: -15vw;*/
+/*            }*/
+/*        }*/
+/*    }*/
+
+/*    !* Mobile 1 (max-width: 480px) *!*/
+/*    @media (max-width: 480px) {*/
+/*        .el .imageContainer {*/
+/*            width: 50vw;*/
+/*            height: 50vw;*/
+/*        }*/
+
+/*        &:nth-of-type(1) {*/
+/*            .imageContainer {*/
+/*                top: 0;*/
+/*                left: 0;*/
+/*            }*/
+/*        }*/
+/*        &:nth-of-type(2) {*/
+/*            .imageContainer {*/
+/*                top: -15vh;*/
+/*                left: 5vw;*/
+/*            }*/
+/*        }*/
+/*        &:nth-of-type(3) {*/
+/*            .imageContainer {*/
+/*                top: -5vh;*/
+/*                left: -20vw;*/
+/*            }*/
+/*        }*/
+/*        &:nth-of-type(4) {*/
+/*            .imageContainer {*/
+/*                top: 12vh;*/
+/*                left: 20vw;*/
+/*            }*/
+/*        }*/
+/*        &:nth-of-type(5) {*/
+/*            .imageContainer {*/
+/*                top: 25vh;*/
+/*                left: 3vw;*/
+/*            }*/
+/*        }*/
+/*        &:nth-of-type(6) {*/
+/*            .imageContainer {*/
+/*                top: 18vh;*/
+/*                left: -12vw;*/
+/*            }*/
+/*        }*/
+/*    }*/
+
+/*    !* Mobile 2 (max-width: 767px) *!*/
+/*    @media (max-width: 767px) {*/
+/*        .el .imageContainer {*/
+/*            width: 45vw;*/
+/*            height: 45vw;*/
+/*        }*/
+
+/*        &:nth-of-type(1) {*/
+/*            .imageContainer {*/
+/*                top: 0;*/
+/*                left: 0;*/
+/*            }*/
+/*        }*/
+/*        &:nth-of-type(2) {*/
+/*            .imageContainer {*/
+/*                top: -18vh;*/
+/*                left: 7vw;*/
+/*            }*/
+/*        }*/
+/*        &:nth-of-type(3) {*/
+/*            .imageContainer {*/
+/*                top: -8vh;*/
+/*                left: -22vw;*/
+/*            }*/
+/*        }*/
+/*        &:nth-of-type(4) {*/
+/*            .imageContainer {*/
+/*                top: 15vh;*/
+/*                left: 22vw;*/
+/*            }*/
+/*        }*/
+/*        &:nth-of-type(5) {*/
+/*            .imageContainer {*/
+/*                top: 27vh;*/
+/*                left: 4vw;*/
+/*            }*/
+/*        }*/
+/*        &:nth-of-type(6) {*/
+/*            .imageContainer {*/
+/*                top: 20vh;*/
+/*                left: -13vw;*/
+/*            }*/
+/*        }*/
+/*    }*/
+
+/*    !* Tablet 1 (768px - 899px) *!*/
+/*    @media (min-width: 768px) and (max-width: 899px) {*/
+/*        .el .imageContainer {*/
+/*            width: 38vw;*/
+/*            height: 38vw;*/
+/*        }*/
+
+/*        &:nth-of-type(1) {*/
+/*            .imageContainer {*/
+/*                top: 0;*/
+/*                left: 0;*/
+/*            }*/
+/*        }*/
+/*        &:nth-of-type(2) {*/
+/*            .imageContainer {*/
+/*                top: -17vh;*/
+/*                left: 6vw;*/
+/*            }*/
+/*        }*/
+/*        &:nth-of-type(3) {*/
+/*            .imageContainer {*/
+/*                top: -7vh;*/
+/*                left: -21vw;*/
+/*            }*/
+/*        }*/
+/*        &:nth-of-type(4) {*/
+/*            .imageContainer {*/
+/*                top: 13vh;*/
+/*                left: 21vw;*/
+/*            }*/
+/*        }*/
+/*        &:nth-of-type(5) {*/
+/*            .imageContainer {*/
+/*                top: 24vh;*/
+/*                left: 3vw;*/
+/*            }*/
+/*        }*/
+/*        &:nth-of-type(6) {*/
+/*            .imageContainer {*/
+/*                top: 16vh;*/
+/*                left: -11vw;*/
+/*            }*/
+/*        }*/
+/*    }*/
+
+/*    !* Tablet 2 (900px - 1024px) *!*/
+/*    @media (min-width: 900px) and (max-width: 1024px) {*/
+/*        .el .imageContainer {*/
+/*            width: 42vw;*/
+/*            height: 42vw;*/
+/*        }*/
+
+/*        &:nth-of-type(1) {*/
+/*            .imageContainer {*/
+/*                top: 0;*/
+/*                left: 0;*/
+/*            }*/
+/*        }*/
+/*        &:nth-of-type(2) {*/
+/*            .imageContainer {*/
+/*                top: -20vh;*/
+/*                left: 8vw;*/
+/*            }*/
+/*        }*/
+/*        &:nth-of-type(3) {*/
+/*            .imageContainer {*/
+/*                top: -10vh;*/
+/*                left: -23vw;*/
+/*            }*/
+/*        }*/
+/*        &:nth-of-type(4) {*/
+/*            .imageContainer {*/
+/*                top: 14vh;*/
+/*                left: 24vw;*/
+/*            }*/
+/*        }*/
+/*        &:nth-of-type(5) {*/
+/*            .imageContainer {*/
+/*                top: 29vh;*/
+/*                left: 5vw;*/
+/*            }*/
+/*        }*/
+/*        &:nth-of-type(6) {*/
+/*            .imageContainer {*/
+/*                top: 22vh;*/
+/*                left: -14vw;*/
+/*            }*/
+/*        }*/
+/*    }*/
+/*}*/
+
+
+
+.containerZoomParallax {
+    height: 250vh;
+    position: relative;
+
+    .sticky {
+        position: sticky;
+        overflow: hidden;
+        top: 0;
+        height: 100vh;
+
+        .el {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .imageContainer {
+                position: relative;
+                width: 25vw;
+                height: 25vw;
+                object-position: top;
+                border-radius: 5px;
+                top: 0;
+                left: 0;
+            }
+
+            /*&:nth-of-type(2) {*/
+            /*    .imageContainer {*/
+            /*        top: -28vh;*/
+            /*        left: 12vw;*/
+            /*        width: 25vw;*/
+            /*        height: 25vw;*/
+            /*    }*/
+            /*}*/
+
+            /*&:nth-of-type(3) {*/
+            /*    .imageContainer {*/
+            /*        top: -10vh;*/
+            /*        left: -26.8vw;*/
+            /*        width: 25vw;*/
+            /*        height: 25vw;*/
+            /*    }*/
+            /*}*/
+
+            /*&:nth-of-type(4) {*/
+            /*    .imageContainer {*/
+            /*        top: 4.5vh;*/
+            /*        left: 27vw;*/
+            /*        width: 25vw;*/
+            /*        height: 25vw;*/
+            /*    }*/
+            /*}*/
+
+            /*&:nth-of-type(5) {*/
+            /*    .imageContainer {*/
+            /*        top: 33vh;*/
+            /*        left: 8vw;*/
+            /*        width: 25vw;*/
+            /*        height: 25vw;*/
+            /*    }*/
+            /*}*/
+
+            /*&:nth-of-type(6) {*/
+            /*    .imageContainer {*/
+            /*        top: 28.5vh;*/
+            /*        left: -19vw;*/
+            /*        width: 25vw;*/
+            /*        height: 25vw;*/
+            /*    }*/
+            /*}*/
+        }
+    }
+
+    /*!* Mobile 1 (max-width: 480px) *!*/
+    /*@media (max-width: 480px) {*/
+    /*    .el .imageContainer {*/
+    /*        width: 50vw;*/
+    /*        height: 50vw;*/
+    /*    }*/
+
+    /*    &:nth-of-type(1) {*/
+    /*        .imageContainer {*/
+    /*            top: 0;*/
+    /*            left: 0;*/
+    /*        }*/
+    /*    }*/
+    /*    &:nth-of-type(2) {*/
+    /*        .imageContainer {*/
+    /*            top: -15vh;*/
+    /*            left: 5vw;*/
+    /*        }*/
+    /*    }*/
+    /*    &:nth-of-type(3) {*/
+    /*        .imageContainer {*/
+    /*            top: -5vh;*/
+    /*            left: -20vw;*/
+    /*        }*/
+    /*    }*/
+    /*    &:nth-of-type(4) {*/
+    /*        .imageContainer {*/
+    /*            top: 12vh;*/
+    /*            left: 20vw;*/
+    /*        }*/
+    /*    }*/
+    /*    &:nth-of-type(5) {*/
+    /*        .imageContainer {*/
+    /*            top: 25vh;*/
+    /*            left: 3vw;*/
+    /*        }*/
+    /*    }*/
+    /*    &:nth-of-type(6) {*/
+    /*        .imageContainer {*/
+    /*            top: 18vh;*/
+    /*            left: -12vw;*/
+    /*        }*/
+    /*    }*/
+    /*}*/
+
+    /*!* Mobile 2 (max-width: 767px) *!*/
+    /*@media (max-width: 767px) {*/
+    /*    .el .imageContainer {*/
+    /*        width: 45vw;*/
+    /*        height: 45vw;*/
+    /*    }*/
+
+    /*    &:nth-of-type(1) {*/
+    /*        .imageContainer {*/
+    /*            top: 0;*/
+    /*            left: 0;*/
+    /*        }*/
+    /*    }*/
+    /*    &:nth-of-type(2) {*/
+    /*        .imageContainer {*/
+    /*            top: -18vh;*/
+    /*            left: 7vw;*/
+    /*        }*/
+    /*    }*/
+    /*    &:nth-of-type(3) {*/
+    /*        .imageContainer {*/
+    /*            top: -8vh;*/
+    /*            left: -22vw;*/
+    /*        }*/
+    /*    }*/
+    /*    &:nth-of-type(4) {*/
+    /*        .imageContainer {*/
+    /*            top: 15vh;*/
+    /*            left: 22vw;*/
+    /*        }*/
+    /*    }*/
+    /*    &:nth-of-type(5) {*/
+    /*        .imageContainer {*/
+    /*            top: 27vh;*/
+    /*            left: 4vw;*/
+    /*        }*/
+    /*    }*/
+    /*    &:nth-of-type(6) {*/
+    /*        .imageContainer {*/
+    /*            top: 20vh;*/
+    /*            left: -13vw;*/
+    /*        }*/
+    /*    }*/
+    /*}*/
+
+    /*!* Tablet 1 (768px - 899px) *!*/
+    /*@media (min-width: 768px) and (max-width: 899px) {*/
+    /*    .el .imageContainer {*/
+    /*        width: 38vw;*/
+    /*        height: 38vw;*/
+    /*    }*/
+
+    /*    &:nth-of-type(1) {*/
+    /*        .imageContainer {*/
+    /*            top: 0;*/
+    /*            left: 0;*/
+    /*        }*/
+    /*    }*/
+    /*    &:nth-of-type(2) {*/
+    /*        .imageContainer {*/
+    /*            top: -17vh;*/
+    /*            left: 6vw;*/
+    /*        }*/
+    /*    }*/
+    /*    &:nth-of-type(3) {*/
+    /*        .imageContainer {*/
+    /*            top: -7vh;*/
+    /*            left: -21vw;*/
+    /*        }*/
+    /*    }*/
+    /*    &:nth-of-type(4) {*/
+    /*        .imageContainer {*/
+    /*            top: 13vh;*/
+    /*            left: 21vw;*/
+    /*        }*/
+    /*    }*/
+    /*    &:nth-of-type(5) {*/
+    /*        .imageContainer {*/
+    /*            top: 24vh;*/
+    /*            left: 3vw;*/
+    /*        }*/
+    /*    }*/
+    /*    &:nth-of-type(6) {*/
+    /*        .imageContainer {*/
+    /*            top: 16vh;*/
+    /*            left: -11vw;*/
+    /*        }*/
+    /*    }*/
+    /*}*/
+
+    /*!* Tablet 2 (900px - 1024px) *!*/
+    /*@media (min-width: 900px) and (max-width: 1024px) {*/
+    /*    .el .imageContainer {*/
+    /*        width: 42vw;*/
+    /*        height: 42vw;*/
+    /*    }*/
+
+    /*    &:nth-of-type(1) {*/
+    /*        .imageContainer {*/
+    /*            top: 0;*/
+    /*            left: 0;*/
+    /*        }*/
+    /*    }*/
+    /*    &:nth-of-type(2) {*/
+    /*        .imageContainer {*/
+    /*            top: -20vh;*/
+    /*            left: 8vw;*/
+    /*        }*/
+    /*    }*/
+    /*    &:nth-of-type(3) {*/
+    /*        .imageContainer {*/
+    /*            top: -10vh;*/
+    /*            left: -23vw;*/
+    /*        }*/
+    /*    }*/
+    /*    &:nth-of-type(4) {*/
+    /*        .imageContainer {*/
+    /*            top: 14vh;*/
+    /*            left: 24vw;*/
+    /*        }*/
+    /*    }*/
+    /*    &:nth-of-type(5) {*/
+    /*        .imageContainer {*/
+    /*            top: 29vh;*/
+    /*            left: 5vw;*/
+    /*        }*/
+    /*    }*/
+    /*    &:nth-of-type(6) {*/
+    /*        .imageContainer {*/
+    /*            top: 22vh;*/
+    /*            left: -14vw;*/
+    /*        }*/
+    /*    }*/
+    /*}*/
+}
+
+.imageContainer {
+    position: relative;
+}
+
+.iPadMockup {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.mockupImage {
+    display: block;
+    width: 100%;
+    /*scale: 1.18;*/
+    /*transform: rotate(180deg);*/
+}
+
+.mockupContent {
+    position: absolute;
+    top: 4.8%;
+    left: 4%;
+    width: 92%;
+    height: 90%;
+    border-radius: 10px;
+}

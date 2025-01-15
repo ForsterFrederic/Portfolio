@@ -1,21 +1,43 @@
-"use client"
-import {Button} from '@/app/components/ui/button'
-import {Card, CardContent, CardDescription, CardHeader, CardTitle} from '@/app/components/ui/card'
-import {ArrowUpRight} from 'lucide-react'
-import Link from 'next/link'
+"use client";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { differenceInHours, formatDistanceToNow, parseISO, isValid } from "date-fns";
+import dynamic from "next/dynamic";
+import L from "leaflet";
 import {BarChartComponent} from '../_components/bar-chart'
 import {BarChartBetter} from '../_components/bar-chart-better'
-import {useEffect, useState} from "react";
-import axios from "axios";
+import {Button} from '@/app/components/ui/button'
+import {Card, CardContent, CardDescription, CardHeader, CardTitle} from '@/app/components/ui/card'
+import Link from 'next/link'
+import {ArrowUpRight} from 'lucide-react'
+
+const DynamicMapContainer = dynamic(() => import("react-leaflet").then((mod) => mod.MapContainer), { ssr: false });
+const DynamicTileLayer = dynamic(() => import("react-leaflet").then((mod) => mod.TileLayer), { ssr: false });
+const DynamicMarker = dynamic(() => import("react-leaflet").then((mod) => mod.Marker), { ssr: false });
+const DynamicPopup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), { ssr: false });
+
+const BACKEND_API_URL = process.env.NEXT_PUBLIC_BACKEND_API_URL || "https://frederic-forster.com/api";
+
+interface Location {
+    loc: string;
+    city: string;
+    timestamp: string;
+}
+
+interface ApiResponse {
+    localisation: Location[];
+}
 
 export default function Home() {
+    const [locations, setLocations] = useState<Location[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
     const BACKEND_API_URL = process.env.NEXT_PUBLIC_BACKEND_API_URL || "https://frederic-forster.com/api";
     const [counter, setCounter] = useState({ total: 0, count: 0, createdAt: '', lastResetAt: ''});
-    const [loading, setLoading] = useState(true);
 
     const fetchCounter = async () => {
         try {
             const response = await axios.get(`${BACKEND_API_URL}/counter/`);
+            setLocations(response.data.localisation || []);
             setCounter(response.data);
         } catch (error) {
             console.error('Error fetching counter:', error);
@@ -66,29 +88,100 @@ export default function Home() {
         return `${formattedDate}, ${formattedTime}`;
     };
 
+    const safeParseISO = (dateString: string | undefined): Date | null => {
+        if (!dateString) return null;
+        const parsedDate = parseISO(dateString);
+        return isValid(parsedDate) ? parsedDate : null;
+    };
+
+    const categorizeLocations = () => {
+        const now = new Date();
+        return {
+            recent: locations.filter((loc) => {
+                const date = safeParseISO(loc.timestamp);
+                return date && differenceInHours(now, date) <= 24;
+            }),
+            week: locations.filter((loc) => {
+                const date = safeParseISO(loc.timestamp);
+                return date && differenceInHours(now, date) > 24 && differenceInHours(now, date) <= 168;
+            }),
+            older: locations.filter((loc) => {
+                const date = safeParseISO(loc.timestamp);
+                return date && differenceInHours(now, date) > 168;
+            }),
+        };
+    };
+
+    const { recent, week, older } = categorizeLocations();
+
+    if (loading) {
+        return <div className="flex items-center justify-center h-screen">Loading...</div>;
+    }
+
+    const locationIcon = new L.Icon({
+        iconUrl: "/location-pin.png",
+        iconSize: [32, 32],
+        iconAnchor: [16, 32],
+        popupAnchor: [0, -32],
+    });
 
     return (
-        <div className='flex flex-col justify-center items-start flex-wrap px-4 pt-4 gap-4'>
-            <Card className='w-[20rem]'>
-                <CardHeader className="flex flex-row items-center justify-center space-y-0 pb-4">
-                    <CardTitle className="text-md font-medium text-center">
-                        Portfolio Visits Counter
-                    <p className="text-xs text-muted-foreground pt-2">Created at: {formatDate(counter.createdAt)}</p>
-                    </CardTitle>
+        <div className="flex flex-col items-start px-4 pt-4 gap-4">
+            <Card className="w-full">
+                <CardHeader>
+                    <CardTitle>Visitor Locations</CardTitle>
                 </CardHeader>
-                <CardContent className={"text-center"}>
-                    <div className="text-2xl font-bold">{counter.total}</div>
-                    <p className="text-xs text-muted-foreground">visits in total</p>
-                    <div className="text-2xl font-bold pt-6">{counter.count}</div>
-                    <p className="text-xs text-muted-foreground pb-1">
-                        visits since last reset
-                    </p>
-                    <button onClick={handleReset} className="mt-2 px-4 py-2 bg-blue-500 text-white rounded">
-                        Reset
-                    </button>
-                    <p className="text-xs text-muted-foreground pt-3">
-                        Last reset: {counter.lastResetAt ? formatDate(counter.lastResetAt) : 'Never'}
-                    </p>
+                <CardContent>
+                    <div className="flex flex-col md:flex-row gap-4">
+                        <div className="flex-1 h-[700px] rounded-lg overflow-hidden">
+                            <DynamicMapContainer center={[43.8566, 20.3522]} zoom={2} className="h-full w-full">
+                                <DynamicTileLayer
+                                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                                />
+                                {[...recent, ...week, ...older].map((location, index) => (
+                                    <DynamicMarker key={index} icon={locationIcon} position={[location.loc.split(",")[0], location.loc.split(",")[1]]}>
+                                        <DynamicPopup>
+                                            <strong>{location.city}</strong>
+                                            <br />
+                                            {formatDistanceToNow(safeParseISO(location.timestamp)!, { addSuffix: true })}
+                                        </DynamicPopup>
+                                    </DynamicMarker>
+                                ))}
+                            </DynamicMapContainer>
+                        </div>
+
+                        <div className="min-w-96 max-h-[700px] overflow-y-auto">
+                            <CardHeader className="flex flex-row items-center justify-center space-y-0 pb-4">
+                                <CardTitle className="text-md font-medium text-center">
+                                    Portfolio Visits Counter
+                                    <p className="text-xs text-muted-foreground pt-2">Created at: {formatDate(counter.createdAt)}</p>
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent className={"text-center"}>
+                                <div className="text-2xl font-bold">{counter.total}</div>
+                                <p className="text-xs text-muted-foreground">visits in total</p>
+                                <div className="text-2xl font-bold pt-6">{counter.count}</div>
+                                <p className="text-xs text-muted-foreground pb-1">
+                                    visits since last reset
+                                </p>
+                                <button onClick={handleReset} className="mt-2 px-4 py-2 bg-blue-500 text-white rounded">
+                                    Reset
+                                </button>
+                                <p className="text-xs text-muted-foreground pt-3">
+                                    Last reset: {counter.lastResetAt ? formatDate(counter.lastResetAt) : 'Never'}
+                                </p>
+                            </CardContent>
+                            <h2 className="text-lg font-bold">Visitors</h2>
+                            {[
+                                { title: "Last 24 Hours", data: recent, color: "text-blue-400" },
+                                { title: "Last Week", data: week, color: "text-yellow-600" },
+                                { title: "Older", data: older, color: "text-gray-600" },
+                            ].map(({ title, data, color }, idx) => (
+                                <VisitorSection key={idx} title={title} data={data} color={color} />
+                            ))}
+                        </div>
+                    </div>
                 </CardContent>
             </Card>
             <Card className='w-[20rem]'>
@@ -156,5 +249,25 @@ export default function Home() {
                 </Card>
             </div>
         </div>
-    )
+    );
 }
+
+interface VisitorSectionProps {
+    title: string;
+    data: Location[];
+    color: string;
+}
+
+const VisitorSection: React.FC<VisitorSectionProps> = ({ title, data, color }) => (
+    <section>
+        <h3 className="text-md font-semibold">{title}</h3>
+        <ul className="divide-y divide-gray-200">
+            {data.map((location, index) => (
+                <li key={index} className={`py-2 ${color}`}>
+                    <div>{location.city}</div>
+                    <div>{formatDistanceToNow(parseISO(location.timestamp), { addSuffix: true })}</div>
+                </li>
+            ))}
+        </ul>
+    </section>
+);

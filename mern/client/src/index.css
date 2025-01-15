@@ -5,8 +5,8 @@
 /* ------ COLOR PALETTE ------ */
 @layer base {
     :root {
-        --my-blue: #2563eb; /* blue-600 */
-        --my-blue-hover: #1d4ed8; /* blue-700 */
+        --my-blue: #e28413; /* blue-600 */
+        --my-blue-hover: #f48a0a; /* blue-700 */
         --my-orange: #f59e0b; /* yellow-500 */
         --my-orange-hover: #d97706; /* yellow-600 */
         --my-pink: #ec407a; /* pink-500 */
@@ -20,7 +20,7 @@
         --my-grayl2: #d1d5db; /* zinc-300 */
         --my-grayl3: #b8bdc4; /* zinc-400 */
         --my-grayd1: #ced4da; /* neutral-300 d4d4d8 */
-        --my-grayd2: #adb5bd; /* stone-300 9ca3af*/
+        --my-grayd2: #7F7F7F; /* stone-300 9ca3af*/
         --my-grayd3: #6c757d; /* stone-400 787c84*/
         --my-black1: #262626; /* neutral-800 */
         --my-black2: #171717; /* neutral-900 */
@@ -52,14 +52,14 @@
         color: var(--primary);
     }
     .tprimary:hover {
-        color: var(--primary-hover);
+        color: var(--primary);
     }
 
     .tblue {
         color: var(--my-blue);
     }
     .tblue:hover {
-        color: var(--my-blue-hover);
+        color: var(--my-blue);
     }
 
     .torange {
@@ -402,7 +402,7 @@
     }
 
     .btn {
-        @apply transition py-3 px-5 rounded uppercase font-bold text-xs shadow-gray-400 shadow focus:ring focus:ring-offset-2;
+        @apply transition py-3 px-5 rounded uppercase font-bold text-xs shadow focus:ring focus:ring-offset-2;
         background-color: var(--primary);
         color: var(--my-white1);
     }
@@ -416,7 +416,7 @@
     }
 
     .btn-xl {
-        @apply transition py-3 px-7 rounded uppercase font-bold text-base shadow-gray-400 shadow hover:ring focus:ring focus:ring-offset-2;
+        @apply transition py-3 px-7 rounded uppercase font-bold text-base shadow focus:ring focus:ring-offset-2;
         background-color: var(--primary);
         color: var(--my-white1);
     }
@@ -530,16 +530,14 @@
 }
 
 body {
-    @apply m-0 p-0 font-sans antialiased;
+    @apply m-0 p-0 font-sans antialiased bg-neutral-900;
     font-family: "Nunito Sans", 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: linear-gradient(to bottom right, var(--my-white1), var(--my-grayl2));
+    /*background: linear-gradient(to bottom right, var(--my-white1), var(--my-grayl2));*/
+    /*background: #141414;*/
+    color: white;
     min-height: 100vh;
     margin: 0;
     padding: 0;
-}
-
-code {
-    font-family: 'Poppins', sans-serif;
 }

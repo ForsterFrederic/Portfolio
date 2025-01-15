@@ -14,11 +14,19 @@ const competenciesSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    frameworks: {
+    front: {
+        type: String,
+        required: true,
+    },
+    back: {
         type: String,
         required: true,
     },
     database: {
+        type: String,
+        required: true,
+    },
+    devops: {
         type: String,
         required: true,
     },

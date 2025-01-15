@@ -1,19 +1,12 @@
 import * as React from 'react';
-import Timeline from '@mui/lab/Timeline';
-import TimelineItem, { timelineItemClasses } from '@mui/lab/TimelineItem';
-import TimelineSeparator from '@mui/lab/TimelineSeparator';
-import TimelineConnector from '@mui/lab/TimelineConnector';
-import TimelineContent from '@mui/lab/TimelineContent';
-import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
-import TimelineDot from '@mui/lab/TimelineDot';
-import LaptopMacIcon from '@mui/icons-material/LaptopMac';
-import Typography from '@mui/material/Typography';
-import { useMediaQuery } from '@mui/material';
 import { useEffect, useState } from "react";
+import {useWindowDimensions} from "../contexts/WindowDimensionsContext";
 import axios from "axios";
 
 export default function Experience({ backendApiUrl, language }) {
+    const windowDimensions = useWindowDimensions()
     const [items, setItems] = useState([]);
+
     const getExperience = async () => {
         try {
             const response = await axios.get(`${backendApiUrl}/experience/${language}`);
@@ -39,8 +32,6 @@ export default function Experience({ backendApiUrl, language }) {
         getExperience();
     }, [language]);
 
-    const isSmallScreen = useMediaQuery('(max-width:1024px)');
-
     const getTitleLanguage = () => {
         switch (language) {
             case "FR":
@@ -52,89 +43,36 @@ export default function Experience({ backendApiUrl, language }) {
         }
     };
 
-    const TimelineItemContent = ({ company, title, duration, description, technologies, url }) => (
-        <TimelineItem>
-            {!isSmallScreen && (
-                <TimelineOppositeContent
-                    sx={{ m: 'auto 0' }}
-                    align="right"
-                    variant="body2"
-                >
-                    <Typography>{company}</Typography>
-                    <Typography color="text.secondary" variant="body2">{duration}</Typography>
-                    {url && (
-                        <Typography
-                            color="text.secondary"
-                            variant="body2"
-                            mt={1}
-                            style={{ cursor: "pointer", textDecoration: "underline", textUnderlineOffset: "3px" }}
-                            onClick={() => window.open(url)}
-                        >
-                            {url}
-                        </Typography>
-                    )}
-                </TimelineOppositeContent>
-            )}
-            <TimelineSeparator>
-                <TimelineConnector />
-                <TimelineDot sx={{ backgroundColor: "#2563eb" }}>
-                    <LaptopMacIcon />
-                </TimelineDot>
-                <TimelineConnector />
-            </TimelineSeparator>
-            <TimelineContent sx={{ py: '60px', px: 2 }}>
-                {isSmallScreen && (
-                    <div style={{ marginBottom: "10px" }}>
-                        <Typography>{company}</Typography>
-                        <Typography color="text.secondary" variant="body2">{duration}</Typography>
-                        {url && (
-                            <Typography
-                                color="text.secondary"
-                                variant="body2"
-                                mt={1}
-                                style={{ cursor: "pointer", textDecoration: "underline", textUnderlineOffset: "3px" }}
-                                onClick={() => window.open(url)}
-                            >
-                                {url}
-                            </Typography>
-                        )}
-                    </div>
-                )}
-                <Typography sx={{ color: "#2563eb" }} variant="h6">{title}</Typography>
-                <Typography mt={1} sx={{ textAlign: "justify", textJustify: "inter-word" }}>{description}</Typography>
-                <Typography mt={1} color="text.secondary" variant="body2">{technologies}</Typography>
-            </TimelineContent>
-        </TimelineItem>
-    );
-
     return (
-        items.length > 0 && <div name="experience" className="gradient-bg-left py-24">
-            <div className="mb-12 lg:mb-14 xl:mb-16 2xl:mb-20 mx-auto w-max">
-                <div className="bprimary mx-auto w-28 h-1.5 rounded mb-3" />
-                <p className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl tblack3">{getTitleLanguage()}</p>
-            </div>
-            <div className={"flex flex-col lg:flex-row mx-6 md:mx-20 lg:mx-16 xl:mx-32 2xl:mx-36"}>
-                <Timeline
-                    position={isSmallScreen ? 'right' : 'alternate'}
-                    sx={isSmallScreen ? {
-                        [`& .${timelineItemClasses.root}:before`]: {
-                            flex: 0,
-                            padding: 0,
-                        },
-                    } : {}}
-                >
-                    {items.map((item, index) => (
-                        <TimelineItemContent
-                            key={index}
-                            company={item.company}
-                            title={item.title}
-                            duration={item.duration}
-                            description={item.description}
-                            technologies={item.technologies}
-                            url={item.url}
-                        />
-                    ))}
-                </Timeline>
+        items.length !== 0 && <div name="experience" className="py-24">
+            <div className={"flex flex-col"}>
+                <div className={"mx-auto w-max mb-12 xl:mb-16 2xl:mb-28"} style={windowDimensions.wWCheck(700) ? {top: `${1 * 130}px`, position: "sticky", zIndex: "1000", padding: "10px"} : { top: `${1 * 130}px`}}>
+                    <div className={"bprimary mx-auto w-28 h-1.5 rounded mb-3"} />
+                    <p className={"text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-white"}>{getTitleLanguage()}</p>
+                </div>
+                {items.map((item, index) => (
+                    <div key={index} className={`min-h-96 w-full flex flex-col lg:flex-row justify-center items-center md:stickyCards bg-neutral-800 shadow-2xl`} style={windowDimensions.wWCheck(700) ? {marginTop: index === 0 ? "" : "150px", top: `${1 * 260}px`, position: "sticky", zIndex: "1000", padding: "10px"} : {marginTop: index === 0 ? "" : "50px"}}>
+                        <div className={"flex lg:flex-col justify-center items-center w-48 xl:ml-10"}>
+                            <div className={"w-2 h-24 bblue rounded"}/>
+                            <p className={"mt-4 lg:mt-2 text-7xl lg:text-9xl mx-16 lg:mb-4 text-stroke"}>{index < 9 ? ("0" + (index+1)) : index+1}</p>
+                            <div className={"w-2 h-24 bblue rounded"}/>
+                        </div>
+                        <div className={"flex flex-col mx-20 py-10 w-full"}>
+                            <div className={"justify-center xl:justify-normal items-center xl:items-start px-6 xl:px-0 flex-col xl:flex-row flex gap-3"}>
+                                <div>
+                                    <p className={"text-2xl text-center xl:text-left lg:text-4xl uppercase"}>{item.title}</p>
+                                    <p className={"text-xl text-center xl:text-left lg:text-3xl tgrayd2 mt-1"}>{item.company}</p>
+                                </div>
+                                <p className={"text-lg lg:text-2xl mt-2 tprimary xl:ml-auto uppercase"}>{item.duration}</p>
+                            </div>
+                            <p className={"mt-8 px-6 xl:px-0 text-justify lg:text-lg"}>{item.description}</p>
+                            <div className={"justify-center xl:justify-normal items-center xl:items-start px-6 xl:px-0 flex-col xl:flex-row flex mt-10"}>
+                                {item.url && <p className={"tgrayd2"}>{language === "EN" ? "Take a look to the result:" : language === "FR" ? "Jettez un coup d'oeil au résultat:" : "Schauen Sie sich das Ergebnis an:"} <a className={"underline underline-offset-4 tprimary cursor-pointer text-sm lg:text-base"} href={item.url} target="_blank" rel="noopener noreferrer">{item.url}</a></p>}
+                                <p className={"xl:ml-auto mt-4 xl:mt-0 tgrayd2 text-sm lg:text-base text-center xl:text-right"}>{item.technologies}</p>
+                            </div>
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     );

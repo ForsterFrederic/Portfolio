@@ -228,7 +228,7 @@ export default function Experiences() {
             setLanguageExperience = setExperiencesDE;
         }
 
-        if (over && languageSet && setLanguageExperience) { // Ensure both are defined
+        if (over && languageSet && setLanguageExperience) {
             const sourceIndex = languageSet.findIndex((experience) => experience._id === active.id);
             const targetIndex = languageSet.findIndex((experience) => experience._id === over.id);
 

@@ -15,18 +15,23 @@ const PROD_BACKEND_PORT = process.env.PROD_BACKEND_PORT;
 const PORT = (IS_PROD === "TRUE" ? PROD_BACKEND_PORT : BACKEND_PORT) || 3001;
 
 const corsOptions = {
-    // origin: function (origin, callback) {
-    //     const allowedOrigins = ['https://frederic-forster.com', 'http://localhost:3000', 'http://localhost:3002'];
-    //     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-    //         callback(null, true);
-    //     } else {
-    //         callback(new Error('Not allowed by CORS'));
-    //     }
-    // },
-    origin: '*',
+    origin: function (origin, callback) {
+        const allowedOrigins = [
+            'https://frederic-forster.com',
+            'http://localhost:3000',
+            'http://localhost:3003'
+        ];
+
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
-    optionsSuccessStatus: 200,
+    credentials: true,
+    optionsSuccessStatus: 200
 };
 
 app.use(morgan('dev'));
@@ -37,7 +42,6 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '/../client/build')));
 app.use('/api', router);
 
-// app.use('/uploads', express.static('uploads'));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.get('/api/test', (req, res) => {

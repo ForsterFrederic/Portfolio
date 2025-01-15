@@ -22,10 +22,6 @@ const presentationSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    numberYearsExperience: {
-        type: String,
-        required: true,
-    },
     textYearsExperience: {
         type: String,
         required: true,
@@ -43,6 +39,14 @@ const presentationSchema = new mongoose.Schema({
         required: true,
     },
     goToCompetencies: {
+        type: String,
+        required: true,
+    },
+    openWork: {
+        type: String,
+        required: true,
+    },
+    based: {
         type: String,
         required: true,
     }

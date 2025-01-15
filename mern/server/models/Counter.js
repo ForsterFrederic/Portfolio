@@ -9,6 +9,22 @@ const counterSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    localisation: {
+        type: [
+            {
+                date: String,
+                city: String,
+                country: String,
+                ip: String,
+                loc: String,
+                org: String,
+                region: String,
+                timezone: String,
+                timestamp: { type: Date, default: Date.now },
+            },
+        ],
+        default: [],
+    },
     createdAt: {
         type: Date,
         default: Date.now,
@@ -18,7 +34,7 @@ const counterSchema = new mongoose.Schema({
         default: null,
     },
 }, {
-    timestamps: false
+    timestamps: false,
 });
 
 const Counter = mongoose.model('Counter', counterSchema);

@@ -17,10 +17,11 @@ import LogoAngleterre from "../assets/pictures/angleterre.webp";
 import LogoFrance from "../assets/pictures/france.webp";
 import LogoAllemagne from "../assets/pictures/allemagne.webp";
 import axios from "axios";
+import { motion } from 'framer-motion';
 
 const StyledMenu = styled((props) => (
     <Menu
-        elevation={0}
+        elevation={4}
         anchorOrigin={{
             vertical: 'bottom',
             horizontal: 'center',
@@ -34,9 +35,11 @@ const StyledMenu = styled((props) => (
 ))(({ theme }) => ({
     '& .MuiPaper-root': {
         borderRadius: 6,
-        marginTop: theme.spacing(3),
+        marginTop: theme.spacing(1),
+        paddingTop: "10px",
         minWidth: 100,
-        color: 'rgb(55, 65, 81)',
+        backgroundColor: "#262626",
+        color: 'white',
         boxShadow:
             'rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
         '& .MuiMenuItem-root': {
@@ -70,6 +73,23 @@ export default function Navbar({ backendApiUrl, language, setLanguage }) {
     const [navigationRight, setNavigationRight] = useState([
         { name: 'Contact', to: 'contact', current: false, offset: -68 }
     ]);
+
+    const [scrollPercentage, setScrollPercentage] = useState(0);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPosition = window.scrollY;
+            const scrollPercentage = (scrollPosition / totalHeight) * 100;
+            setScrollPercentage(scrollPercentage);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     const fetchNavigation = useCallback(async () => {
         try {
@@ -133,12 +153,12 @@ export default function Navbar({ backendApiUrl, language, setLanguage }) {
     const navigate = useNavigate();
 
     return (
-        <Disclosure as="nav" className="header bwhite3 w-full border-top shadow-xl">
+        <Disclosure as="nav" className="header w-full bg-neutral-900">
             {({ open }) => (
                 <>
-                    <div className="mx-8 md:mx-14 lg:mx-20 xl:mx-28 2xl:mx-32">
-                        <div className="relative flex h-16 items-center justify-between">
-                            <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">
+                    <div className="mx-8 md:mx-14 lg-1:mx-20">
+                        <div className="relative flex h-20 items-center justify-between">
+                            <div className="absolute inset-y-0 left-0 flex items-center lg-1:hidden">
                                 <DisclosureButton className="relative inline-flex items-center justify-center rounded-md p-2 btprimary hover:bprimary hover:twhite1 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                                     <span className="absolute -inset-0.5" />
                                     <span className="sr-only">Open main menu</span>
@@ -149,25 +169,25 @@ export default function Navbar({ backendApiUrl, language, setLanguage }) {
                                     )}
                                 </DisclosureButton>
                             </div>
-                            <div className="flex flex-1 items-center lg:justify-start">
-                                <div className="absolute inset-y-0 left-1/2 transform -translate-x-1/2 flex items-center lg:hidden">
+                            <div className="flex flex-1 items-center lg-1:justify-start">
+                                <div className="absolute inset-y-0 left-1/2 transform -translate-x-1/2 flex items-center lg-1:hidden">
                                     <div className="cursor-pointer" onClick={() => animateScroll.scrollToTop()}>
                                         <img
-                                            className="h-12 w-auto"
-                                            src="/logo.png"
+                                            className="h-8 md:h-12 w-auto"
+                                            src="/logo2.webp"
                                             alt="Your Company"
                                         />
                                     </div>
                                 </div>
-                                <div className="hidden lg:flex items-center cursor-pointer" onClick={() => navigate(process.env.REACT_APP_IS_DEVELOPMENT ? "/" : "/")}>
+                                <div className="hidden lg-1:flex items-center cursor-pointer" onClick={() => navigate(process.env.REACT_APP_IS_DEVELOPMENT ? "/" : "/")}>
                                     <img
-                                        className="h-12 w-auto"
-                                        src="/logo.png"
+                                        className="h-8 md:h-12 w-auto"
+                                        src="/logo2.webp"
                                         alt="Your Company"
                                         onClick={() => animateScroll.scrollToTop()}
                                     />
                                 </div>
-                                <div className={"lg:hidden ml-auto"}>
+                                <div className={"lg-1:hidden ml-auto"}>
                                     <Button
                                         aria-controls={anchorEl ? 'language-menu' : undefined}
                                         aria-haspopup="true"
@@ -176,7 +196,7 @@ export default function Navbar({ backendApiUrl, language, setLanguage }) {
                                         disableElevation
                                         endIcon={<img src={getCurrentLanguageFlag()} style={{height: "20px", paddingLeft: "5px"}}/>}
                                         onClick={handleMenuOpen}
-                                        sx={{ backgroundColor: "transparent", color: "black" }}
+                                        sx={{ backgroundColor: "transparent", color: "white" }}
                                         className={' hover:tprimary transition'}
                                     >
                                         {language}
@@ -201,18 +221,37 @@ export default function Navbar({ backendApiUrl, language, setLanguage }) {
                                         </MenuItem>
                                     </StyledMenu>
                                 </div>
-                                <div className="hidden sm:ml-6 lg:block w-full">
+                                <div className="hidden sm:ml-6 lg-1:block w-full">
                                     <div className={"flex"}>
                                         <div className="flex-center">
                                             {navigation.map((item) => (
-                                                <Link key={item.name} className={classNames(item.current ? 'bprimary text-white' : 'text-black hover:tprimary', 'rounded px-3 py-2.5 text-sm leading-none font-medium cursor-pointer mx-2 transition w-max')} aria-current={item.current ? 'page' : undefined} to={item.to} smooth={true} duration={500} offset={item.offset}>
+                                                <Link key={item.name} className={classNames(item.current ? 'bprimary text-white' : 'text-white hover:tprimary', 'text-white rounded px-3 py-2.5 leading-none font-medium cursor-pointer mx-2 transition w-max')} aria-current={item.current ? 'page' : undefined} to={item.to} smooth={true} duration={500} offset={item.offset}>
                                                     {item.name}
                                                 </Link>
                                             ))}
                                         </div>
-                                        <div className="flex w-full justify-end">
+                                        <div className="h-1 w-10/12 mx-5 bg-neutral-800 my-auto">
+                                            <motion.div
+                                                className="h-full bg-neutral-700"
+                                                style={{ width: `${scrollPercentage}%` }}
+                                                initial={{ width: 0 }}
+                                                animate={{ width: `${scrollPercentage}%` }}
+                                                transition={{ duration: 0.1 }}
+                                            />
+                                        </div>
+                                        <div className="ml-3 flex justify-end">
                                             {navigationRight.map((item) => (
-                                                <Link key={item.name} className={classNames('bprimary twhite1 border rounded leading-none px-6 py-2 text-sm font-medium cursor-pointer mx-2 hover:bg-transparent hover:tprimary transition')} aria-current={item.current ? 'page' : undefined} to={item.to} smooth={true} duration={500} offset={item.offset}>
+                                                <Link
+                                                    key={item.name}
+                                                    className={classNames(
+                                                        'bprimary text-white border rounded leading-none px-6 py-2 font-medium cursor-pointer mx-2 hover:bg-transparent hover:tprimary transition flex items-center justify-center'
+                                                    )}
+                                                    aria-current={item.current ? 'page' : undefined}
+                                                    to={item.to}
+                                                    smooth={true}
+                                                    duration={500}
+                                                    offset={item.offset}
+                                                >
                                                     {item.name}
                                                 </Link>
                                             ))}
@@ -223,10 +262,10 @@ export default function Navbar({ backendApiUrl, language, setLanguage }) {
                                                     aria-expanded={anchorEl ? 'true' : undefined}
                                                     variant="contained"
                                                     disableElevation
-                                                    endIcon={<img src={getCurrentLanguageFlag()} style={{height: "20px", paddingLeft: "5px"}}/>}
+                                                    endIcon={<img src={getCurrentLanguageFlag()} style={{height: "20px", minWidth: "25px", paddingLeft: "5px"}}/>}
                                                     onClick={handleMenuOpen}
-                                                    sx={{ backgroundColor: "transparent", color: "black" }}
-                                                    className={' hover:tprimary transition'}
+                                                    sx={{ backgroundColor: "transparent", border: "2px solid #e28413" }}
+                                                    className={'border tprimary rounded leading-none px-6 cursor-pointer mx-2 hover:bprimary hover:twhite1 transition uppercase text-xs font-medium text-center'}
                                                 >
                                                     {language}
                                                 </Button>
@@ -257,12 +296,12 @@ export default function Navbar({ backendApiUrl, language, setLanguage }) {
                         </div>
                     </div>
 
-                    <DisclosurePanel className="lg:hidden">
-                        <div className="pl-10 space-y-1 px-2 py-3 bgrayl1 border-top shadow-xl border-bottom">
+                    <DisclosurePanel className="lg-1:hidden">
+                        <div className="pl-10 space-y-1 px-2 py-3 bgrayl1 border-top shadow-xl border-bottom bg-neutral-900">
                             {navigation.concat(navigationRight).map((item) => (
                                 <DisclosureButton key={item.name} as="div" className="w-full">
                                     <Link
-                                        className={classNames(item.current ? 'bprimary text-white' : 'text-black hover:tprimary', 'justify-start rounded text-lg font-medium py-2 cursor-pointer transition w-full h-full flex items-center')}
+                                        className={classNames(item.current ? 'bprimary text-white' : 'text-white hover:tprimary', 'justify-start rounded text-lg font-medium py-2 cursor-pointer transition w-full h-full flex items-center')}
                                         aria-current={item.current ? 'page' : undefined}
                                         to={item.to}
                                         smooth={true}

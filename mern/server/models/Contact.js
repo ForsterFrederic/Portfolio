@@ -18,6 +18,10 @@ const contactSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    call: {
+        type: String,
+        required: true,
+    },
     text1: {
         type: String,
         required: true,

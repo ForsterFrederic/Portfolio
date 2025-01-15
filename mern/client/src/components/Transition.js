@@ -8,17 +8,17 @@ export default function Transition() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            exit={{ opacity: 0, transition: { duration: 0.3, delay: 0.2 } }}
+            exit={{ opacity: 0, transition: { duration: 0.5 } }}
         >
             <div className={"h-lvh flex-center"}>
                 <motion.img
-                    className="h-52 w-auto"
-                    src="/logo.png"
+                    className="w-4/12"
+                    src="/logo2.webp"
                     alt="Your Company"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.3 }}
-                    exit={{ opacity: 0, transition: { duration: 0.3, delay: 0.2 } }}
+                    exit={{ opacity: 0, transition: { duration: 1 } }}
                 />
             </div>
         </motion.div>
