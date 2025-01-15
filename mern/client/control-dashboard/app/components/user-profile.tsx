@@ -34,7 +34,7 @@ export function UserProfile() {
         <DropdownMenu>
             <DropdownMenuTrigger asChild className="w-[2.25rem] h-[2.25rem]">
                 <Avatar >
-                    <AvatarImage src={"/logo3.webp"} alt="User Profile" />
+                    <AvatarImage src={"/logo.png"} alt="User Profile" />
                     <AvatarFallback></AvatarFallback>
                 </Avatar>
             </DropdownMenuTrigger>
