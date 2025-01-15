@@ -20,7 +20,7 @@ export default function ZoomParallax() {
 
     const pictures = [
         {
-            desktop: "/screenshots/project1/large-desktop-landscape.webp",
+            desktop: "/screenshots/project0/base.webp",
             scale: windowDimensions.wWCheck(1200) ? scale1 : scale2,
         },
         {
