@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {scroller} from 'react-scroll';
+import {scroller, animateScroll} from 'react-scroll';
 import axios from "axios";
 import {Bounce, toast} from "react-toastify";
 
@@ -97,7 +97,7 @@ export default function Footer({ backendApiUrl, language }) {
         <footer className="bg-neutral-800 text-neutral-400 sticky bottom-0">
             <div className="pt-8 pb-4 text-center">
                 <svg
-                    onClick={() => scroll.scrollToTop()}
+                    onClick={() => animateScroll.scrollToTop()}
                     fill="#e28413"
                     viewBox="0 0 256 256"
                     width="40"
