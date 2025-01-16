@@ -57,7 +57,9 @@ export default function Contact({ backendApiUrl, language }) {
         e.preventDefault();
 
         if (!name || !email || !subject || !message) {
-            toast.warning("Fill up every fields please.", {
+            toast.warning(language === "EN" ? "Fill up every field please." :
+                language === "FR" ? "Veuillez remplir tous les champs." :
+                    "Bitte füllen Sie alle Felder aus.", {
                 position: "bottom-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -68,11 +70,13 @@ export default function Contact({ backendApiUrl, language }) {
                 theme: "colored",
                 transition: Bounce,
             });
-            return
+            return;
         }
 
         if (!email.includes("@") || !email.includes(".")) {
-            toast.warning("Please enter a valid email address.", {
+            toast.warning(language === "EN" ? "Please enter a valid email address." :
+                language === "FR" ? "Veuillez entrer une adresse email valide." :
+                    "Bitte geben Sie eine gültige E-Mail-Adresse ein.", {
                 position: "bottom-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -83,7 +87,7 @@ export default function Contact({ backendApiUrl, language }) {
                 theme: "colored",
                 transition: Bounce,
             });
-            return
+            return;
         }
 
         emailjs
@@ -96,7 +100,10 @@ export default function Contact({ backendApiUrl, language }) {
                     setEmail("");
                     setSubject("");
                     setMessage("");
-                    toast.success('Your message has been delivered and I will get back to you as soon as possible.', {
+
+                    toast.success(language === "EN" ? "Your message has been delivered and I will get back to you as soon as possible." :
+                        language === "FR" ? "Votre message a été envoyé et je reviendrai vers vous dès que possible." :
+                            "Ihre Nachricht wurde übermittelt und ich werde mich so schnell wie möglich bei Ihnen melden.", {
                         position: "bottom-right",
                         autoClose: 5000,
                         hideProgressBar: false,
@@ -109,7 +116,9 @@ export default function Contact({ backendApiUrl, language }) {
                     });
                 },
                 (error) => {
-                    toast.error('Unfortunately, your message could not be delivered. Please try again later.', {
+                    toast.error(language === "EN" ? "Unfortunately, your message could not be delivered. Please try again later." :
+                        language === "FR" ? "Malheureusement, votre message n'a pas pu être envoyé. Veuillez réessayer plus tard." :
+                            "Leider konnte Ihre Nachricht nicht zugestellt werden. Bitte versuchen Sie es später erneut.", {
                         position: "bottom-right",
                         autoClose: 5000,
                         hideProgressBar: false,
@@ -148,6 +157,39 @@ export default function Contact({ backendApiUrl, language }) {
             textarea.removeEventListener('input', autoResize);
         };
     }, []);
+
+    const handleCalendlyPopup = () => {
+        if (window.Calendly) {
+            window.Calendly.initPopupWidget({
+                url: 'https://calendly.com/forster-frederic',
+            });
+
+            setTimeout(() => {
+                const popup = document.querySelector('.calendly-popup');
+                const overlay = document.querySelector('.calendly-popup-overlay');
+
+                if (popup) {
+                    popup.style.zIndex = '2147483647';
+                }
+                if (overlay) {
+                    overlay.style.zIndex = '2147483646';
+                }
+            }, 500);
+        } else {
+            toast.error(language === "EN" ? "An error occured, please try later..." : language === "FR" ? "Une erreur est survenue, veuillez réessayer plus tard..." : "Ein Fehler ist aufgetreten, bitte versuche es später noch einmal...", {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Bounce,
+            });
+            console.error('Calendly script not loaded yet.');
+        }
+    };
 
     return (
         <div name={"contact"} className={"min-height-screen shadow-2xl flex-col py-24 bg-neutral-900 rounded-b-3xl"}>
@@ -189,7 +231,7 @@ export default function Contact({ backendApiUrl, language }) {
                                 </div>
                             </Tooltip>
                         </div>
-                        <button className={"xl:mt-5 mt-5 border py-4 rounded leading-none px-8 cursor-pointer text-sm hover:bprimary hover:twhite1 transition uppercase font-medium text-center"}>{call}</button>
+                        <button onClick={handleCalendlyPopup} className={"xl:mt-5 mt-5 border py-4 rounded leading-none px-8 cursor-pointer text-sm hover:bprimary hover:twhite1 transition uppercase font-medium text-center"}>{call}</button>
                         <div className={"w-full mx-auto xl:mx-0 mt-16"}>
                             <AnimatedParagraph value={[text1, <br />, <br />, text2]} />
                         </div>

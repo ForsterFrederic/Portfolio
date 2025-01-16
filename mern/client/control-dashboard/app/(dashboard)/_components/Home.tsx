@@ -135,8 +135,8 @@ export default function Home() {
     const locationIcon = L.divIcon({
         html: icon,
         iconSize: [32, 32],
-        iconAnchor: [16, 32], // Adjust anchor for proper placement
-        className: '', // Optionally add custom CSS class
+        iconAnchor: [16, 32],
+        className: '',
     });
 
     return (

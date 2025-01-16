@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {scroller} from 'react-scroll';
 import axios from "axios";
+import {Bounce, toast} from "react-toastify";
 
 export default function Footer({ backendApiUrl, language }) {
     const [rights, setRights] = useState("©2024 Frédéric Forster. All Rights Reserved.");
@@ -59,6 +60,39 @@ export default function Footer({ backendApiUrl, language }) {
         window.open(whatsappUrl, '_blank');
     };
 
+    const handleCalendlyPopup = () => {
+        if (window.Calendly) {
+            window.Calendly.initPopupWidget({
+                url: 'https://calendly.com/forster-frederic',
+            });
+
+            setTimeout(() => {
+                const popup = document.querySelector('.calendly-popup');
+                const overlay = document.querySelector('.calendly-popup-overlay');
+
+                if (popup) {
+                    popup.style.zIndex = '2147483647';
+                }
+                if (overlay) {
+                    overlay.style.zIndex = '2147483646';
+                }
+            }, 500);
+        } else {
+            toast.error(language === "EN" ? "An error occured, please try later..." : language === "FR" ? "Une erreur est survenue, veuillez réessayer plus tard..." : "Ein Fehler ist aufgetreten, bitte versuche es später noch einmal...", {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Bounce,
+            });
+            console.error('Calendly script not loaded yet.');
+        }
+    };
+
     return (
         <footer className="bg-neutral-800 text-neutral-400 sticky bottom-0">
             <div className="pt-8 pb-4 text-center">
@@ -81,7 +115,7 @@ export default function Footer({ backendApiUrl, language }) {
                         <p className="max-w-xs mb-6">{resume}</p>
                         <div className="flex gap-4 w-full">
                             <button onClick={() => {scroller.scrollTo('contact', {smooth: true, duration: 800, offset: -68,})}} className="btn py-2 w-1/2">{contact}</button>
-                            <button onClick={() => {scroller.scrollTo('contact', {smooth: true, duration: 800, offset: -68,})}} className="py-3 w-1/2 border rounded leading-none px-6 cursor-pointer mx-2 hover:bprimary hover:twhite1 transition uppercase text-xs font-medium text-center">{call}</button>
+                            <button onClick={handleCalendlyPopup} className="py-3 w-1/2 border rounded leading-none px-6 cursor-pointer mx-2 hover:bprimary hover:twhite1 transition uppercase text-xs font-medium text-center">{call}</button>
                         </div>
                     </div>
 
@@ -103,7 +137,7 @@ export default function Footer({ backendApiUrl, language }) {
                                 <li><a href="/terms" className="cursor-pointer hover:tprimary">{terms}</a></li>
                                 <li><a href="/privacy" className="cursor-pointer hover:tprimary">{privacy}</a></li>
                                 <li><a onClick={() => {scroller.scrollTo('contact', {smooth: true, duration: 800, offset: -68,})}} className="cursor-pointer hover:tprimary">{contact}</a></li>
-                                <li><a onClick={() => {scroller.scrollTo('contact', {smooth: true, duration: 800, offset: -68,})}} className="cursor-pointer hover:tprimary">{call}</a></li>
+                                <li><a onClick={handleCalendlyPopup} className="cursor-pointer hover:tprimary">{call}</a></li>
                             </ul>
                         </div>
                         <div>
