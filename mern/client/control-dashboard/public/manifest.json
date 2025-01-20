@@ -14,7 +14,7 @@
       "type": "image/webp"
     }
   ],
-  "start_url": "/",
+  "start_url": "/private/home",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000"
