@@ -2,7 +2,6 @@
   "name": "Frédéric's Portfolio Dashboard",
   "short_name": "Dashboard",
   "description": "A control dashboard for managing my portfolio content.",
-  "icons": [],
   "start_url": "/private/home",
   "display": "standalone",
   "background_color": "#000000",
