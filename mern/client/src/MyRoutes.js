@@ -17,11 +17,24 @@ export function MyRoutes() {
     const isPrivatePath = location.pathname === '/private';
     const navigate = useNavigate();
 
+    const getDeviceType = () => {
+        const userAgent = navigator.userAgent;
+        if (/mobile/i.test(userAgent)) {
+            return "mobile";
+        }
+        return "desktop";
+    };
+
     const incrementCounter = async () => {
-        if (!geoData) return;
+        if (!geoData)
+            return;
+
+        const device = getDeviceType();
+
         try {
             await axios.post(`${BACKEND_API_URL}/counter`, {
                 localisation: geoData,
+                device: device,
             });
         } catch (error) {
             console.error("Error incrementing counter:", error);

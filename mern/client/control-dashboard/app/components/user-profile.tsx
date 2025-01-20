@@ -16,12 +16,13 @@ import {
 import config from "@/config"
 import {
     CreditCard,
-    LogOut,
+    Power,
     Settings,
     User
 } from "lucide-react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import ModeToggle from "@/app/components/mode-toggle";
 
 export function UserProfile() {
     const IS_PROD = process.env.NEXT_PUBLIC_IS_PROD || true;
@@ -30,34 +31,22 @@ export function UserProfile() {
     if (!config?.auth?.enabled) {
         router.back()
     }
+
+    const handleSignOut = () => {
+        window.location.href = "https://frederic-forster.com";
+    };
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild className="w-[2.25rem] h-[2.25rem]">
                 <Avatar >
-                    <AvatarImage src={"/logo.png"} alt="User Profile" />
+                    <AvatarImage src={"/logo3.webp"} alt="User Profile" />
                     <AvatarFallback></AvatarFallback>
                 </Avatar>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56">
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuGroup>
-                    <Link href={`${IS_PROD === "TRUE" ? "/private" : ""}/settings`}>
-                        <DropdownMenuItem>
-                            <Settings className="mr-2 h-4 w-4" />
-                            <span>Settings</span>
-                            <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-                        </DropdownMenuItem>
-                    </Link>
-                </DropdownMenuGroup>
-                {/*<SignOutButton>*/}
-                    <DropdownMenuItem>
-                        <LogOut className="mr-2 h-4 w-4" />
-                        <span>Log out</span>
-                        <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
-                    </DropdownMenuItem>
-                {/*</SignOutButton>*/}
-            </DropdownMenuContent>
+            <ModeToggle/>
+            <DropdownMenuTrigger onClick={handleSignOut}>
+                <Power className="mr-2 h-4 w-4" />
+            </DropdownMenuTrigger>
         </DropdownMenu>
     )
 }

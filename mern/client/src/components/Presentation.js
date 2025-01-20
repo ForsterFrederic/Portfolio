@@ -22,7 +22,7 @@ export default function Presentation({ backendApiUrl, language }) {
     const [description, setDescription] = useState("I specialize in front-end and back-end development with expertise in React, Node.js, and low-level programming (C, C++). I design scalable, high-performance software solutions, delivering innovative results that foster growth and success while staying at the forefront of emerging technologies.")
     const [numberYearsExperience, setNumberYearsExperience] = useState("8")
     const [textYearsExperience, setTextYearsExperience] = useState("Years of Experience")
-    const [numberSuccessfulProjects, setNumberSuccessfulProjects] = useState("74")
+    const [numberSuccessfulProjects, setNumberSuccessfulProjects] = useState("0")
     const [textSuccessfulProjects, setTextSuccessfulProjects] = useState("Successful Projects")
     const [downloadCV, setDownloadCV] = useState("Download my CV")
     const [goToCompetencies, setGoToCompetencies] = useState("ABOUT ME")

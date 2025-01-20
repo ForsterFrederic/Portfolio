@@ -1,0 +1,21 @@
+{
+  "name": "Frédéric's Portfolio Dashboard",
+  "short_name": "Dashboard",
+  "description": "A control dashboard for managing my portfolio content.",
+  "icons": [
+    {
+      "src": "/logo3.webp",
+      "sizes": "192x192",
+      "type": "image/webp"
+    },
+    {
+      "src": "/logo3.webp",
+      "sizes": "512x512",
+      "type": "image/webp"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000"
+}

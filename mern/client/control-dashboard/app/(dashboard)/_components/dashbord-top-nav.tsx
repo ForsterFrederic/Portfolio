@@ -39,14 +39,6 @@ export default function DashboardTopNav({ children }: { children: ReactNode }) {
                 </Link>
               </DialogClose>
               <DialogClose asChild>
-                <Link href={`${IS_PROD === "TRUE" ? "/private" : ""}/competencies`}>
-                  <Button variant="outline" className="w-full">
-                    <Star className="mr-2 h-4 w-4" />
-                    Competencies
-                  </Button>
-                </Link>
-              </DialogClose>
-              <DialogClose asChild>
                 <Link href={`${IS_PROD === "TRUE" ? "/private" : ""}/experiences`}>
                   <Button variant="outline" className="w-full">
                     <BookOpenCheck className="mr-2 h-4 w-4" />
@@ -59,14 +51,6 @@ export default function DashboardTopNav({ children }: { children: ReactNode }) {
                   <Button variant="outline" className="w-full">
                     <Folder className="mr-2 h-4 w-4" />
                     Projects
-                  </Button>
-                </Link>
-              </DialogClose>
-              <DialogClose asChild>
-                <Link href={`${IS_PROD === "TRUE" ? "/private" : ""}/translations`}>
-                  <Button variant="outline" className="w-full">
-                    <Languages className="mr-2 h-4 w-4" />
-                    Translations
                   </Button>
                 </Link>
               </DialogClose>
@@ -84,7 +68,6 @@ export default function DashboardTopNav({ children }: { children: ReactNode }) {
         </Dialog>
         <div className="flex justify-center items-center gap-2 ml-auto">
           <UserProfile />
-          <ModeToggle />
         </div>
       </header>
       {children}

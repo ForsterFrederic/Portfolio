@@ -19,7 +19,8 @@ const corsOptions = {
         const allowedOrigins = [
             'https://frederic-forster.com',
             'http://localhost:3000',
-            'http://localhost:3003'
+            'http://localhost:3003',
+            'http://localhost:3004',
         ];
 
         if (!origin || allowedOrigins.includes(origin)) {

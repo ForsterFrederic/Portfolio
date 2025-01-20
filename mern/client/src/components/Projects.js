@@ -65,7 +65,7 @@ export default function Projects({ backendApiUrl, language }) {
             <ZoomParallax />
             <div className="relative flex flex-col justify-center">
                 <h1 className="text-center tprimary px-6 text-3xl md:text-4xl xl:text-5xl font-bold -mt-8 md:-mt-20 lg:-mt-52 xl:-mt-28 3xl:-mt-52 mb-10">{items[0]?.title}</h1>
-                <p className="text-white px-6 mb-8 text-justify font-medium max-w-6xl mx-auto">{items[0].description}</p>
+                <p className="text-white px-6 mb-8 text-justify font-medium max-w-[1745px] mx-auto">{items[0].description}</p>
                 <p className="text-center tgrayd2 text-sm font-medium mb-20">{items[0]?.duration + (items[0]?.duration ? " - " : " ")}{items[0]?.technologies}{(items[0]?.link ? " - " : " ") + items[0]?.link}</p>
             </div>
             {items.slice(1, displayMore === false ? 6 : items.length).map((item, index) => {
@@ -90,9 +90,9 @@ export default function Projects({ backendApiUrl, language }) {
                             </picture>
                         </div>
                         <h1 className="text-center tprimary px-6 text-3xl md:text-4xl xl:text-5xl font-bold mt-8 mb-8">{item.title}</h1>
-                        <p className="text-justify px-6 text-white mb-8 font-medium max-w-7xl mx-auto whitespace-pre-wrap md:px-10 lg:px-14">{item.description}</p>
+                        <p className="text-justify px-6 text-white mb-8 font-medium max-w-[1800px] mx-auto whitespace-pre-wrap md:px-10 lg:px-14">{item.description}</p>
                         <p className="text-center tgrayd2 text-sm font-medium">{item.duration + (item.duration ? " - " : " ")}{item.technologies}{(item.link ? " - " : " ") + item.link}</p>
-                        {item?.link && <button onClick={() => window.open(item?.link, "_blank")} className={"mt-6 w-72 md:w-96 text-sm border py-3 rounded leading-none px-6 cursor-pointer mx-2 hover:bprimary hover:twhite1 transition uppercase font-medium text-center"}>{language === "EN" ? "Take a look to the result" : language === "FR" ? "Jettez un coup d'oeil au résultat" : "Schauen Sie sich das Ergebnis an"}</button>}
+                        {item?.link && <button onClick={() => window.open(item?.link, "_blank")} className={"mt-5 w-72 md:w-96 text-sm border py-3 rounded leading-none px-6 cursor-pointer mx-2 hover:bprimary hover:twhite1 transition uppercase font-medium text-center"}>{language === "EN" ? "Take a look to the result" : language === "FR" ? "Jettez un coup d'oeil au résultat" : "Schauen Sie sich das Ergebnis an"}</button>}
                     </div>
                 );
             })}

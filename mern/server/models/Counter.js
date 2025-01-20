@@ -19,6 +19,7 @@ const counterSchema = new mongoose.Schema({
                 loc: String,
                 org: String,
                 region: String,
+                device: String,
                 timezone: String,
                 timestamp: { type: Date, default: Date.now },
             },

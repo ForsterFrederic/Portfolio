@@ -16,7 +16,7 @@ exports.getCounter = async (req, res) => {
 };
 
 exports.incrementCounter = async (req, res) => {
-    const localisation = req.body.localisation;
+    const { localisation, device } = req.body;
 
     try {
         let counter = await Counter.findOne();
@@ -35,7 +35,12 @@ exports.incrementCounter = async (req, res) => {
         counter.total += 1;
 
         if (localisation) {
-            counter.localisation.push(localisation);
+            const localisationData = {
+                ...localisation,
+                device: device,
+            };
+            counter.localisation.push(localisationData);
+
             if (counter.localisation.length > 100) {
                 counter.localisation.shift();
             }

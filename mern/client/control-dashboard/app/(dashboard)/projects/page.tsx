@@ -1,5 +1,4 @@
 "use client";
-import "../../../../src/css/constants.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import {
@@ -24,6 +23,7 @@ import {
     rectSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import {Textarea} from "@/app/components/ui/textarea";
 
 type Project = {
     _id: string;
@@ -86,11 +86,11 @@ const SortableProject = ({
                 </Link>
             </div>
             <Separator className="my-6 w-11/12 mx-auto" />
-            <div className="flex justify-evenly">
-                <Button color="secondary" className="w-24 rounded-lg font-bold" onClick={() => handleDeleteProject(project._id)}>
+            <div className="flex justify-center gap-4">
+                <Button color="secondary" className="w-32 font-bold bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50" onClick={() => handleDeleteProject(project._id)}>
                     Delete
                 </Button>
-                <Button color="secondary" className="w-24 rounded-lg font-bold" onClick={() => handleEditProject(project)}>
+                <Button color="secondary" className="w-32 font-bold bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50" onClick={() => handleEditProject(project)}>
                     Edit
                 </Button>
             </div>
@@ -326,10 +326,10 @@ export default function Projects() {
                     MANAGE PROJECTS
                 </h1>
                 <div className="flex flex-col w-full md:w-auto md:flex-row items-center gap-4">
-                    <div className="font-bold text-center w-full md:w-auto">
-                        {`${projectsEN.length + projectsFR.length + projectsDE.length} Projects`}
+                    <div className="text-xs font-bold text-center w-full md:w-auto">
+                        {`EN(${projectsEN.length}) FR(${projectsFR.length}) DE(${projectsDE.length})`}
                     </div>
-                    <Button onPress={onOpen} color="secondary" className="rounded-lg font-bold w-full md:w-44">
+                    <Button onPress={onOpen} color="secondary" className="font-bold w-full md:w-44 bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50">
                         Create Project
                     </Button>
                 </div>
@@ -338,7 +338,7 @@ export default function Projects() {
             {isOpen && <div className="modal-backdrop" onClick={onClose}></div>}
 
             <Modal isOpen={isOpen} onOpenChange={onClose} placement="center" className="modal">
-                <ModalContent className={"p-6 w-full max-w-md rounded-lg border bg-card text-card-foreground shadow-sm"}>
+                <ModalContent className={"p-6 w-full max-w-md rounded-lg border bg-card text-card-foreground shadow-sm max-h-[95%] overflow-auto"}>
                     <ModalHeader className={"font-bold"}>
                         {projectId ? "UPDATE A PROJECT" : "CREATE NEW PROJECT"}
                     </ModalHeader>
@@ -361,15 +361,14 @@ export default function Projects() {
                                 value={projectData.title}
                                 onChange={(e) => setProjectData({...projectData, title: e.target.value})}
                                 required
-                                className="border border-gray-300 mb-2 w-full rounded-lg"
+                                className="border text-sm border-gray-300 mb-2 w-full rounded-lg"
                             />
-                            <Input
-                                type="text"
+                            <Textarea
                                 placeholder="Description"
                                 value={projectData.description}
-                                onChange={(e) => setProjectData({...projectData, description: e.target.value})}
+                                onChange={(e) => setProjectData({ ...projectData, description: e.target.value })}
                                 required
-                                className="border border-gray-300 mb-2 w-full rounded-lg"
+                                className="border border-gray-300 mb-2 w-full rounded-lg p-2"
                             />
                             <Input
                                 type="text"
@@ -377,29 +376,28 @@ export default function Projects() {
                                 value={projectData.duration}
                                 onChange={(e) => setProjectData({...projectData, duration: e.target.value})}
                                 required
-                                className="border border-gray-300 mb-2 w-full rounded-lg"
+                                className="border text-sm border-gray-300 mb-2 w-full rounded-lg"
                             />
-                            <Input
-                                type="text"
+                            <Textarea
                                 placeholder="Technologies"
                                 value={projectData.technologies}
-                                onChange={(e) => setProjectData({...projectData, technologies: e.target.value})}
+                                onChange={(e) => setProjectData({ ...projectData, technologies: e.target.value })}
                                 required
-                                className="border border-gray-300 mb-2 w-full rounded-lg"
+                                className="border border-gray-300 mb-2 w-full rounded-lg p-2"
                             />
                             <Input
                                 type="url"
                                 placeholder="Project Link"
                                 value={projectData.link}
                                 onChange={(e) => setProjectData({...projectData, link: e.target.value})}
-                                className="border border-gray-300 mb-2 w-full rounded-lg"
+                                className="border text-sm border-gray-300 mb-2 w-full rounded-lg"
                             />
                             <Dropzone onChange={(file) => setFile(file)} initialFile={file}/>
                         </ModalBody>
                         <Separator className={"mb-4 mt-6"}/>
                         <ModalFooter className={"flex justify-between"}>
-                            <Button color="secondary" className={"rounded-lg w-44"} onPress={onClose}>Close</Button>
-                            <Button type="submit" color="secondary" className={"rounded-lg w-44"}
+                            <Button color="secondary" className={"w-44 bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50"} onPress={onClose}>Close</Button>
+                            <Button type="submit" color="secondary" className={"w-44 bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50"}
                                     onPress={onClose}>{projectId ? 'Update Project' : 'Create Project'}</Button>
                         </ModalFooter>
                     </form>
@@ -408,21 +406,28 @@ export default function Projects() {
 
             {loading && <p className="mt-6 text-center">Loading...</p>}
 
-            <div className="flex items-center justify-center w-full py-6 pt-12">
-                <p className="text-center pl-8">EN</p>
-                <Separator className="my-6 w-11/12 mx-auto" />
+            <div className="w-full py-12">
+                <div className="flex items-center justify-center mb-12 gap-1 px-6">
+                    <p className="text-xl font-semibold w-max">{`EN`}</p>
+                    <p className="text-xl font-semibold w-max">{`(${projectsEN.length})`}</p>
+                    <Separator className="ml-2 w-11/12 bg-neutral-500" />
+                </div>
+                <DisplayCards projects={projectsEN} />
+
+                <div className="flex items-center justify-center mb-12 gap-1 px-6">
+                    <p className="text-xl font-semibold w-max">{`FR`}</p>
+                    <p className="text-xl font-semibold w-max">{`(${projectsFR.length})`}</p>
+                    <Separator className="ml-2 w-11/12 bg-neutral-500" />
+                </div>
+                <DisplayCards projects={projectsFR} />
+
+                <div className="flex items-center justify-center mb-12 gap-1 px-6">
+                    <p className="text-xl font-semibold w-max">{`DE`}</p>
+                    <p className="text-xl font-semibold w-max">{`(${projectsDE.length})`}</p>
+                    <Separator className="ml-2 w-11/12 bg-neutral-500" />
+                </div>
+                <DisplayCards projects={projectsDE} />
             </div>
-            <DisplayCards projects={projectsEN} />
-            <div className="flex items-center justify-center w-full py-6">
-                <p className="text-center pl-8">FR</p>
-                <Separator className="my-6 w-11/12 mx-auto" />
-            </div>
-            <DisplayCards projects={projectsFR} />
-            <div className="flex items-center justify-center w-full py-6">
-                <p className="text-center pl-8">DE</p>
-                <Separator className="my-6 w-11/12 mx-auto" />
-            </div>
-            <DisplayCards projects={projectsDE} />
         </div>
     );
 }

@@ -1,5 +1,4 @@
 "use client";
-import "../../../../src/css/constants.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import {
@@ -23,6 +22,7 @@ import {
     rectSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import {Textarea} from "@/app/components/ui/textarea";
 
 type Experience = {
     _id: string;
@@ -74,11 +74,11 @@ const SortableExperience = ({
                 </Link>
             </div>
             <Separator className="my-6 w-11/12 mx-auto" />
-            <div className="flex justify-evenly">
-                <Button color="secondary" className="w-24 rounded-lg font-bold" onClick={() => handleDeleteExperience(experience._id)}>
+            <div className="flex justify-center gap-4">
+                <Button color="secondary" className="w-32 font-bold bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50" onClick={() => handleDeleteExperience(experience._id)}>
                     Delete
                 </Button>
-                <Button color="secondary" className="w-24 rounded-lg font-bold" onClick={() => handleEditExperience(experience)}>
+                <Button color="secondary" className="w-32 font-bold bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50" onClick={() => handleEditExperience(experience)}>
                     Edit
                 </Button>
             </div>
@@ -292,10 +292,10 @@ export default function Experiences() {
                     MANAGE EXPERIENCES
                 </h1>
                 <div className="flex flex-col w-full md:w-auto md:flex-row items-center gap-4">
-                    <div className="font-bold text-center w-full md:w-auto">
-                        {`${experiencesEN.length + experiencesFR.length + experiencesDE.length} Experiences`}
+                    <div className="text-xs font-bold text-center w-full md:w-auto">
+                        {`EN(${experiencesEN.length}) FR(${experiencesFR.length}) DE(${experiencesDE.length})`}
                     </div>
-                    <Button onPress={onOpen} color="secondary" className="rounded-lg font-bold w-full md:w-44">
+                    <Button onPress={onOpen} color="secondary" className="font-bold w-full md:w-44 bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50">
                         Create Experience
                     </Button>
                 </div>
@@ -304,7 +304,7 @@ export default function Experiences() {
             {isOpen && <div className="modal-backdrop" onClick={onClose}></div>}
 
             <Modal isOpen={isOpen} onOpenChange={onClose} placement="center" className="modal">
-                <ModalContent className={"p-6 w-full max-w-md rounded-lg border bg-card text-card-foreground shadow-sm"}>
+                <ModalContent className={"p-6 w-full max-w-md rounded-lg border bg-card text-card-foreground shadow-sm max-h-[95%] overflow-auto"}>
                     <ModalHeader className={"font-bold"}>
                         {experienceId ? "UPDATE AN EXPERIENCE" : "CREATE NEW EXPERIENCE"}
                     </ModalHeader>
@@ -345,21 +345,19 @@ export default function Experiences() {
                                 required
                                 className="border border-gray-300 mb-2 w-full rounded-lg"
                             />
-                            <Input
-                                type="text"
+                            <Textarea
                                 placeholder="Description"
                                 value={experienceData.description}
                                 onChange={(e) => setExperienceData({...experienceData, description: e.target.value})}
                                 required
-                                className="border border-gray-300 mb-2 w-full rounded-lg"
+                                className="border border-gray-300 mb-2 w-full rounded-lg p-2"
                             />
-                            <Input
-                                type="text"
+                            <Textarea
                                 placeholder="Technologies"
                                 value={experienceData.technologies}
                                 onChange={(e) => setExperienceData({...experienceData, technologies: e.target.value})}
                                 required
-                                className="border border-gray-300 mb-2 w-full rounded-lg"
+                                className="border border-gray-300 mb-2 w-full rounded-lg p-2"
                             />
                             <Input
                                 type="url"
@@ -371,8 +369,8 @@ export default function Experiences() {
                         </ModalBody>
                         <Separator className={"mb-4 mt-6"}/>
                         <ModalFooter className={"flex justify-between"}>
-                            <Button color="secondary" className={"rounded-lg w-44"} onPress={onClose}>Close</Button>
-                            <Button type="submit" color="secondary" className={"rounded-lg w-44"}
+                            <Button color="secondary" className={"w-44 bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50"} onPress={onClose}>Close</Button>
+                            <Button type="submit" color="secondary" className={"w-44 bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50"}
                                     onPress={onClose}>{experienceId ? 'Update Experience' : 'Create Experience'}</Button>
                         </ModalFooter>
                     </form>
@@ -381,21 +379,28 @@ export default function Experiences() {
 
             {loading && <p className="mt-6 text-center">Loading...</p>}
 
-            <div className="flex items-center justify-center w-full py-6 pt-12">
-                <p className="text-center pl-8">EN</p>
-                <Separator className="my-6 w-11/12 mx-auto" />
+            <div className="w-full py-12">
+                <div className="flex items-center justify-center mb-12 gap-1 px-6">
+                    <p className="text-xl font-semibold w-max">{`EN`}</p>
+                    <p className="text-xl font-semibold w-max">{`(${experiencesEN.length})`}</p>
+                    <Separator className="ml-2 w-11/12 bg-neutral-500" />
+                </div>
+                <DisplayCards experiences={experiencesEN} />
+
+                <div className="flex items-center justify-center mb-12 gap-1 px-6">
+                    <p className="text-xl font-semibold w-max">{`FR`}</p>
+                    <p className="text-xl font-semibold w-max">{`(${experiencesFR.length})`}</p>
+                    <Separator className="ml-2 w-11/12 bg-neutral-500" />
+                </div>
+                <DisplayCards experiences={experiencesFR} />
+
+                <div className="flex items-center justify-center mb-12 gap-1 px-6">
+                    <p className="text-xl font-semibold w-max">{`DE`}</p>
+                    <p className="text-xl font-semibold w-max">{`(${experiencesDE.length})`}</p>
+                    <Separator className="ml-2 w-11/12 bg-neutral-500" />
+                </div>
+                <DisplayCards experiences={experiencesDE} />
             </div>
-            <DisplayCards experiences={experiencesEN} />
-            <div className="flex items-center justify-center w-full py-6">
-                <p className="text-center pl-8">FR</p>
-                <Separator className="my-6 w-11/12 mx-auto" />
-            </div>
-            <DisplayCards experiences={experiencesFR} />
-            <div className="flex items-center justify-center w-full py-6">
-                <p className="text-center pl-8">DE</p>
-                <Separator className="my-6 w-11/12 mx-auto" />
-            </div>
-            <DisplayCards experiences={experiencesDE} />
         </div>
     );
 }
