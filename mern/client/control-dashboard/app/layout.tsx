@@ -27,6 +27,9 @@ export default function RootLayout({children,}: {
             <link rel="manifest" href="/manifest.json" />
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
             <link rel="apple-touch-icon" href="/logo3.webp" />
+            <link rel="icon" href="/logo3.webp" />
+            <link rel="icon" href="/logo3.webp" sizes="32x32" />
+            <link rel="icon" href="/logo3.webp" sizes="16x16" />
             <link
                 rel="preload"
                 href="https://utfs.io/f/31dba2ff-6c3b-4927-99cd-b928eaa54d5f-5w20ij.png"
