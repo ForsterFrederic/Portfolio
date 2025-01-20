@@ -231,8 +231,6 @@ export default function Home() {
             <div className='flex flex-wrap gap-2'>
                 <DaysVisitBarChart locations={locations}/>
                 <ContinentsBarChart locations={locations}/>
-
-
             </div>
         </div>
     );

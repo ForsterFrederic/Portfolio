@@ -16,14 +16,7 @@ import {
     CardHeader,
     CardTitle,
 } from "@/app/components/ui/card"
-
-interface Location {
-    loc: string
-    city: string
-    country: string
-    timestamp: string
-    device: string
-}
+import { Location } from './types';
 
 interface BarChartProps {
     locations: Location[]

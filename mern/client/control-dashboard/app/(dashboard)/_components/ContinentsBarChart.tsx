@@ -2,6 +2,7 @@ import { Bar } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
 import { useMemo } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from '@/app/components/ui/card';
+import { Location } from './types';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -17,13 +18,6 @@ const countryToContinent: Record<string, string> = {
     // Africa
     "ZA": "Africa", "NG": "Africa", "KE": "Africa", "EG": "Africa", "GH": "Africa",
 };
-
-interface Location {
-    loc: string;
-    city: string;
-    country: string;
-    timestamp: string;
-}
 
 interface BarChartProps {
     locations: Location[];
@@ -110,8 +104,11 @@ const ContinentsBarChart = ({ locations }: BarChartProps) => {
                 min: 0,
                 max: 100,
                 ticks: {
-                    callback: function (value: number) {
-                        return value + "%";
+                    callback: function (tickValue: string | number) {
+                        if (typeof tickValue === "number") {
+                            return `${tickValue}%`;
+                        }
+                        return tickValue;
                     },
                 },
             },

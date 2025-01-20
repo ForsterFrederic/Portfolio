@@ -15,10 +15,11 @@ export default function Default() {
             router.push('/home');
     }, [router]);
 
-    function isRunningAsPWA() {
-        if (typeof window !== 'undefined') {
-            const isStandalone = window.matchMedia('(display-mode: standalone)').matches ||
-                (typeof window.navigator !== 'undefined' && window.navigator.standalone);
+    function isRunningAsPWA(): boolean {
+        if (typeof window !== "undefined") {
+            const isStandalone =
+                window.matchMedia("(display-mode: standalone)").matches ||
+                (typeof window.navigator !== "undefined" && (window.navigator as any).standalone); // Avoid TypeScript errors
 
             return Boolean(isStandalone);
         }
