@@ -5,7 +5,7 @@ import type {Metadata} from 'next'
 import './globals.css'
 
 export const viewport = {
-    themeColor: "#ffffff",
+    themeColor: "#000000",
 };
 
 export const metadata: Metadata = {
