@@ -42,10 +42,12 @@ const SortableExperience = ({
                              experience,
                              handleEditExperience,
                              handleDeleteExperience,
+                             dragEnabled,
                          }: {
     experience: Experience;
     handleEditExperience: (experience: Experience) => void;
     handleDeleteExperience: (id: string) => void;
+    dragEnabled: boolean;
 }) => {
     const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: experience._id });
 
@@ -58,30 +60,34 @@ const SortableExperience = ({
         <div
             ref={setNodeRef}
             style={style}
-            {...attributes}
-            {...listeners}
+            {...(dragEnabled ? { ...attributes, ...listeners } : {})}
             className="bg-card border p-6 rounded-lg shadow-sm flex flex-col"
         >
             <div className="flex-grow">
                 <h3 className="text-center font-bold text-xl">{experience.company}</h3>
-                <Separator className="mt-4 mb-6 w-11/12 mx-auto" />
-                <p className="mb-1">{experience.title}</p>
-                <p className="mb-1">{experience.duration}</p>
-                <p className="mb-1">{experience.description}</p>
-                <p className="mb-1">{experience.technologies}</p>
-                <Link className="cursor-pointer underline underline-offset-4" onClick={() => window.open(experience.url)}>
-                    {experience.url}
-                </Link>
+                {!dragEnabled && (
+                    <div><Separator className="mt-4 mb-6 w-11/12 mx-auto" />
+                        <p className="mb-1">{experience.title}</p>
+                        <p className="mb-1">{experience.duration}</p>
+                        <p className="mb-1">{experience.description}</p>
+                        <p className="mb-1">{experience.technologies}</p>
+                        <Link className="cursor-pointer underline underline-offset-4" onClick={() => window.open(experience.url)}>
+                            {experience.url}
+                        </Link>
+                        <Separator className="my-6 w-11/12 mx-auto" />
+                    </div>
+                )}
             </div>
-            <Separator className="my-6 w-11/12 mx-auto" />
-            <div className="flex justify-center gap-4">
-                <Button color="secondary" className="w-32 font-bold bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50" onClick={() => handleDeleteExperience(experience._id)}>
-                    Delete
-                </Button>
-                <Button color="secondary" className="w-32 font-bold bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50" onClick={() => handleEditExperience(experience)}>
-                    Edit
-                </Button>
-            </div>
+            {!dragEnabled && (
+                <div className="flex justify-center gap-4">
+                    <Button color="secondary" className="w-32 font-bold bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50" onClick={() => handleDeleteExperience(experience._id)}>
+                        Delete
+                    </Button>
+                    <Button color="secondary" className="w-32 font-bold bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50" onClick={() => handleEditExperience(experience)}>
+                        Edit
+                    </Button>
+                </div>
+            )}
         </div>
     );
 };
@@ -94,6 +100,7 @@ export default function Experiences() {
     const [experiencesDE, setExperiencesDE] = useState<Experience[]>([]);
     const [experienceId, setExperienceId] = useState<string | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
+    const [dragEnabled, setDragEnabled] = useState(false);
     const [experienceData, setExperienceData] = useState<ExperienceFormData>({
         language: "EN",
         company: "",
@@ -104,6 +111,10 @@ export default function Experiences() {
         url: "",
         position: 0,
     });
+
+    const handleToggleDrag = () => {
+        setDragEnabled((prev) => !prev);
+    };
 
     const fetchExperiences = async (language: string, setExperience: any) => {
         setLoading(true);
@@ -260,6 +271,8 @@ export default function Experiences() {
                                 experience={experience}
                                 handleEditExperience={handleEditExperience}
                                 handleDeleteExperience={handleDeleteExperience}
+                                dragEnabled={dragEnabled}
+                                setDragEnabled={setDragEnabled}
                             />
                         ))}
                     </div>
@@ -293,7 +306,7 @@ export default function Experiences() {
                     <div className="text-xs font-bold text-center w-full md:w-auto">
                         {`EN(${experiencesEN.length}) FR(${experiencesFR.length}) DE(${experiencesDE.length})`}
                     </div>
-                    <Button onPress={onOpen} color="secondary" className="font-bold w-full md:w-44 bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50">
+                    <Button onPress={onOpen} color="secondary" className="font-bold w-full md:w-44 bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 disabled:opacity-50">
                         Create Experience
                     </Button>
                 </div>
@@ -367,14 +380,19 @@ export default function Experiences() {
                         </ModalBody>
                         <Separator className={"mb-4 mt-6"}/>
                         <ModalFooter className={"flex justify-between"}>
-                            <Button color="secondary" className={"w-44 bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50"} onPress={onClose}>Close</Button>
-                            <Button type="submit" color="secondary" className={"w-44 bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50"}
+                            <Button color="secondary" className={"w-44 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50"} onPress={onClose}>Close</Button>
+                            <Button type="submit" color="secondary" className={"w-44 bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50"}
                                     onPress={onClose}>{experienceId ? 'Update Experience' : 'Create Experience'}</Button>
                         </ModalFooter>
                     </form>
                 </ModalContent>
             </Modal>
 
+            <div className={"px-4 md:pl-14 mt-4 w-full md:w-auto"}>
+                <Button onClick={handleToggleDrag}  color="secondary" className="font-bold w-full md:w-44 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50">
+                    {dragEnabled ? "Stop Reorder" : "Reorder"}
+                </Button>
+            </div>
             <div className="w-full py-12">
                 <div className="flex items-center justify-center mb-12 gap-1 px-6">
                     <p className="text-xl font-semibold w-max">{`EN`}</p>

@@ -41,13 +41,6 @@ type ProjectFormData = Omit<Project, "_id" | "picture"> & {
     picture: File | string;
 };
 
-const isMobile = () => {
-    if (typeof window !== "undefined") {
-        return /Mobi|Android/i.test(navigator.userAgent);
-    }
-    return false;
-};
-
 const SortableProject = ({
                              project,
                              handleEditProject,
@@ -60,6 +53,7 @@ const SortableProject = ({
     dragEnabled: boolean;
 }) => {
     const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: project._id });
+
     const style = {
         transform: CSS.Transform.toString(transform),
         transition,

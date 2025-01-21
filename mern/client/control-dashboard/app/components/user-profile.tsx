@@ -16,7 +16,7 @@ import {
 import config from "@/config"
 import {
     CreditCard,
-    Power,
+    Eye,
     Settings,
     User
 } from "lucide-react"
@@ -33,7 +33,7 @@ export function UserProfile() {
     }
 
     const handleSignOut = () => {
-        window.location.href = "https://frederic-forster.com";
+        window.location.href = "https://frederic-forster.com/no";
     };
     return (
         <DropdownMenu>
@@ -45,7 +45,7 @@ export function UserProfile() {
             </DropdownMenuTrigger>
             <ModeToggle/>
             <DropdownMenuTrigger onClick={handleSignOut}>
-                <Power className="mr-2 h-4 w-4" />
+                <Eye className="mr-2 h-4 w-4" />
             </DropdownMenuTrigger>
         </DropdownMenu>
     )

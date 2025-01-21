@@ -7,6 +7,7 @@ import L from "leaflet";
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from '@/app/components/ui/card'
 import ContinentsBarChart from "@/app/(dashboard)/_components/ContinentsBarChart";
 import {DaysVisitBarChart} from "@/app/(dashboard)/_components/DaysVisitBarChart";
+import { FaCaretUp, FaCaretDown } from 'react-icons/fa';
 
 const DynamicMapContainer = dynamic(() => import("react-leaflet").then((mod) => mod.MapContainer), { ssr: false });
 const DynamicTileLayer = dynamic(() => import("react-leaflet").then((mod) => mod.TileLayer), { ssr: false });
@@ -22,18 +23,28 @@ const safeParseISO = (dateString?: string): Date | null => {
 const LocationCategory = ({ title, data, isOpen, toggleCategory, actualCategory, color }) => (
     <div className="mb-4">
         <button
-            className={`font-bold ${color}`}
+            className={`font-bold w-full flex items-center gap-2 ${color}`}
             onClick={() => toggleCategory(actualCategory === title ? "" : title)}
         >
-            {`${title} (${data.length})`}
+            <div className={"flex gap-1 mr-auto"}>
+                <p className={"w-max"}>{`${title}`}</p>
+                <p className={"w-max"}>{`(${data.length})`}</p>
+            </div>
+
+            <div className={`border-2 w-full h-1 ml-2`}></div>
+
+            <div className={"ml-auto"}>
+                {isOpen ? <FaCaretUp className={"w-5"} /> : <FaCaretDown className={"w-5"} />}
+            </div>
         </button>
+
         {isOpen && (
             <div>
                 {data.map((loc, index) => (
                     <div key={index} className="text-sm mt-2">
                         <strong>{loc.city}, {loc.region}, {loc.country}</strong>
                         <br />
-                        {formatDistanceToNow(safeParseISO(loc.timestamp)!, { addSuffix: true })}
+                        {formatDistanceToNow(parseISO(loc.timestamp), { addSuffix: true })}
                     </div>
                 ))}
             </div>
@@ -239,7 +250,9 @@ export default function Home() {
                                 <LocationCategory
                                     key={title}
                                     title={title}
-                                    data={data}
+                                    data={[...data].sort((a, b) =>
+                                        parseISO(b.timestamp).getTime() - parseISO(a.timestamp).getTime()
+                                    )}
                                     isOpen={openCategory === title}
                                     toggleCategory={setOpenCategory}
                                     actualCategory={openCategory}
