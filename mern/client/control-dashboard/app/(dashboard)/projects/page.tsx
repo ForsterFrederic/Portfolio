@@ -41,17 +41,25 @@ type ProjectFormData = Omit<Project, "_id" | "picture"> & {
     picture: File | string;
 };
 
+const isMobile = () => {
+    if (typeof window !== "undefined") {
+        return /Mobi|Android/i.test(navigator.userAgent);
+    }
+    return false;
+};
+
 const SortableProject = ({
                              project,
                              handleEditProject,
                              handleDeleteProject,
+                             dragEnabled,
                          }: {
     project: Project;
     handleEditProject: (project: Project) => void;
     handleDeleteProject: (id: string) => void;
+    dragEnabled: boolean;
 }) => {
     const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: project._id });
-
     const style = {
         transform: CSS.Transform.toString(transform),
         transition,
@@ -61,39 +69,42 @@ const SortableProject = ({
         <div
             ref={setNodeRef}
             style={style}
-            {...attributes}
-            {...listeners}
+            {...(dragEnabled ? { ...attributes, ...listeners } : {})}
             className="bg-card border p-6 rounded-lg shadow-sm flex flex-col"
         >
             <div className="flex-grow">
                 <h3 className="text-center font-bold text-xl">{project.title}</h3>
-                <Separator className="mt-4 mb-6 w-11/12 mx-auto" />
-                {project.picture && (
-                    <div className="relative w-full overflow-hidden">
-                        <img
-                            className="p-1 w-full h-full object-cover object-top rounded-t"
-                            src={project.picture}
-                            alt={project.title}
-                        />
-                        <Separator className="my-6 w-11/12 mx-auto" />
-                    </div>
+                {!dragEnabled && (
+                    <div><Separator className="mt-4 mb-6 w-11/12 mx-auto" />
+                    {project.picture && (
+                        <div className="relative w-full overflow-hidden">
+                            <img
+                                className="p-1 w-full h-full object-cover object-top rounded-t"
+                                src={project.picture}
+                                alt={project.title}
+                            />
+                            <Separator className="my-6 w-11/12 mx-auto" />
+                        </div>
+                    )}
+                    <p className="mb-1">{project.description}</p>
+                    <p className="mb-1">{project.duration}</p>
+                    <p className="mb-1">{project.technologies}</p>
+                    <Link className="cursor-pointer underline underline-offset-4" onClick={() => window.open(project.link)}>
+                        {project.link}
+                    </Link></div>
                 )}
-                <p className="mb-1">{project.description}</p>
-                <p className="mb-1">{project.duration}</p>
-                <p className="mb-1">{project.technologies}</p>
-                <Link className="cursor-pointer underline underline-offset-4" onClick={() => window.open(project.link)}>
-                    {project.link}
-                </Link>
             </div>
-            <Separator className="my-6 w-11/12 mx-auto" />
-            <div className="flex justify-center gap-4">
-                <Button color="secondary" className="w-32 font-bold bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50" onClick={() => handleDeleteProject(project._id)}>
-                    Delete
-                </Button>
-                <Button color="secondary" className="w-32 font-bold bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50" onClick={() => handleEditProject(project)}>
-                    Edit
-                </Button>
-            </div>
+            {!dragEnabled && (<Separator className="my-6 w-11/12 mx-auto" />)}
+            {!dragEnabled && (
+                <div className="flex justify-center gap-4">
+                    <Button color="secondary" className="w-32 font-bold bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50" onClick={() => handleDeleteProject(project._id)}>
+                        Delete
+                    </Button>
+                    <Button color="secondary" className="w-32 font-bold bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50" onClick={() => handleEditProject(project)}>
+                        Edit
+                    </Button>
+                </div>
+            )}
         </div>
     );
 };
@@ -106,7 +117,8 @@ export default function Projects() {
     const [projectsDE, setProjectsDE] = useState<Project[]>([]);
     const [file, setFile] = useState<File | string | null>(null);
     const [projectId, setProjectId] = useState<string | null>(null);
-    const [loading, setLoading] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [dragEnabled, setDragEnabled] = useState(false);
     const [projectData, setProjectData] = useState<ProjectFormData>({
         language: "EN",
         title: "",
@@ -117,6 +129,10 @@ export default function Projects() {
         picture: "",
         position: 0,
     });
+
+    const handleToggleDrag = () => {
+        setDragEnabled((prev) => !prev);
+    };
 
     const fetchProjects = async (language: string, setExperience: any) => {
         setLoading(true);
@@ -160,7 +176,6 @@ export default function Projects() {
             formData.append("picture", file);
         }
 
-        setLoading(true);
         try {
             if (projectId) {
                 await axios.put(`${BACKEND_API_URL}/project/${projectId}`, formData, {
@@ -177,13 +192,10 @@ export default function Projects() {
             fetchProjects("DE", setProjectsDE);
         } catch (error) {
             console.error("Error submitting project:", error);
-        } finally {
-            setLoading(false);
         }
     };
 
     const handleDeleteProject = async (id: string) => {
-        setLoading(true);
         try {
             await axios.delete(`${BACKEND_API_URL}/project/${id}`);
             fetchProjects("EN", setProjectsEN);
@@ -191,8 +203,6 @@ export default function Projects() {
             fetchProjects("DE", setProjectsDE);
         } catch (error) {
             console.error("Error deleting project:", error);
-        } finally {
-            setLoading(false);
         }
     };
 
@@ -300,6 +310,8 @@ export default function Projects() {
                                 project={project}
                                 handleEditProject={handleEditProject}
                                 handleDeleteProject={handleDeleteProject}
+                                dragEnabled={dragEnabled}
+                                setDragEnabled={setDragEnabled}
                             />
                         ))}
                     </div>
@@ -319,6 +331,10 @@ export default function Projects() {
         fetchProjects("DE", setProjectsDE);
     }, []);
 
+    if (loading) {
+        return <div className="flex items-center justify-center h-screen">Loading Projects...</div>;
+    }
+
     return (
         <div>
             <div className="flex flex-col md:flex-row items-center justify-between gap-6 mt-6 px-4 md:px-14">
@@ -329,7 +345,7 @@ export default function Projects() {
                     <div className="text-xs font-bold text-center w-full md:w-auto">
                         {`EN(${projectsEN.length}) FR(${projectsFR.length}) DE(${projectsDE.length})`}
                     </div>
-                    <Button onPress={onOpen} color="secondary" className="font-bold w-full md:w-44 bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50">
+                    <Button onPress={onOpen} color="secondary" className="font-bold w-full md:w-44 bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50">
                         Create Project
                     </Button>
                 </div>
@@ -396,17 +412,20 @@ export default function Projects() {
                         </ModalBody>
                         <Separator className={"mb-4 mt-6"}/>
                         <ModalFooter className={"flex justify-between"}>
-                            <Button color="secondary" className={"w-44 bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50"} onPress={onClose}>Close</Button>
-                            <Button type="submit" color="secondary" className={"w-44 bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50"}
+                            <Button color="secondary" className={"w-44 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50"} onPress={onClose}>Close</Button>
+                            <Button type="submit" color="secondary" className={"w-44 bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50"}
                                     onPress={onClose}>{projectId ? 'Update Project' : 'Create Project'}</Button>
                         </ModalFooter>
                     </form>
                 </ModalContent>
             </Modal>
 
-            {loading && <p className="mt-6 text-center">Loading...</p>}
-
-            <div className="w-full py-12">
+            <div className={"px-4 md:pl-14 mt-4 w-full md:w-auto"}>
+                <Button onClick={handleToggleDrag}  color="secondary" className="font-bold w-full md:w-44 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50">
+                    {dragEnabled ? "Stop Reorder" : "Reorder"}
+                </Button>
+            </div>
+            <div className="w-full pt-6 pb-12">
                 <div className="flex items-center justify-center mb-12 gap-1 px-6">
                     <p className="text-xl font-semibold w-max">{`EN`}</p>
                     <p className="text-xl font-semibold w-max">{`(${projectsEN.length})`}</p>

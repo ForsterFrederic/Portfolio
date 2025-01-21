@@ -19,19 +19,19 @@ export default function DashboardTopNav({ children }: { children: ReactNode }) {
         <Dialog>
           <SheetTrigger className="min-[1024px]:hidden p-2 transition">
             <HamburgerMenuIcon />
-            <Link href={`${IS_PROD === "TRUE" ? "/private" : ""}/home`}>
+            <Link href={`${IS_PROD === "TRUE" ? "/private" : ""}/home`} prefetch={true}>
               <span className="sr-only">Home</span>
             </Link>
           </SheetTrigger>
           <SheetContent side="left">
             <SheetHeader>
-              <Link href={`${IS_PROD === "TRUE" ? "/private" : ""}/home`}>
+              <Link href={`${IS_PROD === "TRUE" ? "/private" : ""}/home`} prefetch={true}>
                 <SheetTitle>Control Dashboard</SheetTitle>
               </Link>
             </SheetHeader>
             <div className="flex flex-col space-y-3 mt-[1rem]">
               <DialogClose asChild>
-                <Link href={`${IS_PROD === "TRUE" ? "/private" : ""}/home`}>
+                <Link href={`${IS_PROD === "TRUE" ? "/private" : ""}/home`} prefetch={true}>
                   <Button variant="outline" className="w-full">
                     <HomeIcon className="mr-2 h-4 w-4" />
                     Home
@@ -39,7 +39,7 @@ export default function DashboardTopNav({ children }: { children: ReactNode }) {
                 </Link>
               </DialogClose>
               <DialogClose asChild>
-                <Link href={`${IS_PROD === "TRUE" ? "/private" : ""}/experiences`}>
+                <Link href={`${IS_PROD === "TRUE" ? "/private" : ""}/experiences`} prefetch={true}>
                   <Button variant="outline" className="w-full">
                     <BookOpenCheck className="mr-2 h-4 w-4" />
                     Experiences
@@ -47,7 +47,7 @@ export default function DashboardTopNav({ children }: { children: ReactNode }) {
                 </Link>
               </DialogClose>
               <DialogClose asChild>
-                <Link href={`${IS_PROD === "TRUE" ? "/private" : ""}/projects`}>
+                <Link href={`${IS_PROD === "TRUE" ? "/private" : ""}/projects`} prefetch={true}>
                   <Button variant="outline" className="w-full">
                     <Folder className="mr-2 h-4 w-4" />
                     Projects
@@ -56,7 +56,7 @@ export default function DashboardTopNav({ children }: { children: ReactNode }) {
               </DialogClose>
               <Separator className="my-3" />
               <DialogClose asChild>
-                <Link href={`${IS_PROD === "TRUE" ? "/private" : ""}/settings`}>
+                <Link href={`${IS_PROD === "TRUE" ? "/private" : ""}/settings`} prefetch={true}>
                   <Button variant="outline" className="w-full">
                     <Settings className="mr-2 h-4 w-4" />
                     Settings

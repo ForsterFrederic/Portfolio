@@ -94,3 +94,7 @@
 .modal {
   z-index: 9999;
 }
+
+.customhidden {
+  visibility: hidden;
+}

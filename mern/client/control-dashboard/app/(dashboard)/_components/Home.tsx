@@ -1,14 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
+import {useEffect, useMemo, useState} from "react";
 import axios from "axios";
 import { differenceInHours, formatDistanceToNow, parseISO, isValid } from "date-fns";
 import dynamic from "next/dynamic";
 import L from "leaflet";
-import {Button} from '@/app/components/ui/button'
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from '@/app/components/ui/card'
-import Link from 'next/link'
-import {ArrowUpRight} from 'lucide-react'
-import ContinentBarChart from "@/app/(dashboard)/_components/ContinentsBarChart";
 import ContinentsBarChart from "@/app/(dashboard)/_components/ContinentsBarChart";
 import {DaysVisitBarChart} from "@/app/(dashboard)/_components/DaysVisitBarChart";
 
@@ -18,6 +14,32 @@ const DynamicMarker = dynamic(() => import("react-leaflet").then((mod) => mod.Ma
 const DynamicPopup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), { ssr: false });
 
 const BACKEND_API_URL = process.env.NEXT_PUBLIC_BACKEND_API_URL || "https://frederic-forster.com/api";
+
+const safeParseISO = (dateString?: string): Date | null => {
+    return dateString ? (isValid(parseISO(dateString)) ? parseISO(dateString) : null) : null;
+};
+
+const LocationCategory = ({ title, data, isOpen, toggleCategory, actualCategory, color }) => (
+    <div className="mb-4">
+        <button
+            className={`font-bold ${color}`}
+            onClick={() => toggleCategory(actualCategory === title ? "" : title)}
+        >
+            {`${title} (${data.length})`}
+        </button>
+        {isOpen && (
+            <div>
+                {data.map((loc, index) => (
+                    <div key={index} className="text-sm mt-2">
+                        <strong>{loc.city}, {loc.region}, {loc.country}</strong>
+                        <br />
+                        {formatDistanceToNow(safeParseISO(loc.timestamp)!, { addSuffix: true })}
+                    </div>
+                ))}
+            </div>
+        )}
+    </div>
+);
 
 interface Location {
     loc: string;
@@ -36,6 +58,7 @@ export default function Home() {
     const [loading, setLoading] = useState<boolean>(true);
     const BACKEND_API_URL = process.env.NEXT_PUBLIC_BACKEND_API_URL || "http://localhost:3001/api";
     const [counter, setCounter] = useState({ total: 0, count: 0, createdAt: '', lastResetAt: ''});
+    const [openCategory, setOpenCategory] = useState<string | null>(null);
 
     const fetchCounter = async () => {
         try {
@@ -64,10 +87,6 @@ export default function Home() {
             console.error('Error resetting counter:', error);
         }
     };
-
-    if (loading) {
-        return <div>Loading...</div>;
-    }
 
     const formatDate = (dateString: string): string => {
         const date = new Date(dateString);
@@ -99,31 +118,22 @@ export default function Home() {
         return isValid(parsedDate) ? parsedDate : null;
     };
 
-    // const categorizedLocations = useMemo(() => categorizeLocations(), [locations]);
+    const filterByHours = (hoursMin: number, hoursMax: number) =>
+        locations.filter(({ timestamp }) => {
+            const date = safeParseISO(timestamp);
+            const diffHours = date ? differenceInHours(new Date(), date) : Infinity;
+            return diffHours > hoursMin && diffHours <= hoursMax;
+        });
 
-    const categorizeLocations = () => {
-        const now = new Date();
-        return {
-            recent: locations.filter((loc) => {
-                const date = safeParseISO(loc.timestamp);
-                return date && differenceInHours(now, date) <= 24;
-            }),
-            week: locations.filter((loc) => {
-                const date = safeParseISO(loc.timestamp);
-                return date && differenceInHours(now, date) > 24 && differenceInHours(now, date) <= 168;
-            }),
-            older: locations.filter((loc) => {
-                const date = safeParseISO(loc.timestamp);
-                return date && differenceInHours(now, date) > 168;
-            }),
-        };
-    };
+    const categorizeLocations = () => ({
+        recent: filterByHours(0, 24),
+        week: filterByHours(24, 168),
+        twoWeeks: filterByHours(168, 336),
+        month: filterByHours(336, 720),
+        older: filterByHours(720, Infinity),
+    });
 
-    const { recent, week, older } = categorizeLocations();
-
-    if (loading) {
-        return <div className="flex items-center justify-center h-screen">Loading...</div>;
-    }
+    const { recent, week, twoWeeks,month, older } = categorizeLocations();
 
     const icon = `
         <svg fill="#FF0000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 466.583 466.582" xml:space="preserve">
@@ -143,6 +153,10 @@ export default function Home() {
         iconAnchor: [16, 32],
         className: '',
     });
+
+    if (loading) {
+        return <div className="flex items-center justify-center h-screen">Loading Home...</div>;
+    }
 
     return (
         <div className="flex flex-col items-start gap-4">
@@ -211,16 +225,24 @@ export default function Home() {
                                     Last reset: {counter.lastResetAt ? formatDate(counter.lastResetAt) : 'Never'}
                                 </p>
                             </div>
-                            <h2 className="text-xl font-bold mt-8 mb-2">Locations</h2>
+                            <h2 className="text-xl font-bold mt-8">Locations</h2>
+                            <p className="text-xs text-muted-foreground mt-auto mb-5">
+                                Locations by time category
+                            </p>
                             {[
-                                { title: "Last 24 Hours", data: recent, color: "text-blue-400" },
-                                { title: "Last Week", data: week, color: "text-yellow-600" },
-                                { title: "Older", data: older, color: "text-gray-600" },
-                            ].map(({ title, data, color }, idx) => (
-                                <VisitorSection
-                                    key={idx}
+                                { title: "Last 24 Hours", data: recent, color: "text-green-500" },
+                                { title: "Last Week", data: week, color: "text-orange-500" },
+                                { title: "Last 2 Weeks", data: twoWeeks, color: "text-blue-500" },
+                                { title: "Last Month", data: month, color: "text-purple-500" },
+                                { title: "Older", data: older, color: "text-gray-400" },
+                            ].map(({ title, data, color }) => (
+                                <LocationCategory
+                                    key={title}
                                     title={title}
                                     data={data}
+                                    isOpen={openCategory === title}
+                                    toggleCategory={setOpenCategory}
+                                    actualCategory={openCategory}
                                     color={color}
                                 />
                             ))}
@@ -235,23 +257,3 @@ export default function Home() {
         </div>
     );
 }
-
-interface VisitorSectionProps {
-    title: string;
-    data: Location[];
-    color: string;
-}
-
-const VisitorSection: React.FC<VisitorSectionProps> = ({ title, data, color }) => (
-    <section>
-        <p className="pt-1">{title}</p>
-        <ul className="divide-y divide-neutral-800">
-            {data.map((location, index) => (
-                <li key={index} className={`py-2 text-xs text-muted-foreground`}>
-                    <div>{location.city}, {location.region}, {location.country}</div>
-                    <div>{formatDistanceToNow(parseISO(location.timestamp), { addSuffix: true })}</div>
-                </li>
-            ))}
-        </ul>
-    </section>
-);

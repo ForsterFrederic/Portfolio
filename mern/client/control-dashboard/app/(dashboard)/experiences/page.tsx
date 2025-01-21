@@ -93,7 +93,7 @@ export default function Experiences() {
     const [experiencesFR, setExperiencesFR] = useState<Experience[]>([]);
     const [experiencesDE, setExperiencesDE] = useState<Experience[]>([]);
     const [experienceId, setExperienceId] = useState<string | null>(null);
-    const [loading, setLoading] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(true);
     const [experienceData, setExperienceData] = useState<ExperienceFormData>({
         language: "EN",
         company: "",
@@ -133,7 +133,6 @@ export default function Experiences() {
                             0;
         event?.preventDefault();
 
-        setLoading(true);
         try {
             if (experienceId) {
                 await axios.put(`${BACKEND_API_URL}/experience/${experienceId}`, experienceData, {
@@ -150,13 +149,10 @@ export default function Experiences() {
             fetchExperiences("DE", setExperiencesDE);
         } catch (error) {
             console.error("Error submitting experience:", error);
-        } finally {
-            setLoading(false);
         }
     };
 
     const handleDeleteExperience = async (id: string) => {
-        setLoading(true);
         try {
             await axios.delete(`${BACKEND_API_URL}/experience/${id}`);
             fetchExperiences("EN", setExperiencesEN);
@@ -164,8 +160,6 @@ export default function Experiences() {
             fetchExperiences("DE", setExperiencesDE);
         } catch (error) {
             console.error("Error deleting experience:", error);
-        } finally {
-            setLoading(false);
         }
     };
 
@@ -285,6 +279,10 @@ export default function Experiences() {
         fetchExperiences("DE", setExperiencesDE);
     }, []);
 
+    if (loading) {
+        return <div className="flex items-center justify-center h-screen">Loading Experiences...</div>;
+    }
+
     return (
         <div>
             <div className="flex flex-col md:flex-row items-center justify-between gap-6 mt-6 px-4 md:px-14">
@@ -376,8 +374,6 @@ export default function Experiences() {
                     </form>
                 </ModalContent>
             </Modal>
-
-            {loading && <p className="mt-6 text-center">Loading...</p>}
 
             <div className="w-full py-12">
                 <div className="flex items-center justify-center mb-12 gap-1 px-6">

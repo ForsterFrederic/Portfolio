@@ -1,5 +1,7 @@
 "use client"
 
+import React, {useState} from "react";
+
 export default function Settings() {
     const baseUrl = process.env.NEXT_PUBLIC_BACKEND_API_URL;
 
