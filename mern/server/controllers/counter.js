@@ -41,7 +41,7 @@ exports.incrementCounter = async (req, res) => {
             };
             counter.localisation.push(localisationData);
 
-            if (counter.localisation.length > 100) {
+            if (counter.localisation.length > 600) {
                 counter.localisation.shift();
             }
         }
