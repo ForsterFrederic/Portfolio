@@ -47,11 +47,13 @@ const SortableProject = ({
                              handleEditProject,
                              handleDeleteProject,
                              dragEnabled,
+                             setDragEnabled,
                          }: {
     project: Project;
     handleEditProject: (project: Project) => void;
     handleDeleteProject: (id: string) => void;
     dragEnabled: boolean;
+    setDragEnabled: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
     const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: project._id });
 

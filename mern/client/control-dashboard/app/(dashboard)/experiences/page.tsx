@@ -44,11 +44,13 @@ const SortableExperience = ({
                              handleEditExperience,
                              handleDeleteExperience,
                              dragEnabled,
+                             setDragEnabled,
                          }: {
     experience: Experience;
     handleEditExperience: (experience: Experience) => void;
     handleDeleteExperience: (id: string) => void;
     dragEnabled: boolean;
+    setDragEnabled: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
     const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: experience._id });
 
