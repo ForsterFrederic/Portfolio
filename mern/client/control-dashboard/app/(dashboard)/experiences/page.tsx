@@ -398,7 +398,7 @@ export default function Experiences() {
                         <Separator className={"mb-4 mt-6"}/>
                         <ModalFooter className={"flex justify-between"}>
                             <Button color="secondary" className={"w-44 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50"} onPress={onClose}>Close</Button>
-                            {typeof window !== "undefined" && window.innerWidth <= 500 && (
+                            {typeof window !== "undefined" && window.innerWidth > 500 && (
                                 <Popconfirm
                                     title={experienceId ? 'Sure to update ?' : 'Sure to create ?'}
                                     okText="Yes"
@@ -418,7 +418,7 @@ export default function Experiences() {
                                 </Popconfirm>
                             )}
 
-                            {typeof window !== "undefined" && window.innerWidth > 500 && (
+                            {typeof window !== "undefined" && window.innerWidth <= 500 && (
                                 <Button
                                     color="secondary"
                                     className={"w-44 bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50"}
