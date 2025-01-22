@@ -21,7 +21,7 @@ interface LocationCategoryProps {
     data: { city: string; region: string; country: string; timestamp: string }[];
     isOpen: boolean;
     toggleCategory: (category: string) => void;
-    actualCategory: string;
+    actualCategory: string | null;
     color: string;
 }
 
