@@ -1,26 +1,31 @@
-import {ThemeProvider} from "@/app/components/theme-provider"
-import {Toaster} from "@/app/components/ui/sonner"
-import {GeistSans} from 'geist/font/sans'
-import type {Metadata} from 'next'
-import './globals.css'
+"use client";
+
+import React, { useEffect } from "react";
+import { ThemeProvider } from "@/app/components/theme-provider";
+import { Toaster } from "@/app/components/ui/sonner";
+import { GeistSans } from "geist/font/sans";
+import "./globals.css";
 
 export const viewport = {
     themeColor: "#000000",
 };
 
-export const metadata: Metadata = {
-    title: "Frédéric's Portfolio Dashboard",
-    description: 'A control dashboard for managing portfolio content.',
-    icons: {
-        icon: '/logo3.webp',
-        apple: '/logo3.webp',
-    },
-    manifest: '/manifest.json',
-};
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+    useEffect(() => {
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker
+                    .register("/service-worker.js")
+                    .then((registration) => {
+                        console.log("Service Worker registered with scope:", registration.scope);
+                    })
+                    .catch((error) => {
+                        console.error("Service Worker registration failed:", error);
+                    });
+            });
+        }
+    }, []);
 
-export default function RootLayout({children,}: {
-    children: React.ReactNode
-}) {
     return (
         <html lang="en" suppressHydrationWarning>
         <head>
@@ -42,16 +47,11 @@ export default function RootLayout({children,}: {
             />
         </head>
         <body className={GeistSans.className}>
-        <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-        >
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
             {children}
-            <Toaster/>
+            <Toaster />
         </ThemeProvider>
         </body>
         </html>
-    )
+    );
 }

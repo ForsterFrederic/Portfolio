@@ -65,12 +65,29 @@ exports.resetCount = async (req, res) => {
 
         counter.count = 0;
         counter.lastResetAt = new Date();
-        counter.localisation = [];
         await counter.save();
 
-        res.status(200).json({ message: 'Counter and localisation data reset successfully', counter });
+        res.status(200).json({ message: 'Counter data reset successfully', counter });
     } catch (err) {
         console.error('Error resetting count:', err);
         res.status(500).json({ error: 'Failed to reset count' });
+    }
+};
+
+exports.resetLocalisation = async (req, res) => {
+    try {
+        const counter = await Counter.findOne();
+
+        if (!counter) {
+            return res.status(404).json({ error: 'Counter not found' });
+        }
+
+        counter.localisation = [];
+        await counter.save();
+
+        res.status(200).json({ message: 'Localisation data reset successfully', counter });
+    } catch (err) {
+        console.error('Error resetting localisation:', err);
+        res.status(500).json({ error: 'Failed to reset localisation' });
     }
 };

@@ -146,7 +146,6 @@ export default function Experiences() {
     };
 
     const handleExperienceSubmit = async (event?: React.FormEvent) => {
-        alert("laaaafezfzefe")
         setLoading(true);
         if (!experienceId)
             experienceData.position =

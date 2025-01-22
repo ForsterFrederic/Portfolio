@@ -141,6 +141,7 @@ router.delete('/experience/:id', ExperienceController.deleteExperience);
 router.get('/counter', CounterController.getCounter);
 router.post('/counter', CounterController.incrementCounter);
 router.delete('/counter', CounterController.resetCount);
+router.delete('/counter/localisation', CounterController.resetLocalisation);
 
 router.get('/settings/development', SettingsController.toggleDevelopment);
 router.get('/settings', SettingsController.getSettings);
