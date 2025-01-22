@@ -1,5 +1,5 @@
 "use client";
-import {useEffect, useMemo, useState} from "react";
+import {ReactElement, useEffect, useMemo, useState} from "react";
 import axios from "axios";
 import { differenceInHours, formatDistanceToNow, parseISO, isValid } from "date-fns";
 import dynamic from "next/dynamic";
@@ -16,12 +16,17 @@ const DynamicPopup = dynamic(() => import("react-leaflet").then((mod) => mod.Pop
 
 const BACKEND_API_URL = process.env.NEXT_PUBLIC_BACKEND_API_URL || "https://frederic-forster.com/api";
 
-const safeParseISO = (dateString?: string): Date | null => {
-    return dateString ? (isValid(parseISO(dateString)) ? parseISO(dateString) : null) : null;
-};
+interface LocationCategoryProps {
+    title: string;
+    data: { city: string; region: string; country: string; timestamp: string }[];
+    isOpen: boolean;
+    toggleCategory: (category: string) => void;
+    actualCategory: string;
+    color: string;
+}
 
-const LocationCategory = ({ title, data, isOpen, toggleCategory, actualCategory, color }) => (
-    <div className="mb-4">
+const LocationCategory = ({ title, data, isOpen, toggleCategory, actualCategory, color }: LocationCategoryProps): ReactElement => (
+    <div className="mb-4">·
         <button
             className={`font-bold w-full flex items-center gap-2 ${color}`}
             onClick={() => toggleCategory(actualCategory === title ? "" : title)}
