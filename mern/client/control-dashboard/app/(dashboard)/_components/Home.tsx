@@ -228,6 +228,7 @@ export default function Home() {
                                         visits since last reset
                                     </p>
                                 </div>
+
                                 <button
                                     onClick={handleReset}
                                     className="w-52 mt-2 px-3 sm:px-4 py-2 md:w-3/4 text-white text-sm sm:text-base bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50"
