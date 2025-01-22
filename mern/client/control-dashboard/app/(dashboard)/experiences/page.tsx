@@ -398,14 +398,30 @@ export default function Experiences() {
                         <Separator className={"mb-4 mt-6"}/>
                         <ModalFooter className={"flex justify-between"}>
                             <Button color="secondary" className={"w-44 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50"} onPress={onClose}>Close</Button>
-                            <Popconfirm
+                            {window.innerWidth <= 500 && <Popconfirm
                                 title={experienceId ? 'Sure to update ?' : 'Sure to create ?'}
                                 okText="Yes"
                                 cancelText="No"
-                                onConfirm={() => {alert("Popconfirm clicked!"); onClose(); handleExperienceSubmit();}}
+                                onConfirm={() => {alert("Popconfirm clicked!"); handleExperienceSubmit(); onClose();}}
                             >
                                 <Button color="secondary" className={"w-44 bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50"}>{experienceId ? 'Update Experience' : 'Create Experience'}</Button>
-                            </Popconfirm>
+                            </Popconfirm>}
+                            {window.innerWidth > 500 && <Button
+                                color="secondary"
+                                className={"w-44 bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50"}
+                                onClick={() => {
+                                    const confirmed = window.confirm(
+                                        experienceId ? 'Sure to update?' : 'Sure to create?'
+                                    );
+                                    if (confirmed) {
+                                        alert("Confirmed!");
+                                        handleExperienceSubmit();
+                                        onClose();
+                                    }
+                                }}
+                            >
+                                {experienceId ? 'Update Experience' : 'Create Experience'}
+                            </Button>}
                         </ModalFooter>
                     </form>
                 </ModalContent>
