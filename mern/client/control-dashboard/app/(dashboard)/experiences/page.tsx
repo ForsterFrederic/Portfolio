@@ -179,6 +179,7 @@ export default function Experiences() {
     };
 
     const handleDeleteExperience = async (id: string) => {
+        alert(BACKEND_API_URL)
         setLoading(true);
         try {
             await axios.delete(`${BACKEND_API_URL}/experience/${id}`);
