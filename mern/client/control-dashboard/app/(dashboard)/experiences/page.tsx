@@ -146,6 +146,7 @@ export default function Experiences() {
     };
 
     const handleExperienceSubmit = async (event?: React.FormEvent) => {
+        alert("laaaafezfzefe")
         setLoading(true);
         if (!experienceId)
             experienceData.position =
@@ -169,17 +170,14 @@ export default function Experiences() {
             fetchExperiences("EN", setExperiencesEN);
             fetchExperiences("FR", setExperiencesFR);
             fetchExperiences("DE", setExperiencesDE);
-            alert("OK...")
         } catch (error) {
             console.error("Error submitting experience:", error);
-            alert("ERREUR..." + error + " " + experienceData)
         } finally {
             setLoading(false);
         }
     };
 
     const handleDeleteExperience = async (id: string) => {
-        alert(BACKEND_API_URL)
         setLoading(true);
         try {
             await axios.delete(`${BACKEND_API_URL}/experience/${id}`);
