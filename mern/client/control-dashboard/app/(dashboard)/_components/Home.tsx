@@ -66,7 +66,6 @@ interface ApiResponse {
 
 export default function Home() {
     const [locations, setLocations] = useState<Location[]>([]);
-    const [loading, setLoading] = useState<boolean>(true);
     const BACKEND_API_URL = process.env.NEXT_PUBLIC_BACKEND_API_URL || "http://localhost:3001/api";
     const [counter, setCounter] = useState({ total: 0, count: 0, createdAt: '', lastResetAt: ''});
     const [openCategory, setOpenCategory] = useState<string | null>(null);
@@ -78,8 +77,6 @@ export default function Home() {
             setCounter(response.data);
         } catch (error) {
             console.error('Error fetching counter:', error);
-        } finally {
-            setLoading(false);
         }
     };
 
@@ -96,6 +93,15 @@ export default function Home() {
             fetchCounter();
         } catch (error) {
             console.error('Error resetting counter:', error);
+        }
+    };
+
+    const handleResetLocalisation = async () => {
+        try {
+            await axios.delete(`${BACKEND_API_URL}/counter/localisation`);
+            fetchCounter();
+        } catch (error) {
+            console.error('Error resetting counter localisation:', error);
         }
     };
 
@@ -165,10 +171,6 @@ export default function Home() {
         className: '',
     });
 
-    if (loading) {
-        return <div className="flex items-center justify-center h-screen">Loading Home...</div>;
-    }
-
     return (
         <div className="flex flex-col items-start gap-4">
             <Card className="w-full">
@@ -228,7 +230,7 @@ export default function Home() {
                                 </div>
                                 <button
                                     onClick={handleReset}
-                                    className="mt-2 px-3 sm:px-4 py-2 w-3/4 text-white text-sm sm:text-base bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50"
+                                    className="w-52 mt-2 px-3 sm:px-4 py-2 md:w-3/4 text-white text-sm sm:text-base bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50"
                                 >
                                     Reset
                                 </button>
@@ -237,7 +239,7 @@ export default function Home() {
                                 </p>
                             </div>
                             <h2 className="text-xl font-bold mt-8">Locations</h2>
-                            <p className="text-xs text-muted-foreground mt-auto mb-5">
+                            <p className="text-xs text-muted-foreground mt-auto mb-2">
                                 Locations by time category
                             </p>
                             {[
@@ -259,6 +261,12 @@ export default function Home() {
                                     color={color}
                                 />
                             ))}
+                            <button
+                                onClick={handleResetLocalisation}
+                                className="w-52 mt-2 px-3 sm:px-4 py-2 md:w-3/4 text-white text-sm sm:text-base bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50"
+                            >
+                                Reset
+                            </button>
                         </div>
                     </div>
                 </CardContent>

@@ -23,6 +23,7 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import {Textarea} from "@/app/components/ui/textarea";
+import {Popconfirm} from 'antd';
 
 type Experience = {
     _id: string;
@@ -80,9 +81,16 @@ const SortableExperience = ({
             </div>
             {!dragEnabled && (
                 <div className="flex justify-center gap-4">
-                    <Button color="secondary" className="w-32 font-bold bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50" onClick={() => handleDeleteExperience(experience._id)}>
-                        Delete
-                    </Button>
+                    <Popconfirm
+                        title="Sure to delete ?"
+                        okText="Yes"
+                        cancelText="No"
+                        onConfirm={() => {handleDeleteExperience(experience._id)}}
+                    >
+                        <Button color="secondary" className="w-32 font-bold bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50">
+                            Delete
+                        </Button>
+                    </Popconfirm>
                     <Button color="secondary" className="w-32 font-bold bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50" onClick={() => handleEditExperience(experience)}>
                         Edit
                     </Button>
@@ -136,6 +144,7 @@ export default function Experiences() {
     };
 
     const handleExperienceSubmit = async (event?: React.FormEvent) => {
+        setLoading(true);
         if (!experienceId)
             experienceData.position =
                 experienceData.language === "EN" ? experiencesEN.length :
@@ -160,10 +169,13 @@ export default function Experiences() {
             fetchExperiences("DE", setExperiencesDE);
         } catch (error) {
             console.error("Error submitting experience:", error);
+        } finally {
+            setLoading(false);
         }
     };
 
     const handleDeleteExperience = async (id: string) => {
+        setLoading(true);
         try {
             await axios.delete(`${BACKEND_API_URL}/experience/${id}`);
             fetchExperiences("EN", setExperiencesEN);
@@ -171,10 +183,13 @@ export default function Experiences() {
             fetchExperiences("DE", setExperiencesDE);
         } catch (error) {
             console.error("Error deleting experience:", error);
+        } finally {
+            setLoading(false);
         }
     };
 
     const handleEditExperience = (experience: Experience) => {
+        setLoading(true);
         setExperienceId(experience._id);
         setExperienceData({
             language: experience.language,
@@ -187,6 +202,7 @@ export default function Experiences() {
             position: experience.position,
         });
         onOpen();
+        setLoading(false)
     };
 
     const resetForm = () => {
@@ -292,10 +308,6 @@ export default function Experiences() {
         fetchExperiences("DE", setExperiencesDE);
     }, []);
 
-    if (loading) {
-        return <div className="flex items-center justify-center h-screen">Loading Experiences...</div>;
-    }
-
     return (
         <div>
             <div className="flex flex-col md:flex-row items-center justify-between gap-6 mt-6 px-4 md:px-14">
@@ -320,7 +332,7 @@ export default function Experiences() {
                         {experienceId ? "UPDATE AN EXPERIENCE" : "CREATE NEW EXPERIENCE"}
                     </ModalHeader>
                     <Separator className={"mt-1 mb-5"} />
-                    <form onSubmit={handleExperienceSubmit}>
+                    <form>
                         <ModalBody>
                             <Select
                                 value={experienceData.language}
@@ -381,8 +393,14 @@ export default function Experiences() {
                         <Separator className={"mb-4 mt-6"}/>
                         <ModalFooter className={"flex justify-between"}>
                             <Button color="secondary" className={"w-44 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50"} onPress={onClose}>Close</Button>
-                            <Button type="submit" color="secondary" className={"w-44 bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50"}
-                                    onPress={onClose}>{experienceId ? 'Update Experience' : 'Create Experience'}</Button>
+                            <Popconfirm
+                                title={experienceId ? 'Sure to update ?' : 'Sure to create ?'}
+                                okText="Yes"
+                                cancelText="No"
+                                onConfirm={() => {onClose(); handleExperienceSubmit();}}
+                            >
+                                <Button color="secondary" className={"w-44 bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50"}>{experienceId ? 'Update Experience' : 'Create Experience'}</Button>
+                            </Popconfirm>
                         </ModalFooter>
                     </form>
                 </ModalContent>
@@ -393,6 +411,7 @@ export default function Experiences() {
                     {dragEnabled ? "Stop Reorder" : "Reorder"}
                 </Button>
             </div>
+            {loading && <div className="flex items-center justify-center h-screen">Loading Experiences...</div>}
             <div className="w-full py-12">
                 <div className="flex items-center justify-center mb-12 gap-1 px-6">
                     <p className="text-xl font-semibold w-max">{`EN`}</p>

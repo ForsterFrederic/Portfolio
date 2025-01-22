@@ -24,6 +24,7 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import {Textarea} from "@/app/components/ui/textarea";
+import {Popconfirm} from 'antd';
 
 type Project = {
     _id: string;
@@ -91,9 +92,16 @@ const SortableProject = ({
             {!dragEnabled && (<Separator className="my-6 w-11/12 mx-auto" />)}
             {!dragEnabled && (
                 <div className="flex justify-center gap-4">
-                    <Button color="secondary" className="w-32 font-bold bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50" onClick={() => handleDeleteProject(project._id)}>
-                        Delete
-                    </Button>
+                    <Popconfirm
+                        title="Sure to delete ?"
+                        okText="Yes"
+                        cancelText="No"
+                        onConfirm={() => {handleDeleteProject(project._id)}}
+                    >
+                        <Button color="secondary" className="w-32 font-bold bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50">
+                            Delete
+                        </Button>
+                    </Popconfirm>
                     <Button color="secondary" className="w-32 font-bold bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50" onClick={() => handleEditProject(project)}>
                         Edit
                     </Button>
@@ -155,6 +163,7 @@ export default function Projects() {
     };
 
     const handleProjectSubmit = async (event?: React.FormEvent) => {
+        setLoading(true);
         if (!projectId)
             projectData.position =
                 projectData.language === "EN" ? projectsEN.length :
@@ -186,10 +195,13 @@ export default function Projects() {
             fetchProjects("DE", setProjectsDE);
         } catch (error) {
             console.error("Error submitting project:", error);
+        } finally {
+            setLoading(false);
         }
     };
 
     const handleDeleteProject = async (id: string) => {
+        setLoading(true);
         try {
             await axios.delete(`${BACKEND_API_URL}/project/${id}`);
             fetchProjects("EN", setProjectsEN);
@@ -197,10 +209,13 @@ export default function Projects() {
             fetchProjects("DE", setProjectsDE);
         } catch (error) {
             console.error("Error deleting project:", error);
+        } finally {
+            setLoading(false);
         }
     };
 
     const handleEditProject = (project: Project) => {
+        setLoading(true);
         setProjectId(project._id);
         setProjectData({
             language: project.language,
@@ -214,6 +229,7 @@ export default function Projects() {
         });
         setFile(project.picture);
         onOpen();
+        setLoading(false);
     };
 
     const resetForm = () => {
@@ -325,10 +341,6 @@ export default function Projects() {
         fetchProjects("DE", setProjectsDE);
     }, []);
 
-    if (loading) {
-        return <div className="flex items-center justify-center h-screen">Loading Projects...</div>;
-    }
-
     return (
         <div>
             <div className="flex flex-col md:flex-row items-center justify-between gap-6 mt-6 px-4 md:px-14">
@@ -353,7 +365,7 @@ export default function Projects() {
                         {projectId ? "UPDATE A PROJECT" : "CREATE NEW PROJECT"}
                     </ModalHeader>
                     <Separator className={"mt-1 mb-5"} />
-                    <form onSubmit={handleProjectSubmit}>
+                    <form>
                         <ModalBody>
                             <Select
                                 value={projectData.language}
@@ -371,7 +383,7 @@ export default function Projects() {
                                 value={projectData.title}
                                 onChange={(e) => setProjectData({...projectData, title: e.target.value})}
                                 required
-                                className="border text-sm border-gray-300 mb-2 w-full rounded-lg"
+                                className="border border-gray-300 mb-2 w-full rounded-lg"
                             />
                             <Textarea
                                 placeholder="Description"
@@ -386,7 +398,7 @@ export default function Projects() {
                                 value={projectData.duration}
                                 onChange={(e) => setProjectData({...projectData, duration: e.target.value})}
                                 required
-                                className="border text-sm border-gray-300 mb-2 w-full rounded-lg"
+                                className="border border-gray-300 mb-2 w-full rounded-lg"
                             />
                             <Textarea
                                 placeholder="Technologies"
@@ -400,15 +412,21 @@ export default function Projects() {
                                 placeholder="Project Link"
                                 value={projectData.link}
                                 onChange={(e) => setProjectData({...projectData, link: e.target.value})}
-                                className="border text-sm border-gray-300 mb-2 w-full rounded-lg"
+                                className="border border-gray-300 mb-2 w-full rounded-lg"
                             />
                             <Dropzone onChange={(file) => setFile(file)} initialFile={file}/>
                         </ModalBody>
                         <Separator className={"mb-4 mt-6"}/>
                         <ModalFooter className={"flex justify-between"}>
                             <Button color="secondary" className={"w-44 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50"} onPress={onClose}>Close</Button>
-                            <Button type="submit" color="secondary" className={"w-44 bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50"}
-                                    onPress={onClose}>{projectId ? 'Update Project' : 'Create Project'}</Button>
+                            <Popconfirm
+                                title={projectId ? 'Sure to update ?' : 'Sure to create ?'}
+                                okText="Yes"
+                                cancelText="No"
+                                onConfirm={() => {handleProjectSubmit(); onClose()}}
+                            >
+                            <Button color="secondary" className={"w-44 bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50"}>{projectId ? 'Update Project' : 'Create Project'}</Button>
+                            </Popconfirm>
                         </ModalFooter>
                     </form>
                 </ModalContent>
@@ -419,6 +437,7 @@ export default function Projects() {
                     {dragEnabled ? "Stop Reorder" : "Reorder"}
                 </Button>
             </div>
+            {loading && <div className="flex items-center justify-center h-screen">Loading Projects...</div>}
             <div className="w-full pt-6 pb-12">
                 <div className="flex items-center justify-center mb-12 gap-1 px-6">
                     <p className="text-xl font-semibold w-max">{`EN`}</p>
