@@ -18,6 +18,7 @@ const corsOptions = {
     origin: function (origin, callback) {
         const allowedOrigins = [
             'https://frederic-forster.com',
+            'https://frederic-forster.com/api',
             'http://localhost:3000',
             'http://localhost:3003',
             'http://localhost:3004',

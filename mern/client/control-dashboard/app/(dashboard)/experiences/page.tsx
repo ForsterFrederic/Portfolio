@@ -146,6 +146,10 @@ export default function Experiences() {
     };
 
     const handleExperienceSubmit = async (event?: React.FormEvent) => {
+        if (event) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
         setLoading(true);
         if (!experienceId)
             experienceData.position =
@@ -153,7 +157,6 @@ export default function Experiences() {
                     experienceData.language === "FR" ? experiencesFR.length :
                         experienceData.language === "DE" ? experiencesDE.length :
                             0;
-        event?.preventDefault();
 
         try {
             if (experienceId) {
@@ -399,7 +402,7 @@ export default function Experiences() {
                                 title={experienceId ? 'Sure to update ?' : 'Sure to create ?'}
                                 okText="Yes"
                                 cancelText="No"
-                                onConfirm={() => {onClose(); handleExperienceSubmit();}}
+                                onConfirm={() => {alert("Popconfirm clicked!"); onClose(); handleExperienceSubmit();}}
                             >
                                 <Button color="secondary" className={"w-44 bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50"}>{experienceId ? 'Update Experience' : 'Create Experience'}</Button>
                             </Popconfirm>
