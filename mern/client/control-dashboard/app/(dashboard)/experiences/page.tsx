@@ -169,8 +169,10 @@ export default function Experiences() {
             fetchExperiences("EN", setExperiencesEN);
             fetchExperiences("FR", setExperiencesFR);
             fetchExperiences("DE", setExperiencesDE);
+            alert("OK...")
         } catch (error) {
             console.error("Error submitting experience:", error);
+            alert("ERREUR..." + error + " " + experienceData)
         } finally {
             setLoading(false);
         }
