@@ -108,7 +108,7 @@ export function DaysVisitBarChart({ locations }: BarChartProps) {
             <CardHeader>
                 <CardTitle>By Day and Device</CardTitle>
                 <CardDescription>
-                    Number of visitors categorized by device type for the last 100 elements
+                    Number of visitors categorized by device type
                 </CardDescription>
             </CardHeader>
             <CardContent>

@@ -26,7 +26,7 @@ interface LocationCategoryProps {
 }
 
 const LocationCategory = ({ title, data, isOpen, toggleCategory, actualCategory, color }: LocationCategoryProps): ReactElement => (
-    <div className="mb-4">·
+    <div className="mb-4">
         <button
             className={`font-bold w-full flex items-center gap-2 ${color}`}
             onClick={() => toggleCategory(actualCategory === title ? "" : title)}
@@ -46,10 +46,9 @@ const LocationCategory = ({ title, data, isOpen, toggleCategory, actualCategory,
         {isOpen && (
             <div>
                 {data.map((loc, index) => (
-                    <div key={index} className="text-sm mt-2">
+                    <div key={index} className="text-sm mt-2 flex flex-col">
                         <strong>{loc.city}, {loc.region}, {loc.country}</strong>
-                        <br />
-                        {formatDistanceToNow(parseISO(loc.timestamp), { addSuffix: true })}
+                        <p>{formatDistanceToNow(parseISO(loc.timestamp), { addSuffix: true })}</p>
                     </div>
                 ))}
             </div>
