@@ -421,14 +421,42 @@ export default function Projects() {
                         <Separator className={"mb-4 mt-6"}/>
                         <ModalFooter className={"flex justify-between"}>
                             <Button color="secondary" className={"w-44 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50"} onPress={onClose}>Close</Button>
-                            <Popconfirm
-                                title={projectId ? 'Sure to update ?' : 'Sure to create ?'}
-                                okText="Yes"
-                                cancelText="No"
-                                onConfirm={() => {handleProjectSubmit(); onClose()}}
-                            >
-                            <Button color="secondary" className={"w-44 bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50"}>{projectId ? 'Update Project' : 'Create Project'}</Button>
-                            </Popconfirm>
+                            {typeof window !== "undefined" && window.innerWidth > 500 && (
+                                <Popconfirm
+                                    title={projectId ? 'Sure to update ?' : 'Sure to create ?'}
+                                    okText="Yes"
+                                    cancelText="No"
+                                    onConfirm={() => {
+                                        handleProjectSubmit();
+                                        onClose();
+                                    }}
+                                >
+                                    <Button
+                                        color="secondary"
+                                        className={"w-44 bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50"}
+                                    >
+                                        {projectId ? 'Update Experience' : 'Create Experience'}
+                                    </Button>
+                                </Popconfirm>
+                            )}
+
+                            {typeof window !== "undefined" && window.innerWidth <= 500 && (
+                                <Button
+                                    color="secondary"
+                                    className={"w-44 bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50"}
+                                    onClick={() => {
+                                        const confirmed = window.confirm(
+                                            projectId ? 'Sure to update?' : 'Sure to create?'
+                                        );
+                                        if (confirmed) {
+                                            handleProjectSubmit();
+                                            onClose();
+                                        }
+                                    }}
+                                >
+                                    {projectId ? 'Update Experience' : 'Create Experience'}
+                                </Button>
+                            )}
                         </ModalFooter>
                     </form>
                 </ModalContent>

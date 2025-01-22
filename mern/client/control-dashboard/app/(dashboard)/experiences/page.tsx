@@ -404,7 +404,6 @@ export default function Experiences() {
                                     okText="Yes"
                                     cancelText="No"
                                     onConfirm={() => {
-                                        alert("Popconfirm clicked!");
                                         handleExperienceSubmit();
                                         onClose();
                                     }}
@@ -427,7 +426,6 @@ export default function Experiences() {
                                             experienceId ? 'Sure to update?' : 'Sure to create?'
                                         );
                                         if (confirmed) {
-                                            alert("Confirmed!");
                                             handleExperienceSubmit();
                                             onClose();
                                         }
