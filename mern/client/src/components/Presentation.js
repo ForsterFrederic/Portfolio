@@ -330,14 +330,14 @@ export default function Presentation({ backendApiUrl, language }) {
                             className={"flex absolute"}
                             style={{ position: "absolute"}}
                         >
-                            <p className={"text-7xl relative top-8 mr-3 tprimary"}>*</p>
-                            <div className={"relative top-10"}>
+                            <p className={"text-7xl mr-3 tprimary"}>*</p>
+                            <div className={"relative top-2"}>
                                 <p className={"text-white text-2xl"}>{openWork}</p>
                                 <p className={"tgrayd2 text-lg"}>{based}</p>
                             </div>
                         </motion.div>
                     </motion.div>
-                    <div className={"absolute top-[8%] 2xl:top-[16%] right-0"}>
+                    <div className={"absolute top-[8%] 2xl:top-[14%] right-0"}>
                         <div className={"flex-center px-12 mx-auto"}>
                             <div className={"flex-col-center items-center py-8"}>
                                 <motion.div variants={textVariants} initial="initial" animate="animate" className={"lg:ml-0 pr-14 2xl:pr-2"}>
@@ -352,10 +352,10 @@ export default function Presentation({ backendApiUrl, language }) {
                                     </h1>
                                 </motion.div>
                                 <motion.div variants={text2Variants} initial="initial" animate="animate" className={"lg:ml-0"}>
-                                    <p className={"lg:ml-0 font-medium mt-16 text-2xl xl-3:text-3xl tblue text-left md:text-justify"}>{freelance}</p>
-                                    <p className={"max-w-[550px] xl-3:max-w-[700px] tgrayd2 text-justify text-lg mt-10 font-bold mx-auto"}>{description}</p>
+                                    <p className={"lg:ml-0 font-medium mt-11 text-2xl xl-3:text-3xl tblue text-left md:text-justify"}>{freelance}</p>
+                                    <p className={"max-w-[550px] xl-3:max-w-[700px] tgrayd2 text-justify text-lg mt-5 font-bold mx-auto"}>{description}</p>
                                 </motion.div>
-                                <motion.div variants={boxVariants} initial="initial" animate="animate" className={"lg:ml-2 flex-center mt-20"}>
+                                <motion.div variants={boxVariants} initial="initial" animate="animate" className={"lg:ml-2 flex-center mt-11"}>
                                     <div className={"flex-center w-52"}>
                                         <Countup value={numberYearsExperience} startValue={"00"}/>
                                         <p className={"font-semibold tprimary ml-1 text-xl md:text-2xl lg:text-3xl xl:text-3xl"}>+</p>
@@ -387,7 +387,7 @@ export default function Presentation({ backendApiUrl, language }) {
                                         {goToCompetencies}
                                     </Link>
                                 </motion.div>
-                                <motion.div variants={availableVariants} initial="initial" animate="animate" className={"mt-24"}>
+                                <motion.div variants={availableVariants} initial="initial" animate="animate" className={"mt-11"}>
                                     <svg
                                         onClick={() => {
                                             scroller.scrollTo('about', {
@@ -434,8 +434,8 @@ export default function Presentation({ backendApiUrl, language }) {
                                 ))}
                             </h1>
                         </div>
-                        <p className={"lg:ml-0 mt-5 text-2sm md:text-lg lg:text-xl xl:text-2xl tblue mr-auto md:pl-1 font-medium"}>{freelance}</p>
-                        <p className={"max-w-xl text-sm mt-6 mb-10 tgrayd3 text-justify text-2sm md:text-lg font-medium"}>{description}</p>
+                        <p className={"lg:ml-0 mt-5 text-2sm md:text-lg lg:text-xl xl:text-2xl tblue mr-auto font-medium"}>{freelance}</p>
+                        <p className={"max-w-xl mr-auto text-sm mt-3 mb-10 tgrayd3 text-justify text-2sm md:text-lg font-medium"}>{description}</p>
                         <div className={"flex-center mt-2"}>
                             <div className={"flex-center"}>
                                 <p className={"font-medium text-white text-3xl md:text-4xl"}>{numberYearsExperience}</p>

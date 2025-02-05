@@ -44,7 +44,7 @@ export default function Experience({ backendApiUrl, language }) {
     };
 
     return (
-        items.length !== 0 && <div name="experience" className="py-24">
+        items.length !== 0 && <div name="experience" className="pt-18 pb-24">
             <div className={"flex flex-col"}>
                 <div className={"mx-auto w-max mb-12 xl:mb-16 2xl:mb-28"} style={windowDimensions.wWCheck(700) ? {top: `${1 * 130}px`, position: "sticky", zIndex: "1000", padding: "10px"} : { top: `${1 * 130}px`}}>
                     <div className={"bprimary mx-auto w-28 h-1.5 rounded mb-3"} />

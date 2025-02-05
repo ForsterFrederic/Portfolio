@@ -192,7 +192,7 @@ export default function Contact({ backendApiUrl, language }) {
     };
 
     return (
-        <div name={"contact"} className={"min-height-screen shadow-2xl flex-col py-24 bg-neutral-900 rounded-b-3xl"}>
+        <div name={"contact"} className={"min-height-screen shadow-2xl flex-col relative -mt-6 pb-36 bg-neutral-900 rounded-b-3xl"}>
             <div className={"mx-6 md:mx-14 xl:mx-20 xl:mx-28 2xl:mx-32"}>
                 <div className={"mx-auto w-max mb-12 xl:mb-16 2xl:mb-28"}>
                     <div className={"bprimary mx-auto w-28 h-1.5 rounded mb-3"} />
