@@ -193,7 +193,7 @@ export default function Home() {
                                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                                 />
-                                {[...recent, ...week, ...older].map((location, index) => (
+                                {[...recent, ...week, ...twoWeeks, ...month, ...older].map((location, index) => (
                                     <DynamicMarker
                                         key={index}
                                         icon={locationIcon}
