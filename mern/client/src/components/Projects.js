@@ -68,7 +68,7 @@ export default function Projects({ backendApiUrl, language }) {
                 <p className="text-white px-6 mb-8 text-justify font-medium max-w-[1520px] mx-auto">{items[0].description}</p>
                 <p className="text-center tgrayd2 text-sm font-medium mb-20">{items[0]?.duration + (items[0]?.duration ? " - " : " ")}{items[0]?.technologies}{(items[0]?.link ? " - " : " ") + items[0]?.link}</p>
             </div>
-            {items.slice(1, displayMore === false ? 4 : items.length).map((item, index) => {
+            {items.slice(1, displayMore === false ? 6 : items.length).map((item, index) => {
                 const imageSrc = imageStatus[item.picture] !== undefined ? (imageStatus[item.picture] ? item.picture : "/screenshots/project"+(index+2)+"/large-desktop-landscape.webp") : "/screenshots/project"+(index+2)+"/large-desktop-landscape.webp";
 
                 return (
